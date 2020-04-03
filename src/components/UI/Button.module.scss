@@ -1,0 +1,16 @@
+.Button {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background-color: #EB592D;
+  border-radius: 3rem;
+  border: 2px solid #EB592D;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  &:hover {
+      background-color: transparent;
+  }
+}
