@@ -1,0 +1,12 @@
+.Header {
+  position: relative;
+  height: 100vh;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(#7ed56f, 0.8),
+    rgba(#28b485, 0.5)),url(../../assets/img/paddle-boards.jpg);
+  background-size: cover;
+  background-position: center;
+  padding-top: 3rem;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 80% 100%, 0 80%);
+}
