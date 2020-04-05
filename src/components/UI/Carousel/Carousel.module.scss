@@ -1,5 +1,13 @@
 .Carousel {
-    max-width: 80%;
-    text-align: center;
     margin: auto;
+    max-width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .Next {
+
+    }
+    .Prev {
+        
+    }
 }

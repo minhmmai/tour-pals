@@ -8,7 +8,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import classes from './CarouselItem.module.scss';
-import { Slide } from '@material-ui/core';
 
 const CarouselItem = props => {
   return (
@@ -16,7 +15,7 @@ const CarouselItem = props => {
         <CardActionArea>
           <CardMedia
             className={classes.Media}
-            image={props.item.thumbnail}
+            image={require(`../../../assets/img/${props.item.thumbnail}`)}
             title={props.item.name}
           />
           <CardContent>

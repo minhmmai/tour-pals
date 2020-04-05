@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import db from '../../../firestore';
 import classes from './Carousel.module.scss';
 import CarouselItem from './CarouselItem';
-import { Slide, IconButton } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 
 const Carousel = props => {
 
@@ -28,14 +28,14 @@ const Carousel = props => {
                 })
                 setItems(data);
             }).catch(err => console.log(err));
-            if (carouselLength) {
-                const indexes = []
-                for(let i = 0; i < carouselLength; i++) {
-                    indexes.push(i)
-                }
-                setActiveIndexes(indexes);
+        if (carouselLength) {
+            const indexes = []
+            for (let i = 0; i < carouselLength; i++) {
+                indexes.push(i)
             }
-    }, [])
+            setActiveIndexes(indexes);
+        }
+    }, [carouselLength])
 
     const next = () => {
         const nextIndexes = [];
@@ -59,12 +59,18 @@ const Carousel = props => {
 
     return (
         <div className={classes.Carousel}>
-            <button onClick={prev}>Prev</button>
-            {items.length > 0
+            <IconButton onClick={prev}>
+                <KeyboardArrowLeftIcon style={{fontSize: '3rem'}}/>
+            </IconButton>
+            {
+                items.length > 0
                 && activeIndexes.map(val => {
                     return <CarouselItem key={val} item={items[val]} />
-                })}
-            <button onClick={next}>Next</button>
+                })
+            }            
+            <IconButton onClick={next}>
+                <KeyboardArrowRightIcon style={{fontSize: '3rem'}} />
+            </IconButton>
         </div>
     )
 };
