@@ -8,35 +8,37 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import classes from './CarouselItem.module.scss';
+import { Slide } from '@material-ui/core';
 
 const CarouselItem = props => {
   return (
-    <Card className={classes.Destination}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.Media}
-          image={props.thumbnail}
-          title={props.name}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.name}
-                    </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.description}
-                    </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
+    <Slide direction="left" in={true} timeout={200}>
+      <Card className={classes.Destination}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.Media}
+            image={props.thumbnail}
+            title={props.name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.name}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Share
                   </Button>
-        <Button size="small" color="primary">
-          Learn More
+          <Button size="small" color="primary">
+            Learn More
                   </Button>
-      </CardActions>
-    </Card>
-
+        </CardActions>
+      </Card>
+    </Slide>
   )
 };
 
