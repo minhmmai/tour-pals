@@ -12,20 +12,19 @@ import { Slide } from '@material-ui/core';
 
 const CarouselItem = props => {
   return (
-    <Slide direction="left" in={true} timeout={200}>
       <Card className={classes.Destination}>
         <CardActionArea>
           <CardMedia
             className={classes.Media}
-            image={props.thumbnail}
-            title={props.name}
+            image={props.item.thumbnail}
+            title={props.item.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.name}
+              {props.item.name}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {props.description}
+              {props.item.description}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -38,7 +37,6 @@ const CarouselItem = props => {
                   </Button>
         </CardActions>
       </Card>
-    </Slide>
   )
 };
 
