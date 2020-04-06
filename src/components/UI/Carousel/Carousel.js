@@ -4,7 +4,6 @@ import db from '../../../firestore';
 import classes from './Carousel.module.scss';
 import CarouselItem from './CarouselItem';
 import { IconButton } from '@material-ui/core';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 
@@ -19,7 +18,7 @@ const Carousel = props => {
             .get()
             .then(querySnapshot => {
                 const data = [];
-                querySnapshot.docs.map(doc => {
+                querySnapshot.docs.forEach(doc => {
                     data.push({
                         name: doc.data().name,
                         description: doc.data().description,
@@ -39,7 +38,7 @@ const Carousel = props => {
 
     const next = () => {
         const nextIndexes = [];
-        activeIndexes.map((val) => {
+        activeIndexes.forEach((val) => {
             val >= items.length - 1
                 ? nextIndexes.push(0)
                 : nextIndexes.push(val + 1)
@@ -49,7 +48,7 @@ const Carousel = props => {
 
     const prev = () => {
         const prevIndexes = [];
-        activeIndexes.map((val) => {
+        activeIndexes.forEach((val) => {
             val <= 0
                 ? prevIndexes.push(items.length - 1)
                 : prevIndexes.push(val - 1)

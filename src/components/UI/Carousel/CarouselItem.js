@@ -11,31 +11,26 @@ import classes from './CarouselItem.module.scss';
 
 const CarouselItem = props => {
   return (
-      <Card className={classes.Destination}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.Media}
-            image={require(`../../../assets/img/${props.item.thumbnail}`)}
-            title={props.item.name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.item.name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {props.item.description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-                  </Button>
-          <Button size="small" color="primary">
-            Learn More
-                  </Button>
-        </CardActions>
-      </Card>
+    <Card className={classes.CarouselItem}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.Media}
+          image={require(`../../../assets/img/${props.item.thumbnail}`)}
+          title={props.item.name}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {props.item.name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {props.item.description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button style={{margin: 'auto', color: '#EB592D'}} size="small" color="secondary">Learn More</Button>
+      </CardActions>
+    </Card>
   )
 };
 
