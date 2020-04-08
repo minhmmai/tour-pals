@@ -8,8 +8,7 @@ const ServiceInfo = props => {
   const { children, value, index, ...other } = props;
 
   return (
-    <List className={classes.ServiceInfo}
-    component="div"
+    <div className={classes.ServiceInfo}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -17,7 +16,7 @@ const ServiceInfo = props => {
       {...other}
     >
       {value === index && children}
-    </List>
+    </div>
   );
 }
 

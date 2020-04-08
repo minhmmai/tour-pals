@@ -1,4 +1,10 @@
 .InfoItem {
     display: inline-block;
-    width: 20rem;
+    width: 30%;
+    margin: 1rem 0;
+    .Avatar{
+        margin: 1rem auto;
+        width: 30%;
+        height: 30%;        
+    }
 }
