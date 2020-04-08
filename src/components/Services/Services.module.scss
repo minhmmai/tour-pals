@@ -1,0 +1,28 @@
+.Services {
+    background-image: linear-gradient(to right bottom, rgba(rgb(212, 0, 0), 0.5), rgba(rgb(243, 189, 73), 0.8)),
+        url(../../assets/img/beach-houses.jpg);
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 0, 20% 0, 100% 20%, 100% 100%, 100% 100%, 0 100%);
+    flex-grow: 1;
+    padding: 5rem 4rem;
+    .Heading {
+        font: 300 3rem "Lato";
+        color: white;
+    }
+    .Tabs {
+        color: white;
+        .Tab {
+            font: 300 1.2rem "Lato";
+            text-transform: capitalize;
+            transition: all 0.3s ease 0s;
+            &:hover, &:active, &:focus{
+                color: #EB592D;
+                border-bottom: 2px solid #EB592D;
+            }
+        }
+    }
+    .BtnBox Button {
+        margin: 2rem;
+    }
+}
