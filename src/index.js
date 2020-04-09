@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/core/styles';
 
+import theme from './assets/theme/boulder-pizza-cows';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const app = (
   <BrowserRouter>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </BrowserRouter>
 )
 
