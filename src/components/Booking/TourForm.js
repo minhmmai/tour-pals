@@ -8,7 +8,8 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
+        width: '80%',
+        margin: 'auto'
     },
     backButton: {
         marginRight: theme.spacing(1),
@@ -20,20 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const getSteps = () => {
-    return ['Select master blaster campaign settings', 'Create an ad group', 'Create an ad'];
-}
-
-const getStepContent = stepIndex => {
-    switch (stepIndex) {
-        case 0:
-            return 'Select campaign settings...';
-        case 1:
-            return 'What is an ad group anyways?';
-        case 2:
-            return 'This is the bit I really care about!';
-        default:
-            return 'Unknown stepIndex';
-    }
+    return ['Tour Details', 'Your Details', 'Payment', 'All Done!'];
 }
 
 const TourForm = () => {
@@ -62,7 +50,7 @@ const TourForm = () => {
                 {activeSection === steps.length ? (
                     <div>
                         <Typography className={classes.instructions}>All steps completed</Typography>
-                        
+
                     </div>
                 ) : (
                         <div>
