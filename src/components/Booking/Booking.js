@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { renderForm, getFormJson } from '../../shared/utility'
+import { getForm } from '../../shared/utility';
+import Form from './Form';
 
 const Booking = props => {
 
-    const form = getFormJson(props.formName);
+    const form = getForm(props.formName);
 
     return (
         <div>
-            {renderForm(form)}
+            <Form>{form}</Form>
         </div>
     )
 };
