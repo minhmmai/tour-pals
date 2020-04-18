@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../components/Header/Header';
 import Carousel from '../components/UI/Carousel/Carousel';
 import Services from '../components/Services/Services';
-import Booking from '../components/Booking/Booking';
+import TourForm from '../components/Booking/TourForm';
 
 const Layout = props => {
     return (
@@ -11,7 +11,7 @@ const Layout = props => {
             <Header />
             <Carousel />
             <Services/>
-            <Booking formName="tourForm"/>
+            <TourForm/>
         </div>
     )
 };
