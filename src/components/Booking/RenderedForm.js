@@ -16,37 +16,17 @@ import Select from "../Form/Select";
 import Section from "../Form/Section";
 
 import { getForm } from "../../shared/utility";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "50%",
-    height: "auto",
-    margin: "auto",
-  },
-  button: {
-    marginRight: theme.spacing(1),
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    display: "block",
-  },
-}));
+import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
   const form = getForm(props.formName);
-  const classes = useStyles();
   const [activeSection, setActiveSection] = useState(0);
-  const fields = []
+  const fields = [];
 
   useEffect(() => {
     form.sections.forEach((section) => {
       section.fields.forEach((field) => {
-        fields.push(field)
+        fields.push(field);
       });
     });
   }, [form]);
@@ -64,16 +44,16 @@ const RenderedForm = (props) => {
   };
 
   const changeHandler = (event, field) => {
-    fields[fields.indexOf(field)].value = event.target.value
+    fields[fields.indexOf(field)].value = event.target.value;
   };
 
   return (
-    <div className={classes.root}>
-      <Stepper activeStep={activeSection}>
+    <form className={classes.Form}>
+      <Stepper activeStep={activeSection} alternativeLabel className={classes.Stepper}>
         {form.sections.map((section, index) => {
           return (
-            <Step key={index}>
-              <StepLabel>{section.label}</StepLabel>
+            <Step  className={classes.Step}key={index}>
+              <StepLabel className={classes.StepLabel}>{section.label}</StepLabel>
             </Step>
           );
         })}
@@ -97,60 +77,63 @@ const RenderedForm = (props) => {
           <div>
             {form.sections.map((section, index) => {
               return (
-                <Section index={index} activeSection={activeSection} key={section.id} label={section.label}>
-                  {section.description}
+                <Section
+                  activeSection={activeSection}
+                  index={index}
+                  key={section.sectionId}
+                  label={section.label}
+                  description={section.description}
+                >
                   {section.fields.map((field, index) => {
                     if (field.type === "text") {
                       return (
                         <Input
+                          className={classes.Field}
                           key={field.id}
                           type={field.type}
                           title={field.label}
                           name={field.id}
-                          value
-                          placeholder={""}
-                          handleChange={(event) => changeHandler(event, field)}
                         />
                       );
                     } else if (field.type === "select") {
                       return (
                         <Select
+                          className={classes.Field}
                           key={field.id}
                           title={field.label}
                           name={field.id}
-                          options={field.options.map(option => option.label)}
-                          value
-                          placeholder={`Select ${field.label}`}
-                          handleChange={(event) => changeHandler(event, field)}
+                          options={field.options.map((option) => option.label)}
                         />
                       );
                     }
                   })}
+                  <div>
+                    <Button
+                      disabled={activeSection === 0}
+                      onClick={handleBack}
+                      className={classes.button}
+                    >
+                      Back
+                    </Button>
+
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={handleNext}
+                      className={classes.button}
+                    >
+                      {activeSection === form.sections.length - 1
+                        ? "Submit"
+                        : "Next"}
+                    </Button>
+                  </div>
                 </Section>
               );
             })}
-            <div>
-              <Button
-                disabled={activeSection === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeSection === form.sections.length - 1 ? "Submit" : "Next"}
-              </Button>
-            </div>
           </div>
         )}
       </div>
-    </div>
+    </form>
   );
 };
 

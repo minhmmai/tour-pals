@@ -1,26 +1,30 @@
-import React from 'react';
+import React from "react";
+
+import classes from "./Field.module.scss";
 
 const Select = (props) => {
-    return(
-        <div className="form-select">
-            <label htmlFor={props.name}> {props.title} </label>
-            <select
-              name={props.name}
-              value={props.value}
-              onChange={props.handleChange}
-              >
-              <option value="" disabled>{props.placeholder}</option>
-              {props.options.map(option => {
-                return (
-                  <option
-                    key={option}
-                    value={option}
-                    label={option}>{option}
-                  </option>
-                );
-              })}
-            </select>
-      </div>)
-}
+  return (
+    <div className={classes.Field}>
+      <label className={classes.Label} htmlFor={props.name}>
+        {" "}
+        {props.title}{" "}
+      </label>
+      <select
+        className={classes.Select}
+        name={props.name}
+        value={props.value}
+        onChange={props.handleChange}
+      >
+        {props.options.map((option) => {
+          return (
+            <option key={option} value={option} label={option}>
+              {option}
+            </option>
+          );
+        })}
+      </select>
+    </div>
+  );
+};
 
 export default Select;

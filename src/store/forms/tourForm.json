@@ -8,7 +8,7 @@
             "fields": [
                 {
                     "id": "tour",
-                    "label": "Tour",
+                    "label": "Which tour are you looking for?",
                     "type": "select",
                     "options": [
                         { "value": "phillip-island", "label": "Phillip Island" },
@@ -22,18 +22,6 @@
                     ],
                     "validation": {
                         "isRequired": true
-                    },
-                    "valid": false,
-                    "value": ""
-                },
-                {
-                    "id": "pickupAddress",
-                    "label": "Pick-up address",
-                    "type": "text",
-                    "validation": {
-                        "isRequired": true,
-                        "minLength": 10,
-                        "maxLength": 50
                     },
                     "valid": false,
                     "value": ""
@@ -60,8 +48,20 @@
                     "value": ""
                 },
                 {
+                    "id": "pickupAddress",
+                    "label": "What is your pick-up address?",
+                    "type": "text",
+                    "validation": {
+                        "isRequired": true,
+                        "minLength": 10,
+                        "maxLength": 50
+                    },
+                    "valid": false,
+                    "value": ""
+                },
+                {
                     "id": "children",
-                    "label": "How many children between the age of 2 and 7 in your group?",
+                    "label": "How many children aged between 2 and 7 in your group?",
                     "tooltip": "We'll prepare car seats for the little ones free of charge",
                     "description": "Children under 2 are not recommended to travel on our tours unfortunately",
                     "type": "text",
