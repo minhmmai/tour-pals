@@ -3,6 +3,18 @@
 .Form {
   width: 90%;
   margin: auto;
+  .Button {
+    font: 300 1rem 'Roboto';
+    text-transform: capitalize;
+    margin: 1rem;
+  }
+  .Complete {
+    font: 300 2rem 'Roboto';
+  }
+  .Instruction {
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
 }
 
 

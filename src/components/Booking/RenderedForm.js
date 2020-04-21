@@ -71,14 +71,17 @@ const RenderedForm = (props) => {
       <div>
         {activeSection === form.sections.length ? (
           <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
+              <Typography className={classes.Complete} color="secondary" variant="h4">
+                All done!
+            </Typography>
+            <Typography className={classes.Instruction} color="primary" variant="subtitle1">
+                You will receive a confirmation email real soon. If any questions, feel free to contact us at 1234 1234.<br/>We're sure you will enjoy your trip.
             </Typography>
             <Button
-              onClick={handleReset}
-              className={classes.button}
               variant="contained"
-              color="primary"
+              color="secondary"
+              onClick={handleReset}
+              className={classes.Button}
             >
               Book Another Tour
             </Button>
@@ -99,7 +102,6 @@ const RenderedForm = (props) => {
                       if (field.type === "text") {
                         renderedField = (
                           <Input
-                            className={classes.Field}
                             key={field.id}
                             type={field.type}
                             title={field.label}
@@ -113,7 +115,6 @@ const RenderedForm = (props) => {
                       } else if (field.type === "select") {
                         renderedField = (
                           <Select
-                            className={classes.Field}
                             key={field.id}
                             title={field.label}
                             name={field.id}
@@ -131,7 +132,7 @@ const RenderedForm = (props) => {
                       <Button
                         disabled={activeSection === 0}
                         onClick={handleBack}
-                        className={classes.button}
+                        className={classes.Button}
                       >
                         Back
                     </Button>
@@ -140,7 +141,7 @@ const RenderedForm = (props) => {
                         variant="contained"
                         color="secondary"
                         onClick={handleNext}
-                        className={classes.button}
+                        className={classes.Button}
                       >
                         {activeSection === form.sections.length - 1
                           ? "Submit"
