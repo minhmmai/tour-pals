@@ -65,11 +65,11 @@ const RenderedForm = (props) => {
       <div>
         {activeSection === form.sections.length ? (
           <div>
-              <Typography className={classes.Complete} color="secondary" variant="h4">
-                All done!
+            <Typography className={classes.Complete} color="secondary" variant="h4">
+              All done!
             </Typography>
             <Typography className={classes.Instruction} color="primary" variant="subtitle1">
-                You will receive a confirmation email real soon. If any questions, feel free to contact us at 1234 1234.<br/>We're sure you will enjoy your trip.
+              You will receive a confirmation email real soon. If any questions, feel free to contact us at 1234 1234.<br />We're sure you will enjoy your trip.
             </Typography>
             <Button
               variant="contained"
@@ -96,9 +96,11 @@ const RenderedForm = (props) => {
                       if (field.type === "text") {
                         renderedField = (
                           <Input
+                            description={field.description}
                             key={field.id}
                             type={field.type}
                             title={field.label}
+                            tooltip={field.tooltip}
                             name={field.id}
                             value={fields[field.id] && fields[field.id].value}
                             handleChange={(event) =>
@@ -109,8 +111,10 @@ const RenderedForm = (props) => {
                       } else if (field.type === "select") {
                         renderedField = (
                           <Select
+                            description={field.description}
                             key={field.id}
                             title={field.label}
+                            tooltip={field.tooltip}
                             name={field.id}
                             options={field.options.map((option) => option.label)}
                             value={fields[field.id] && fields[field.id].value}

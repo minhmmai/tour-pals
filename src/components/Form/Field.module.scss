@@ -1,13 +1,14 @@
-@import '../../assets/scss/variable.scss';
+@import "../../assets/scss/variable.scss";
 
 .Field {
   margin: 1.5rem;
   color: $primary-main;
   font-weight: 300;
 
-  .Label {
+  .Label, .Description {
     display: block;
     margin: 0.5rem;
+    text-align: center;
   }
 
   .Input,
@@ -22,5 +23,12 @@
 
   .Select {
     min-width: 15%;
+    padding: 0 .5rem;
+  }
+
+  .Tooltip {
+    HelpIcon {
+      margin-top: 1rem;
+    }
   }
 }

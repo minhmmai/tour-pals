@@ -1,5 +1,8 @@
 import React from 'react';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import HelpIcon from '@material-ui/icons/Help';
 
+import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
 
 const Input = (props) => {
@@ -7,6 +10,9 @@ const Input = (props) => {
     <div className={classes.Field}>
       <label htmlFor={props.name} className={classes.Label}>
         {props.title}
+        {props.tooltip
+          && <Tooltip className={classes.Tooltip} content={props.tooltip}>
+          </Tooltip>}
       </label>
       <input
         className={classes.Input}
@@ -15,6 +21,7 @@ const Input = (props) => {
         type={props.type}
         onChange={props.handleChange}
       />
+      {props.description && <FormHelperText className={classes.Description}>{props.description}</FormHelperText>}
     </div>
   );
 };
