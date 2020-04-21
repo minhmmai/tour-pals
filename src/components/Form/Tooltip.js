@@ -14,7 +14,7 @@ const CustomTooltip = (props) => {
     const StyledTooltip = withStyles(styles)(Tooltip);
     return (
         <StyledTooltip title={props.content} placement="bottom">
-            <HelpIcon style={{verticalAlign: 'middle'}}></HelpIcon>
+            <HelpIcon style={{fontSize: '1rem', margin: '0 .3rem', verticalAlign: 'middle'}}></HelpIcon>
         </StyledTooltip>
     );
 };

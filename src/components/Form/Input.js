@@ -11,7 +11,7 @@ const Input = (props) => {
       <label htmlFor={props.name} className={classes.Label}>
         {props.title}
         {props.tooltip
-          && <Tooltip className={classes.Tooltip} content={props.tooltip}>
+          && <Tooltip content={props.tooltip}>
           </Tooltip>}
       </label>
       <input
