@@ -68,7 +68,7 @@
                     "validation": {
                         "isRequired": true,
                         "minValue": 0,
-                        "maxValue": "totalPeople.value"
+                        "maxValue": "totalPeople"
                     },
                     "valid": false,
                     "value": ""
@@ -98,7 +98,7 @@
                     "type": "text",
                     "validation": {
                         "isRequired": false,
-                        "isDisplayed": true
+                        "isEmail": true
                     },
                     "valid": false,
                     "value": ""
@@ -121,7 +121,6 @@
                     "type": "text",
                     "validation": {
                         "isRequired": false,
-                        "isDisplayed": true,
                         "minLength": 7,
                         "maxLength": 50
                     },
