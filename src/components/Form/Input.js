@@ -1,6 +1,5 @@
 import React from 'react';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import HelpIcon from '@material-ui/icons/Help';
 
 import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
