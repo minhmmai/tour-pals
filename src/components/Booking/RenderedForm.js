@@ -9,23 +9,27 @@ import Input from "../Form/Input";
 import Select from "../Form/Select";
 import Section from "../Form/Section";
 
-import { getForm } from "../../shared/utility";
+import { getForm, validateField, updateObject } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
   const form = getForm(props.formName);
   const [activeSection, setActiveSection] = useState(0);
-  const [fields, setFields] = useState([]);
+  const [fields, setFields] = useState({});
 
   useEffect(() => {
-    let retrievedFields = [];
+    let retrievedFields = {};
     form.sections.forEach((section) => {
       section.fields.forEach((field) => {
-        retrievedFields[field.id] = { value: field.value };
+        retrievedFields[field.id] = {
+          value: field.value,
+          validation: field.validation,
+          valid: field.valid
+        };
       });
     });
     setFields(retrievedFields);
-  }, [form.sections]);
+  }, [form]);
 
   const handleNext = () => {
     setActiveSection((prevActiveSection) => prevActiveSection + 1);
@@ -40,10 +44,13 @@ const RenderedForm = (props) => {
   };
 
   const changeHandler = (event, fieldId) => {
-    let updatedFields = [
-      ...fields,
-      (fields[fieldId] = { value: event.target.value }),
-    ];
+    const updatedField = updateObject(fields[fieldId], {
+      value: event.target.value,
+      valid: validateField(event.target.value, fields[fieldId].validation)
+    });
+    const updatedFields = updateObject(fields, {
+      [fieldId]: updatedField
+    });
     setFields(updatedFields);
   };
 
@@ -116,7 +123,7 @@ const RenderedForm = (props) => {
                             title={field.label}
                             tooltip={field.tooltip}
                             name={field.id}
-                            options={field.options.map((option) => option.label)}
+                            options={field.options}
                             value={fields[field.id] && fields[field.id].value}
                             handleChange={(event) =>
                               changeHandler(event, field.id)

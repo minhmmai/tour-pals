@@ -24,7 +24,7 @@
                         "isRequired": true
                     },
                     "valid": false,
-                    "value": ""
+                    "value": "phillip-island"
                 },
                 {
                     "id": "totalPeople",
@@ -45,7 +45,7 @@
                         "isRequired": true
                     },
                     "valid": false,
-                    "value": ""
+                    "value": 4
                 },
                 {
                     "id": "pickupAddress",
@@ -100,7 +100,7 @@
                         "isRequired": false,
                         "isEmail": true
                     },
-                    "valid": false,
+                    "valid": true,
                     "value": ""
                 },
                 {
@@ -124,7 +124,7 @@
                         "minLength": 7,
                         "maxLength": 50
                     },
-                    "valid": false,
+                    "valid": true,
                     "value": ""
                 }
             ]
@@ -150,7 +150,7 @@
                         "isRequired": true
                     },
                     "valid": false,
-                    "value": ""
+                    "value": "visa"
                 },
                 {
                     "id": "cardNumber",

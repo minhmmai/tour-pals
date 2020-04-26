@@ -10,42 +10,42 @@ export const getForm = (formName) => {
 };
 
 
-export const validateField = (fields, field, rules) => {
+export const validateField = (value, rules) => {
     let isValid = true;
     if (!rules) {
         return true;
     }
 
     if (rules.isRequired) {
-        isValid = field.value.trim() !== '' && isValid;
+        isValid = value.trim() !== '' && isValid;
     }
 
     if (rules.minLength) {
-        isValid = field.value.length >= rules.minLength && isValid
+        isValid = value.length >= rules.minLength && isValid
     }
 
     if (rules.maxLength) {
-        isValid = field.value.length <= rules.maxLength && isValid
+        isValid = value.length <= rules.maxLength && isValid
     }
 
     if (rules.isEmail) {
         const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-        isValid = pattern.test(field.value) && isValid
+        isValid = pattern.test(value) && isValid
     }
 
     if (rules.minValue) {
         if (typeof(rules.minValue) === 'string') {
-            isValid = field.value >= fields[rules.minValue].value && isValid
+            isValid = value >= rules.minValue.value && isValid
         }else {
-            isValid = field.value >= rules.minValue && isValid
+            isValid = value >= rules.minValue && isValid
         }
     }
 
     if (rules.maxValue) {
        if (typeof(rules.maxValue) === 'string') {
-            isValid = field.value < fields[rules.maxValue].value && isValid
+            isValid = value < rules.maxValue.value && isValid
         }else {
-            isValid = field.value < rules.maxValue && isValid
+            isValid = value < rules.maxValue && isValid
         }
     }
 
