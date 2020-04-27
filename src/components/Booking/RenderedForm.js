@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
@@ -9,27 +9,14 @@ import Input from "../Form/Input";
 import Select from "../Form/Select";
 import Section from "../Form/Section";
 
-import { getForm, validateField, updateObject } from "../../shared/utility";
+import { getForm, validateValue, updateObject, updateArray } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
   const form = getForm(props.formName);
   const [activeSection, setActiveSection] = useState(0);
-  const [fields, setFields] = useState({});
-
-  useEffect(() => {
-    let retrievedFields = {};
-    form.sections.forEach((section) => {
-      section.fields.forEach((field) => {
-        retrievedFields[field.id] = {
-          value: field.value,
-          validation: field.validation,
-          valid: field.valid
-        };
-      });
-    });
-    setFields(retrievedFields);
-  }, [form]);
+  const [sections, setSections] = useState(form.sections);
+  const [errorMsg, setErrorMsg] = useState([]);
 
   const handleNext = () => {
     setActiveSection((prevActiveSection) => prevActiveSection + 1);
@@ -43,15 +30,15 @@ const RenderedForm = (props) => {
     setActiveSection(0);
   };
 
-  const changeHandler = (event, fieldId) => {
-    const updatedField = updateObject(fields[fieldId], {
+  const changeHandler = (event, fieldIndex) => {
+    const updatedField = updateObject(sections[activeSection].fields[fieldIndex], {
       value: event.target.value,
-      valid: validateField(event.target.value, fields[fieldId].validation)
+      valid: validateValue(event.target.value, sections[activeSection].fields[fieldIndex].validation)
     });
-    const updatedFields = updateObject(fields, {
-      [fieldId]: updatedField
-    });
-    setFields(updatedFields);
+    const updatedSections = [...sections];
+    updatedSections[activeSection].fields[fieldIndex] = updatedField
+
+    setSections(updatedSections);
   };
 
   return (
@@ -104,14 +91,14 @@ const RenderedForm = (props) => {
                         renderedField = (
                           <Input
                             description={field.description}
-                            key={field.id}
+                            key={index}
                             type={field.type}
                             title={field.label}
                             tooltip={field.tooltip}
                             name={field.id}
-                            value={fields[field.id] && fields[field.id].value}
+                            value={section.fields[field.id] && section.fields[field.id].value}
                             handleChange={(event) =>
-                              changeHandler(event, field.id)
+                              changeHandler(event, index)
                             }
                           />
                         );
@@ -119,14 +106,14 @@ const RenderedForm = (props) => {
                         renderedField = (
                           <Select
                             description={field.description}
-                            key={field.id}
+                            key={index}
                             title={field.label}
                             tooltip={field.tooltip}
                             name={field.id}
                             options={field.options}
-                            value={fields[field.id] && fields[field.id].value}
+                            value={section.fields[field.id] && section.fields[field.id].value}
                             handleChange={(event) =>
-                              changeHandler(event, field.id)
+                              changeHandler(event, index)
                             }
                           />
                         );

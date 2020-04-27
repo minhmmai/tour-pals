@@ -10,7 +10,7 @@ export const getForm = (formName) => {
 };
 
 
-export const validateField = (value, rules) => {
+export const validateValue = (value, rules) => {
     let isValid = true;
     if (!rules) {
         return true;
