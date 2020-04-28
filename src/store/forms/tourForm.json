@@ -11,19 +11,46 @@
                     "label": "Which tour are you looking for?",
                     "type": "select",
                     "options": [
-                        { "value": "phillip-island", "label": "Phillip Island" },
-                        { "value": "souvereign-hill", "label": "Souvereign Hill" },
-                        { "value": "bright", "label": "Bright" },
-                        { "value": "mt-buller", "label": "Mt Buller" },
-                        { "value": "mt-macedon", "label": "Mt Macedon" },
-                        { "value": "great-ocean-road", "label": "Great Ocean Road" },
-                        { "value": "lake-ountain", "label": "Lake Mountain" },
-                        { "value": "grampians", "label": "Grampians" }
+                        {
+                            "value": "phillip-island",
+                            "label": "Phillip Island"
+                        },
+                        {
+                            "value": "souvereign-hill",
+                            "label": "Souvereign Hill"
+                        },
+                        {
+                            "value": "bright",
+                            "label": "Bright"
+                        },
+                        {
+                            "value": "mt-buller",
+                            "label": "Mt Buller"
+                        },
+                        {
+                            "value": "mt-macedon",
+                            "label": "Mt Macedon"
+                        },
+                        {
+                            "value": "great-ocean-road",
+                            "label": "Great Ocean Road"
+                        },
+                        {
+                            "value": "lake-ountain",
+                            "label": "Lake Mountain"
+                        },
+                        {
+                            "value": "grampians",
+                            "label": "Grampians"
+                        }
                     ],
-                    "validation": {
-                        "isRequired": true
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know which tour you're looking for",
+                            "valid": true
+                        }
                     },
-                    "valid": false,
                     "value": "phillip-island"
                 },
                 {
@@ -32,31 +59,65 @@
                     "tooltip": "Total number of people travelling including you",
                     "type": "select",
                     "options": [
-                        { "value": 4, "label": "4 Or Less" },
-                        { "value": 7, "label": "7 Or Less" },
-                        { "value": 10, "label": "10 Or Less" },
-                        { "value": 15, "label": "15 Or Less" },
-                        { "value": 20, "label": "20 Or Less" },
-                        { "value": 30, "label": "30 Or Less" },
-                        { "value": 40, "label": "40 Or Less" },
-                        { "value": 60, "label": "60 Or Less" }
+                        {
+                            "value": 4,
+                            "label": "4 Or Less"
+                        },
+                        {
+                            "value": 7,
+                            "label": "7 Or Less"
+                        },
+                        {
+                            "value": 10,
+                            "label": "10 Or Less"
+                        },
+                        {
+                            "value": 15,
+                            "label": "15 Or Less"
+                        },
+                        {
+                            "value": 20,
+                            "label": "20 Or Less"
+                        },
+                        {
+                            "value": 30,
+                            "label": "30 Or Less"
+                        },
+                        {
+                            "value": 40,
+                            "label": "40 Or Less"
+                        },
+                        {
+                            "value": 60,
+                            "label": "60 Or Less"
+                        }
                     ],
-                    "validation": {
-                        "isRequired": true
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know how many people are travelling",
+                            "valid": true
+                        }
                     },
-                    "valid": false,
                     "value": 4
                 },
                 {
                     "id": "pickupAddress",
                     "label": "What is your pick-up address?",
                     "type": "text",
-                    "validation": {
-                        "isRequired": true,
-                        "minLength": 10,
-                        "maxLength": 50
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know the pick-up address",
+                            "valid": false
+                        },
+                        "length": {
+                            "min": 10,
+                            "max": 50,
+                            "errorMsg": "Your pick-up address must be between 10 and 50 characters",
+                            "valid": false
+                        }
                     },
-                    "valid": false,
                     "value": ""
                 },
                 {
@@ -65,12 +126,19 @@
                     "tooltip": "We'll prepare car seats for the little ones free of charge",
                     "description": "Children under 2 are not recommended to travel on our tours unfortunately",
                     "type": "text",
-                    "validation": {
-                        "isRequired": true,
-                        "minValue": 0,
-                        "maxValue": "totalPeople"
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know how many people are travelling",
+                            "valid": false
+                        },
+                        "valueRange": {
+                            "min": 0,
+                            "max": "totalPeople",
+                            "errorMsg": "Number of children is larger than total people travelling",
+                            "valid": false
+                        }
                     },
-                    "valid": false,
                     "value": ""
                 }
             ]
@@ -84,47 +152,73 @@
                     "id": "fullName",
                     "label": "Full name",
                     "type": "text",
-                    "validation": {
-                        "isRequired": true,
-                        "minLength": 10,
-                        "maxLength": 50
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know your name",
+                            "valid": false
+                        },
+                        "length": {
+                            "min": 10,
+                            "max": 50,
+                            "errorMsg": "Your full name must be between 10 and 50 characters",
+                            "valid": false
+                        }
                     },
-                    "valid": false,
                     "value": ""
                 },
                 {
                     "id": "email",
                     "label": "Email address",
                     "type": "text",
-                    "validation": {
-                        "isRequired": false,
-                        "isEmail": true
+                    "validations": {
+                        "isRequired": {
+                            "value": false,
+                            "valid": true
+                        },
+                        "isEmail": {
+                            "value": true,
+                            "errorMsg": "Email is not in correct format",
+                            "valid": true
+                        }
                     },
-                    "valid": true,
                     "value": ""
                 },
                 {
                     "id": "contactNumber",
                     "label": "Contact number",
                     "type": "text",
-                    "validation": {
-                        "isRequired": true,
-                        "minLength": 7,
-                        "maxLength": 50
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know your contact number",
+                            "valid": false
+                        },
+                        "length": {
+                            "min": 7,
+                            "max": 50,
+                            "errorMsg": "Your contact number must be between 7 and 50 characters",
+                            "valid": false
+                        }
                     },
-                    "valid": false,
                     "value": ""
                 },
                 {
                     "id": "altContactNumber",
                     "label": "Alternative Contact number",
                     "type": "text",
-                    "validation": {
-                        "isRequired": false,
-                        "minLength": 7,
-                        "maxLength": 50
+                    "validations": {
+                        "isRequired": {
+                            "value": false,
+                            "valid": true
+                        },
+                        "length": {
+                            "min": 7,
+                            "max": 50,
+                            "errorMsg": "Your alternative contact number must be between 7 and 50 characters",
+                            "valid": true
+                        }
                     },
-                    "valid": true,
                     "value": ""
                 }
             ]
@@ -139,39 +233,58 @@
                     "label": "Payment Type",
                     "type": "select",
                     "options": [
-                        { "value": "visa", "label": "Visa"
+                        {
+                            "value": "visa",
+                            "label": "Visa"
                         },
-                        { "value": "master", "label": "Mastercard"
+                        {
+                            "value": "master",
+                            "label": "Mastercard"
                         },
-                        { "value": "amex", "label": "American Express"
+                        {
+                            "value": "amex",
+                            "label": "American Express"
                         }
                     ],
-                    "validation": {
-                        "isRequired": true
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know the payment type",
+                            "valid": false
+                        }
                     },
-                    "valid": false,
                     "value": "visa"
                 },
                 {
                     "id": "cardNumber",
                     "label": "Card Number",
                     "type": "text",
-                    "validation": {
-                        "isRequired": true,
-                        "minLength": 15,
-                        "maxLength": 16
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know your card number",
+                            "valid": false
+                        },
+                        "length": {
+                            "min": 15,
+                            "max": 16,
+                            "errorMsg": "Your card number must be 15 or 16 digits",
+                            "valid": false
+                        }
                     },
-                    "valid": false,
                     "value": ""
                 },
                 {
                     "id": "expiryDate",
                     "label": "Expiry Date",
                     "type": "text",
-                    "validation": {
-                        "isRequired": true
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know your card expiry date",
+                            "valid": false
+                        }
                     },
-                    "valid": false,
                     "value": ""
                 },
                 {
@@ -180,12 +293,19 @@
                     "tooltip": "This is a 3 to 4 digits code at the back of your card",
                     "description": "Also refered to as CVC or CID",
                     "type": "text",
-                    "validation": {
-                        "isRequired": true,
-                        "minLength": 3,
-                        "maxLength": 4
+                    "validations": {
+                        "isRequired": {
+                            "value": true,
+                            "errorMsg": "We need to know your card CVV",
+                            "valid": false
+                        },
+                        "length": {
+                            "min": 3,
+                            "max": 4,
+                            "errorMsg": "Your card number must be 3 or 4 digits",
+                            "valid": false
+                        }
                     },
-                    "valid": false,
                     "value": ""
                 }
             ]

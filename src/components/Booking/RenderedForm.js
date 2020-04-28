@@ -1,25 +1,32 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Alert from '@material-ui/lab/Alert';
 
 import Input from "../Form/Input";
 import Select from "../Form/Select";
 import Section from "../Form/Section";
 
-import { getForm, validateValue, updateObject, updateArray } from "../../shared/utility";
+import { getForm, validateValue, updateObject, validateSection } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
   const form = getForm(props.formName);
   const [activeSection, setActiveSection] = useState(0);
   const [sections, setSections] = useState(form.sections);
-  const [errorMsg, setErrorMsg] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const handleNext = () => {
-    setActiveSection((prevActiveSection) => prevActiveSection + 1);
+    const newErrors = validateSection(sections[activeSection]);
+    setErrors(newErrors);
+    if (newErrors.length === 0) {
+      setActiveSection((prevActiveSection) => prevActiveSection + 1);
+    } else {
+      console.log(errors)
+    }
   };
 
   const handleBack = () => {
@@ -33,7 +40,7 @@ const RenderedForm = (props) => {
   const changeHandler = (event, fieldIndex) => {
     const updatedField = updateObject(sections[activeSection].fields[fieldIndex], {
       value: event.target.value,
-      valid: validateValue(event.target.value, sections[activeSection].fields[fieldIndex].validation)
+      valid: validateValue(event.target.value, sections[activeSection].fields[fieldIndex].validations)
     });
     const updatedSections = [...sections];
     updatedSections[activeSection].fields[fieldIndex] = updatedField
@@ -85,6 +92,14 @@ const RenderedForm = (props) => {
                     label={section.label}
                     description={section.description}
                   >
+                    {errors.length > 0 &&
+                      <div>
+                        {errors.map((error, index) => {
+                          return <Alert key={index} severity="error">{error}</Alert>
+                        })}
+                      </div>
+
+                    }
                     {section.fields.map((field, index) => {
                       let renderedField = "";
                       if (field.type === "text") {

@@ -9,6 +9,16 @@ export const getForm = (formName) => {
     return (require(`../store/forms/${formName}.json`));
 };
 
+export const validateSection = section => {
+    const errorMsg = [];
+    section.fields.forEach(field => {
+        for (let validation in field.validations) {
+            !field.validations[validation].valid && errorMsg.push(field.validations[validation].errorMsg) 
+        }
+        
+    })
+    return errorMsg;
+}
 
 export const validateValue = (value, rules) => {
     let isValid = true;
