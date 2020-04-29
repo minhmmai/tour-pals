@@ -135,7 +135,7 @@
                         "valueRange": {
                             "min": 0,
                             "max": "totalPeople",
-                            "errorMsg": "Number of children is larger than total people travelling",
+                            "errorMsg": "Number of children must be smaller than total people travelling",
                             "valid": false
                         }
                     },

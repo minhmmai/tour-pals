@@ -10,22 +10,52 @@ import Input from "../Form/Input";
 import Select from "../Form/Select";
 import Section from "../Form/Section";
 
-import { getForm, validateValue, updateObject, validateSection } from "../../shared/utility";
+import { getForm, validateField, updateObject } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
+import { useEffect } from "react";
 
 const RenderedForm = (props) => {
   const form = getForm(props.formName);
   const [activeSection, setActiveSection] = useState(0);
-  const [sections, setSections] = useState(form.sections);
+  const [sections, setSections] = useState([]);
+  const [fields, setFields] = useState([]);
   const [errors, setErrors] = useState([]);
 
+  useEffect(() => {
+    const formSections = [];
+    const formFields = []
+
+    form.sections.forEach(section => {
+      formSections.push({
+        sectionId: section.sectionId,
+        label: section.label,
+        description: section.description
+      });
+    });
+    setSections(formSections);
+
+    form.sections.forEach(section => {
+      const sectionFields = []
+      section.fields.forEach(field => {
+        sectionFields.push(field)
+      })
+      formFields.push(sectionFields)
+    });
+    setFields(formFields);
+  }, [form]);
+
   const handleNext = () => {
-    const newErrors = validateSection(sections[activeSection]);
-    setErrors(newErrors);
-    if (newErrors.length === 0) {
-      setActiveSection((prevActiveSection) => prevActiveSection + 1);
+    const newErrors = []
+    fields[activeSection].forEach(sectionField => {
+      for (let validation in sectionField.validations) {
+        sectionField.validations[validation].valid = validateField(fields, sectionField.value, sectionField.validations);
+        !sectionField.validations[validation].valid && newErrors.push(sectionField.validations[validation].errorMsg);
+      }
+    })
+    if (newErrors.length > 0) {
+      setErrors(newErrors)
     } else {
-      console.log(errors)
+      setActiveSection((prevActiveSection) => prevActiveSection + 1);
     }
   };
 
@@ -39,8 +69,7 @@ const RenderedForm = (props) => {
 
   const changeHandler = (event, fieldIndex) => {
     const updatedField = updateObject(sections[activeSection].fields[fieldIndex], {
-      value: event.target.value,
-      valid: validateValue(event.target.value, sections[activeSection].fields[fieldIndex].validations)
+      value: event.target.value
     });
     const updatedSections = [...sections];
     updatedSections[activeSection].fields[fieldIndex] = updatedField
