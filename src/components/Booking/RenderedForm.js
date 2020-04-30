@@ -4,15 +4,16 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Alert from '@material-ui/lab/Alert';
 
 import Input from "../Form/Input";
 import Select from "../Form/Select";
 import Section from "../Form/Section";
+import CustomAlert from '../Form/CustomAlert';
 
 import { getForm, validateField, updateObject } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
 import { useEffect } from "react";
+import { useCallback } from "react";
 
 const RenderedForm = (props) => {
   const form = getForm(props.formName);
@@ -21,40 +22,47 @@ const RenderedForm = (props) => {
   const [fields, setFields] = useState([]);
   const [errors, setErrors] = useState([]);
 
-  useEffect(() => {
+  const initForm = useCallback(() => {
     const formSections = [];
     const formFields = []
 
-    form.sections.forEach(section => {
+    for (let key in form.sections) {
       formSections.push({
-        sectionId: section.sectionId,
-        label: section.label,
-        description: section.description
+        sectionId: key,
+        label: form.sections[key].label,
+        description: form.sections[key].description
       });
-    });
+    }
     setSections(formSections);
 
-    form.sections.forEach(section => {
+    for (let sectionKey in form.sections) {
       const sectionFields = []
-      section.fields.forEach(field => {
-        sectionFields.push(field)
-      })
+      for (let fieldKey in form.sections[sectionKey].fields) {
+        sectionFields.push({
+          id: fieldKey,
+          ...form.sections[sectionKey].fields[fieldKey]
+        })
+      }
       formFields.push(sectionFields)
-    });
+    }
     setFields(formFields);
-  }, [form]);
+  }, [form])
+
+  useEffect(() => {
+    initForm();
+  }, [initForm]);
 
   const handleNext = () => {
+    console.log(sections);
+    console.log(fields);
     const newErrors = []
-    fields[activeSection].forEach(sectionField => {
-      for (let validation in sectionField.validations) {
-        sectionField.validations[validation].valid = validateField(fields, sectionField.value, sectionField.validations);
-        !sectionField.validations[validation].valid && newErrors.push(sectionField.validations[validation].errorMsg);
-      }
+    fields[activeSection].forEach(field => {
+      field.valid = validateField(fields, field, field.validations)
     })
     if (newErrors.length > 0) {
       setErrors(newErrors)
     } else {
+      setErrors([])
       setActiveSection((prevActiveSection) => prevActiveSection + 1);
     }
   };
@@ -64,17 +72,18 @@ const RenderedForm = (props) => {
   };
 
   const handleReset = () => {
+    initForm();
     setActiveSection(0);
   };
 
   const changeHandler = (event, fieldIndex) => {
-    const updatedField = updateObject(sections[activeSection].fields[fieldIndex], {
+    const updatedField = updateObject(fields[activeSection][fieldIndex], {
       value: event.target.value
     });
-    const updatedSections = [...sections];
-    updatedSections[activeSection].fields[fieldIndex] = updatedField
+    const updatedFields = [...fields];
+    updatedFields[activeSection][fieldIndex] = updatedField
 
-    setSections(updatedSections);
+    setFields(updatedFields);
   };
 
   return (
@@ -84,7 +93,7 @@ const RenderedForm = (props) => {
         alternativeLabel
         className={classes.Stepper}
       >
-        {form.sections.map((section, index) => {
+        {sections.map((section, index) => {
           return (
             <Step className={classes.Step} key={index}>
               <StepLabel className={classes.StepLabel}>{section.label}</StepLabel>
@@ -93,7 +102,7 @@ const RenderedForm = (props) => {
         })}
       </Stepper>
       <div>
-        {activeSection === form.sections.length ? (
+        {activeSection === sections.length ? (
           <div>
             <Typography className={classes.Complete} color="secondary" variant="h4">
               All done!
@@ -112,7 +121,7 @@ const RenderedForm = (props) => {
           </div>
         ) : (
             <div>
-              {form.sections.map((section, index) => {
+              {sections.map((section, index) => {
                 return (
                   <Section
                     activeSection={activeSection}
@@ -122,14 +131,9 @@ const RenderedForm = (props) => {
                     description={section.description}
                   >
                     {errors.length > 0 &&
-                      <div>
-                        {errors.map((error, index) => {
-                          return <Alert key={index} severity="error">{error}</Alert>
-                        })}
-                      </div>
-
+                      <CustomAlert alerts={errors} />
                     }
-                    {section.fields.map((field, index) => {
+                    {fields[activeSection].map((field, index) => {
                       let renderedField = "";
                       if (field.type === "text") {
                         renderedField = (
@@ -140,7 +144,7 @@ const RenderedForm = (props) => {
                             title={field.label}
                             tooltip={field.tooltip}
                             name={field.id}
-                            value={section.fields[field.id] && section.fields[field.id].value}
+                            value={field.value}
                             handleChange={(event) =>
                               changeHandler(event, index)
                             }
@@ -155,7 +159,7 @@ const RenderedForm = (props) => {
                             tooltip={field.tooltip}
                             name={field.id}
                             options={field.options}
-                            value={section.fields[field.id] && section.fields[field.id].value}
+                            value={field.value}
                             handleChange={(event) =>
                               changeHandler(event, index)
                             }
