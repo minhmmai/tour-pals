@@ -53,18 +53,18 @@ const RenderedForm = (props) => {
   }, [initForm]);
 
   const handleNext = () => {
-    console.log(sections);
-    console.log(fields);
-    const newErrors = []
+    /* const newErrors = [];
+    const valid = false; */
     fields[activeSection].forEach(field => {
-      field.valid = validateField(fields, field, field.validations)
+       console.log(validateField(fields, field, field.validations))
     })
-    if (newErrors.length > 0) {
+    
+    /* if (newErrors.length > 0) {
       setErrors(newErrors)
     } else {
       setErrors([])
       setActiveSection((prevActiveSection) => prevActiveSection + 1);
-    }
+    } */
   };
 
   const handleBack = () => {
