@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import Input from "../Form/Input";
 import Select from "../Form/Select";
 import Section from "../Form/Section";
-import CustomAlert from '../Form/CustomAlert';
 
 import { getForm, validateField, updateObject } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
@@ -20,7 +19,6 @@ const RenderedForm = (props) => {
   const [activeSection, setActiveSection] = useState(0);
   const [sections, setSections] = useState([]);
   const [fields, setFields] = useState([]);
-  const [errors, setErrors] = useState([]);
 
   const initForm = useCallback(() => {
     const formSections = [];
@@ -53,18 +51,26 @@ const RenderedForm = (props) => {
   }, [initForm]);
 
   const handleNext = () => {
-    /* const newErrors = [];
-    const valid = false; */
-    fields[activeSection].forEach(field => {
-       console.log(validateField(fields, field, field.validations))
-    })
-    
-    /* if (newErrors.length > 0) {
-      setErrors(newErrors)
-    } else {
-      setErrors([])
-      setActiveSection((prevActiveSection) => prevActiveSection + 1);
-    } */
+    const updatedFields = [...fields];
+    let valid = true;
+    for (let i = 0; i < fields[activeSection].length; i++) {
+      const updatedField = fields[activeSection][i]
+      const result = validateField(fields, updatedField, updatedField.validations);
+      for (let key in result) {
+        if (result[key] !== "passed") {
+          updatedField["errorMsg"] = result[key]
+          valid = false
+          break;
+        } else {
+          updatedField["errorMsg"] = ""
+          valid = valid === true
+        }
+      }
+      updatedFields[activeSection][i] = updatedField
+    }
+    setFields(updatedFields)
+
+    valid && setActiveSection((prevActiveSection) => prevActiveSection + 1);    
   };
 
   const handleBack = () => {
@@ -130,9 +136,6 @@ const RenderedForm = (props) => {
                     label={section.label}
                     description={section.description}
                   >
-                    {errors.length > 0 &&
-                      <CustomAlert alerts={errors} />
-                    }
                     {fields[activeSection].map((field, index) => {
                       let renderedField = "";
                       if (field.type === "text") {
@@ -145,9 +148,8 @@ const RenderedForm = (props) => {
                             tooltip={field.tooltip}
                             name={field.id}
                             value={field.value}
-                            handleChange={(event) =>
-                              changeHandler(event, index)
-                            }
+                            handleChange={(event) => changeHandler(event, index)}
+                            error={field.errorMsg ? field.errorMsg : ""}
                           />
                         );
                       } else if (field.type === "select") {
@@ -160,9 +162,8 @@ const RenderedForm = (props) => {
                             name={field.id}
                             options={field.options}
                             value={field.value}
-                            handleChange={(event) =>
-                              changeHandler(event, index)
-                            }
+                            handleChange={(event) => changeHandler(event, index)}
+                            error={field.errorMsg ? field.errorMsg : ""}
                           />
                         );
                       }

@@ -1,21 +1,24 @@
 import React from "react";
+import FormHelperText from '@material-ui/core/FormHelperText';
 
+import Tooltip from './Tooltip';
 import classes from "./Field.module.scss";
 
 const Select = (props) => {
+  const { description, error, handleChange, name, options, title, tooltip, value } = props
   return (
     <div className={classes.Field}>
-      <label className={classes.Label} htmlFor={props.name}>
-        {" "}
-        {props.title}{" "}
+      <label className={classes.Label} htmlFor={name}>
+        {title}
       </label>
+      {tooltip && <Tooltip content={tooltip}></Tooltip>}
       <select
         className={classes.Select}
-        name={props.name}
-        value={props.value}
-        onChange={props.handleChange}
+        name={name}
+        value={value}
+        onChange={handleChange}
       >
-        {props.options.map((option) => {
+        {options.map((option) => {
           return (
             <option key={option.value} value={option.value} label={option.label}>
               {option.label}
@@ -23,6 +26,8 @@ const Select = (props) => {
           );
         })}
       </select>
+      {error && <p className={classes.Error}>{error}</p>}
+      {description && <FormHelperText className={classes.Description}>{description}</FormHelperText>}
     </div>
   );
 };

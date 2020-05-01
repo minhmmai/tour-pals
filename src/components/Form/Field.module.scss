@@ -4,6 +4,9 @@
   margin: 1.5rem;
   color: $primary-main;
   font-weight: 300;
+  .Error {
+    color: red;
+  }
 
   .Label, .Description {
     display: block;
