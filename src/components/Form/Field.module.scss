@@ -9,15 +9,16 @@
   }
 
   .Label, .Description {
-    display: block;
     margin: 0.5rem;
     text-align: center;
   }
 
   .Input,
   .Select {
+    display: block;
     height: 2rem;
     color: $primary-main;
+    margin: .5rem auto;
   }
 
   .Input {

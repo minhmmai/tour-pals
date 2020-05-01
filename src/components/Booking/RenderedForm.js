@@ -70,7 +70,7 @@ const RenderedForm = (props) => {
     }
     setFields(updatedFields)
 
-    valid && setActiveSection((prevActiveSection) => prevActiveSection + 1);    
+    valid && setActiveSection((prevActiveSection) => prevActiveSection + 1);
   };
 
   const handleBack = () => {
@@ -142,28 +142,30 @@ const RenderedForm = (props) => {
                         renderedField = (
                           <Input
                             description={field.description}
+                            error={field.errorMsg ? field.errorMsg : ""}
+                            handleChange={(event) => changeHandler(event, index)}
                             key={index}
-                            type={field.type}
+                            name={field.id}
+                            optional={field.validations.isRequired ? false : true}
                             title={field.label}
                             tooltip={field.tooltip}
-                            name={field.id}
+                            type={field.type}
                             value={field.value}
-                            handleChange={(event) => changeHandler(event, index)}
-                            error={field.errorMsg ? field.errorMsg : ""}
                           />
                         );
                       } else if (field.type === "select") {
                         renderedField = (
                           <Select
                             description={field.description}
+                            error={field.errorMsg ? field.errorMsg : ""}
+                            handleChange={(event) => changeHandler(event, index)}
                             key={index}
+                            name={field.id}
+                            optional={field.validations.isRequired ? true : false}
+                            options={field.options}
                             title={field.label}
                             tooltip={field.tooltip}
-                            name={field.id}
-                            options={field.options}
                             value={field.value}
-                            handleChange={(event) => changeHandler(event, index)}
-                            error={field.errorMsg ? field.errorMsg : ""}
                           />
                         );
                       }
@@ -173,8 +175,7 @@ const RenderedForm = (props) => {
                       <Button
                         disabled={activeSection === 0}
                         onClick={handleBack}
-                        className={classes.Button}
-                      >
+                        className={classes.Button}>
                         Back
                     </Button>
 
@@ -182,11 +183,9 @@ const RenderedForm = (props) => {
                         variant="contained"
                         color="secondary"
                         onClick={handleNext}
-                        className={classes.Button}
-                      >
-                        {activeSection === form.sections.length - 1
-                          ? "Submit"
-                          : "Next"}
+                        className={classes.Button}>
+                        {activeSection === sections.length - 1
+                          ? "Submit" : "Next"}
                       </Button>
                     </div>
                   </Section>

@@ -11,7 +11,7 @@ const Select = (props) => {
       <label className={classes.Label} htmlFor={name}>
         {title}
       </label>
-      {tooltip && <Tooltip content={tooltip}></Tooltip>}
+      {tooltip && <Tooltip content={tooltip}/>}
       <select
         className={classes.Select}
         name={name}

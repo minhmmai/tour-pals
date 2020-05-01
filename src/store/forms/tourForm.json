@@ -92,7 +92,7 @@
                             "errorMsg": "We need to know how many people are travelling"
                         }
                     },
-                    "value": 4
+                    "value": "4"
                 },
                 "pickupAddress": {
                     "label": "What is your pick-up address?",
@@ -121,7 +121,7 @@
                         "valueRange":{
                             "min": 0,
                             "max": "totalPeople",
-                            "errorMsg": "Number of children must be smaller than total people travelling"
+                            "errorMsg": "Must be less than total people travelling, enter 0 if there is no children travelling"
                         }
                     },
                     "value": ""
@@ -242,7 +242,7 @@
                 "cvv": {
                     "label": "CVV",
                     "tooltip": "This is a 3 to 4 digits code at the back of your card",
-                    "description": "Also refered to as CVC or CID",
+                    "description": "This is also refered to as CVC or CID",
                     "type": "text",
                     "validations": {
                         "isRequired":{

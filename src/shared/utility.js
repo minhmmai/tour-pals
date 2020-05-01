@@ -9,7 +9,7 @@ export const getForm = (formName) => {
     return (require(`../store/forms/${formName}.json`));
 };
 
-export const updateFieldsState = (oldState, sectionIndex, fieldIndex, field ) => {
+export const updateFieldsState = (oldState, sectionIndex, fieldIndex, field) => {
     const updatedFields = oldState;
     updatedFields[sectionIndex][fieldIndex] = field
     return updatedFields;
@@ -34,37 +34,38 @@ export const validateField = (allFields, field, rules) => {
     }
 
     const result = {}
+    const value = field.value.trim();
 
     if (!rules) {
         return true;
     }
     if (rules.isRequired) {
-        ((typeof (field.value) === "string" && field.value.trim() !== '')
-            || (typeof (field.value) !== "string" && field.value !== ''))
+        value !== ""
             ? result["isRequired"] = "passed"
             : result["isRequired"] = rules.isRequired.errorMsg
     }
 
-
-    if (rules.length) {
-        (field.value.length >= rules.length.min && field.value.length <= rules.length.max)
-            ? result["length"] = "passed"
-            : result["length"] = rules.length.errorMsg
+    if (value && rules.length) {
+            (value.length >= rules.length.min && value.length <= rules.length.max)
+                ? result["length"] = "passed"
+                : result["length"] = rules.length.errorMsg
     }
-    if (rules.isEmail) {
+
+    if (value && rules.isEmail) {
         const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-        pattern.test(field.value)
+        pattern.test(value)
             ? result["isEmail"] = "passed"
             : result["isEmail"] = rules.isEmail.errorMsg
 
     }
-    if (rules.valueRange) {
+
+    if (value && rules.valueRange) {
         const minValue = typeof (rules.valueRange.min) === 'string'
             ? getValue(rules.valueRange.min) : rules.valueRange.min;
         const maxValue = typeof (rules.valueRange.max) === 'string'
             ? getValue(rules.valueRange.max) : rules.valueRange.max;
 
-        (field.value >= minValue && field.value <= maxValue)
+        (value >= minValue && value <= maxValue)
             ? result["valueRange"] = "passed"
             : result["valueRange"] = rules.valueRange.errorMsg
     }
