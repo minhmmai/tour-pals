@@ -49,6 +49,22 @@
                     },
                     "value": "phillip-island"
                 },
+                "date": {
+                    "label": "When would you like to depart?",
+                    "type": "date",
+                    "validations": {
+                        "isRequired":{
+                            "errorMsg": "We need to know the date you'd like to travel"
+                        },
+                        "dateRange":{
+                            "min": "today",
+                            "max": "withinNext12Months",
+                            "errorMsg": "We can only accept booking for within next 12 months"
+                        }
+                    },
+                    "value": ""
+
+                },
                 "totalPeople": {
                     "label": "How many people are travelling?",
                     "tooltip": "Total number of people travelling including you",

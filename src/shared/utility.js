@@ -1,3 +1,5 @@
+import * as dayjs from 'dayjs';
+
 export const updateObject = (oldObject, updatedProperties) => {
     return {
         ...oldObject,
@@ -16,6 +18,10 @@ export const updateFieldsState = (oldState, sectionIndex, fieldIndex, field) => 
 }
 
 export const validateField = (allFields, field, rules) => {
+
+    const result = {}
+    const value = field.value.trim();
+
     const getValue = fieldRef => {
         let refValue = 0;
         for (let i = 0; i < allFields.length; i++) {
@@ -33,8 +39,6 @@ export const validateField = (allFields, field, rules) => {
         return refValue;
     }
 
-    const result = {}
-    const value = field.value.trim();
 
     if (!rules) {
         return true;
@@ -46,9 +50,9 @@ export const validateField = (allFields, field, rules) => {
     }
 
     if (value && rules.length) {
-            (value.length >= rules.length.min && value.length <= rules.length.max)
-                ? result["length"] = "passed"
-                : result["length"] = rules.length.errorMsg
+        (value.length >= rules.length.min && value.length <= rules.length.max)
+            ? result["length"] = "passed"
+            : result["length"] = rules.length.errorMsg
     }
 
     if (value && rules.isEmail) {
@@ -68,6 +72,16 @@ export const validateField = (allFields, field, rules) => {
         (value >= minValue && value <= maxValue)
             ? result["valueRange"] = "passed"
             : result["valueRange"] = rules.valueRange.errorMsg
+    }
+
+    if (value && rules.dateRange) {
+        const dateValue = dayjs(value);
+        const minValue = dayjs();
+        const maxValue = minValue.add(12, "month");
+
+        dateValue.isBefore(maxValue) && dateValue.isAfter(minValue)
+            ? result["dateRange"] = "passed"
+            : result["dateRange"] = rules.dateRange.errorMsg
     }
 
     return result;

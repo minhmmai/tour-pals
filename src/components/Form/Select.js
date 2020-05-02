@@ -5,11 +5,11 @@ import Tooltip from './Tooltip';
 import classes from "./Field.module.scss";
 
 const Select = (props) => {
-  const { description, error, handleChange, name, options, title, tooltip, value } = props
+  const { description, error, handleChange, name, options, label, tooltip, value } = props
   return (
     <div className={classes.Field}>
       <label className={classes.Label} htmlFor={name}>
-        {title}
+        {label}
       </label>
       {tooltip && <Tooltip content={tooltip}/>}
       <select

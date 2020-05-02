@@ -4,7 +4,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
 
-const Input = (props) => {
+const Date = (props) => {
   const {description, error, handleChange, name, optional, label, tooltip, type } = props
   return (
     <div className={classes.Field}>
@@ -14,7 +14,7 @@ const Input = (props) => {
       {optional && <span>(optional)</span>}
       {tooltip && <Tooltip content={tooltip}/>}
       <input
-        className={classes.Input}
+        className={classes.Date}
         id={name}
         name={name}
         type={type}
@@ -26,4 +26,4 @@ const Input = (props) => {
   );
 };
 
-export default Input;
+export default Date;
