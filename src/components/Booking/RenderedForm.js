@@ -5,6 +5,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
+import Adjust from "../Form/Adjust";
 import Date from "../Form/Date";
 import Input from "../Form/Input";
 import Select from "../Form/Select";
@@ -185,7 +186,24 @@ const RenderedForm = (props) => {
                             value={field.value}
                           />
                         );
-                      }
+                      } else if (field.type === "adjust") {
+                        renderedField = (
+                          <Adjust
+                            description={field.description}
+                            error={field.errorMsg ? field.errorMsg : ""}
+                            handleChange={(event) => changeHandler(event, index)}
+                            key={index}
+                            label={field.label}
+                            
+                            name={field.id}
+                            optional={field.validations.isRequired ? false : true}
+                            options={field.options}
+                            tooltip={field.tooltip}
+                            type={field.type}
+                            value={field.value}
+                        ></Adjust>
+                        );
+                      }                      
                       return renderedField;
                     })}
                     <div>

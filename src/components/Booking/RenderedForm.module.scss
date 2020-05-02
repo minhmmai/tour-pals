@@ -1,12 +1,14 @@
-@import '../../assets/scss/variable.scss';
+@import '../../assets/scss/variables.scss';
+@import '../../assets/scss/mixins.scss';
 
 .Form {
   width: 90%;
   margin: auto;
   .Button {
-    font: 300 1rem 'Roboto';
     text-transform: capitalize;
     margin: 1rem 0;
+    color: $secondary-contrastText;
+    @include normalFont;
   }
   .Complete {
     font: 300 2rem 'Roboto';

@@ -22,21 +22,8 @@ export const validateField = (allFields, field, rules) => {
     const result = {}
     const value = field.value.trim();
 
-    const getValue = fieldRef => {
-        let refValue = 0;
-        for (let i = 0; i < allFields.length; i++) {
-            if (refValue === 0) {
-                for (let j = 0; j < allFields[i].length; j++) {
-                    if (allFields[i][j].id === fieldRef) {
-                        refValue = allFields[i][j].value;
-                        break;
-                    }
-                }
-            } else {
-                break;
-            }
-        }
-        return refValue;
+    const getValue = refArr => {
+        return parseInt(allFields[refArr.fieldRef[0]][refArr.fieldRef[1]].value); 
     }
 
 
@@ -64,9 +51,9 @@ export const validateField = (allFields, field, rules) => {
     }
 
     if (value && rules.valueRange) {
-        const minValue = typeof (rules.valueRange.min) === 'string'
-            ? getValue(rules.valueRange.min) : rules.valueRange.min;
-        const maxValue = typeof (rules.valueRange.max) === 'string'
+        const minValue = typeof (rules.valueRange.min) === 'object'
+            ? getValue(rules.valueRange.min.fieldRef) : rules.valueRange.min;
+        const maxValue = typeof (rules.valueRange.max.fieldRef) === 'object'
             ? getValue(rules.valueRange.max) : rules.valueRange.max;
 
         (value >= minValue && value <= maxValue)

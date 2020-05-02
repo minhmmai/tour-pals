@@ -1,42 +1,60 @@
-@import "../../assets/scss/variable.scss";
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
 
 .Field {
   margin: 1.5rem;
   color: $primary-main;
-  font-weight: 300;
   .Error {
     color: red;
-  }
+  }  
 
   .Label,
   .Description {
+    display: block;
     margin: 0.5rem;
     text-align: center;
   }
 
   .Input,
   .Select,
-  .Date {
+  .Date,
+  .Adjust {
     display: block;
-    height: 2rem;
-    color: $primary-main;
-    margin: .5rem auto;
-    font: 300 1rem Roboto;
   }
 
-  .Input {
+  .Control {
+    vertical-align: middle;
+    cursor: pointer;
+    color: $primary-main;
+    margin: .5rem;
+  }
+
+  input,
+  select, option{
+    height: 2rem;
+    margin: 0.5rem auto;
+  }
+
+  .Adjust input {
+    max-width: 5%;
+    text-align: center;
+  }
+
+  .Input input {
     width: 30%;
   }
 
-  .Select {
+  .Select select, .Date input{
     min-width: 15%;
-    padding: 0 .5rem;
-    option {
-      font: 300 1rem Roboto;
-    }
+    padding: 0 0.5rem;
+    
   }
 
   .Tooltip {
-    font-size: .5rem;
+    font-size: 0.5rem;
   }
+}
+
+.Field, .Control, input, select, option {
+  @include normalFont;
 }

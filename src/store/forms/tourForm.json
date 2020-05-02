@@ -71,35 +71,35 @@
                     "type": "select",
                     "options": [
                         {
-                            "value": 4,
+                            "value": "4",
                             "label": "4 Or Less"
                         },
                         {
-                            "value": 7,
+                            "value": "7",
                             "label": "7 Or Less"
                         },
                         {
-                            "value": 10,
+                            "value": "10",
                             "label": "10 Or Less"
                         },
                         {
-                            "value": 15,
+                            "value": "15",
                             "label": "15 Or Less"
                         },
                         {
-                            "value": 20,
+                            "value": "20",
                             "label": "20 Or Less"
                         },
                         {
-                            "value": 30,
+                            "value": "30",
                             "label": "30 Or Less"
                         },
                         {
-                            "value": 40,
+                            "value": "40",
                             "label": "40 Or Less"
                         },
                         {
-                            "value": 60,
+                            "value": "60",
                             "label": "60 Or Less"
                         }
                     ],
@@ -129,18 +129,20 @@
                     "label": "How many children aged between 2 and 7 in your group?",
                     "tooltip": "We'll prepare car seats for the little ones free of charge",
                     "description": "Children under 2 are not recommended to travel on our tours unfortunately",
-                    "type": "text",
+                    "type": "adjust",
                     "validations": {
                         "isRequired":{
                             "errorMsg": "We need to know how many children are travelling"
                         },
                         "valueRange":{
                             "min": 0,
-                            "max": "totalPeople",
+                            "max": {
+                                "fieldRef": [0, 2]
+                            },
                             "errorMsg": "Must be less than total people travelling, enter 0 if there is no children travelling"
                         }
                     },
-                    "value": ""
+                    "value": "0"
                 }
             }
         },
