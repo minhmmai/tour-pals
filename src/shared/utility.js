@@ -11,19 +11,13 @@ export const getForm = (formName) => {
     return (require(`../store/forms/${formName}.json`));
 };
 
-export const updateFieldsState = (oldState, sectionIndex, fieldIndex, field) => {
-    const updatedFields = oldState;
-    updatedFields[sectionIndex][fieldIndex] = field
-    return updatedFields;
-}
-
 export const validateField = (allFields, field, rules) => {
 
     const result = {}
     const value = field.value.trim();
 
     const getValue = refArr => {
-        return parseInt(allFields[refArr.fieldRef[0]][refArr.fieldRef[1]].value); 
+        return parseInt(allFields[refArr.fieldRef[0]][refArr.fieldRef[1]].value);
     }
 
 

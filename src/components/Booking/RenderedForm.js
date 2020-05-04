@@ -60,18 +60,17 @@ const RenderedForm = (props) => {
       const result = validateField(fields, updatedField, updatedField.validations);
       for (let key in result) {
         if (result[key] !== "passed") {
-          updatedField["errorMsg"] = result[key]
-          valid = false
+          updatedField["errorMsg"] = result[key];
+          valid = false;
           break;
         } else {
-          updatedField["errorMsg"] = ""
-          valid = valid === true
+          updatedField["errorMsg"] = "";
+          valid = valid === true;
         }
       }
-      updatedFields[activeSection][i] = updatedField
+      updatedFields[activeSection][i] = updatedField;
     }
-    setFields(updatedFields)
-
+    setFields(updatedFields);
     valid && setActiveSection((prevActiveSection) => prevActiveSection + 1);
   };
 
@@ -89,10 +88,25 @@ const RenderedForm = (props) => {
       value: event.target.value
     });
     const updatedFields = [...fields];
-    updatedFields[activeSection][fieldIndex] = updatedField
-
+    updatedFields[activeSection][fieldIndex] = updatedField;
     setFields(updatedFields);
   };
+
+  const increase = (fieldValue, fieldIndex) => {
+    const updatedFields = [...fields];
+    if (fieldValue >= 0) {
+      updatedFields[activeSection][fieldIndex].value = (fieldValue + 1).toString();
+    }
+    setFields(updatedFields);
+  }
+
+  const decrease = (fieldValue, fieldIndex) => {
+    const updatedFields = [...fields];
+    if (fieldValue > 0) {
+      updatedFields[activeSection][fieldIndex].value = (fieldValue - 1).toString();
+    }
+    setFields(updatedFields);
+  }
 
   return (
     <form className={classes.Form}>
@@ -116,7 +130,7 @@ const RenderedForm = (props) => {
               All done!
             </Typography>
             <Typography className={classes.Instruction} color="primary" variant="subtitle1">
-              You will receive a confirmation email real soon. If any questions, feel free to contact us at 1234 1234.<br />We're sure you will enjoy your trip.
+              You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
             </Typography>
             <Button
               variant="contained"
@@ -187,23 +201,29 @@ const RenderedForm = (props) => {
                           />
                         );
                       } else if (field.type === "adjust") {
+                        const minValue = typeof (field.validations.valueRange.min) === "object"
+                          ? parseInt(fields[field.validations.valueRange.min.fieldRef[0]][field.validations.valueRange.min.fieldRef[1]].value)
+                          : parseInt(field.validations.valueRange.min);
+                        const maxValue = typeof (field.validations.valueRange.max) === "object"
+                          ? parseInt(fields[field.validations.valueRange.max.fieldRef[0]][field.validations.valueRange.max.fieldRef[1]].value)
+                          : parseInt(field.validations.valueRange.max);
                         renderedField = (
                           <Adjust
+                            increase={() => increase(parseInt(field.value), index, minValue, maxValue)}
+                            decrease={() => decrease(parseInt(field.value), index, minValue, maxValue)}
                             description={field.description}
                             error={field.errorMsg ? field.errorMsg : ""}
                             handleChange={(event) => changeHandler(event, index)}
                             key={index}
                             label={field.label}
-                            
                             name={field.id}
                             optional={field.validations.isRequired ? false : true}
-                            options={field.options}
                             tooltip={field.tooltip}
                             type={field.type}
-                            value={field.value}
-                        ></Adjust>
+                            value={field.value < 0 ? field.value = 0 : field.value}
+                          />
                         );
-                      }                      
+                      }
                       return renderedField;
                     })}
                     <div>
@@ -212,8 +232,7 @@ const RenderedForm = (props) => {
                         onClick={handleBack}
                         className={classes.Button}>
                         Back
-                    </Button>
-
+                      </Button>
                       <Button
                         variant="contained"
                         color="secondary"

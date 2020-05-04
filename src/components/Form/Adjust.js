@@ -8,10 +8,8 @@ import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
 
 const Adjust = (props) => {
-  const { description, error, handleChange, name, optional, label, tooltip, type, value } = props
-  /* const increase = () => {
-    return value
-  } */
+  const { description, error, handleChange, name, optional, label, tooltip, value, increase, decrease } = props;
+
   return (
     <div className={classes.Field}>
       <div className={classes.Label}>
@@ -20,9 +18,9 @@ const Adjust = (props) => {
         {tooltip && <Tooltip content={tooltip} />}
       </div>
       <div className={classes.Adjust}>
-        <Button className={classes.Control}><RemoveIcon/></Button>
-        <input id={name} name={name} type={type} onChange={handleChange} value={value}/>
-        <Button className={classes.Control}><AddIcon/></Button>
+        <Button className={classes.Control} onClick={decrease}><RemoveIcon /></Button>
+        <input id={name} name={name} onChange={handleChange} value={value} />
+        <Button className={classes.Control} onClick={increase}><AddIcon /></Button>
       </div>
       {error !== "" && <p className={classes.Error}>{error}</p>}
       {description && <FormHelperText className={classes.Description}>{description}</FormHelperText>}
