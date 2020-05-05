@@ -2,7 +2,7 @@ import React from 'react';
 
 import Main from './Main';
 import Sub from './Sub';
-import Button from '../../UI/Button';
+import Button from '../../UI/Button/Button';
 import classes from './Textbox.module.scss';
 
 const Headings = props => {
