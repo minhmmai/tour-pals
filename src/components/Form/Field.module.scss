@@ -3,10 +3,11 @@
 
 .Field {
   margin: 1.5rem;
-  color: $primary-main;
+  color: $font_7;
   .Error {
     color: red;
-  }  
+    animation: fadeIn ease .2s;
+  }
 
   .Label,
   .Description {
@@ -25,12 +26,13 @@
   .Control {
     vertical-align: middle;
     cursor: pointer;
-    color: $primary-main;
-    margin: .5rem;
+    color: $font_7;
+    margin: 0.5rem;
   }
 
   input,
-  select, option{
+  select,
+  option {
     height: 2rem;
     margin: 0.5rem auto;
   }
@@ -44,10 +46,10 @@
     width: 30%;
   }
 
-  .Select select, .Date input{
+  .Select select,
+  .Date input {
     min-width: 15%;
     padding: 0 0.5rem;
-    
   }
 
   .Tooltip {
@@ -55,6 +57,21 @@
   }
 }
 
-.Field, .Control, input, select, option {
+.Field,
+.Control,
+input,
+select,
+option {
   @include normalFont;
+}
+
+@keyframes fadeIn {
+  0% {
+    font-size: 0rem;
+    opacity: 0;
+  }
+  100% {
+    font-size: 1rem;
+    opacity: 1;
+  }
 }

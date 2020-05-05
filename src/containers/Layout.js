@@ -1,17 +1,14 @@
 import React from 'react';
 
-import Header from '../components/Header/Header';
-import Carousel from '../components/UI/Carousel/Carousel';
-import Services from '../components/Services/Services';
-import RenderedForm from '../components/Booking/RenderedForm';
+import NavigationBar from '../components/Header/NavigationBar';
 
 const Layout = props => {
     return (
         <div>
-            <Header />
-            <Carousel />
-            <Services/>
-            <RenderedForm formName="tourForm"/>
+        <NavigationBar />
+            <main>
+                {props.children}
+            </main>
         </div>
     )
 };

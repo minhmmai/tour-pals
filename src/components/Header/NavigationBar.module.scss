@@ -1,0 +1,15 @@
+@import "../../assets//scss/variables.scss";
+
+.NavigationBar {
+  align-content: center;
+  align-items: center;
+  background-color: $white_color;
+  box-shadow: $shadow;
+  display: flex;
+  height: 5rem;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 9999 !important;
+}
