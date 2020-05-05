@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 
 import classes from './InfoItem.module.scss';
-import { Container } from '@material-ui/core';
 
 const InfoItem = props => {
     const { children, avatar, alt, title } = props;

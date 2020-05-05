@@ -1,7 +1,7 @@
 import React from 'react';
 
 import NavigationItems from './NavigationItems';
-import Button from '../UI/Button';
+import Button from '../UI/Button/Button';
 import Logo from '../Logo/Logo';
 import classes from './NavigationBar.module.scss';
 

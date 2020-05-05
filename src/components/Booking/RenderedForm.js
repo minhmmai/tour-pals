@@ -13,8 +13,7 @@ import Section from "../Form/Section";
 
 import { getForm, validateField, updateObject } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
-import { useEffect } from "react";
-import { useCallback } from "react";
+import { useEffect, useCallback } from "react";
 
 const RenderedForm = (props) => {
   const form = getForm(props.formName);

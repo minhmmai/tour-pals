@@ -1,6 +1,4 @@
 import React from 'react';
-import List from '@material-ui/core/List';
-import Box from '@material-ui/core/Box';
 
 import classes from './ServiceInfo.module.scss';
 
