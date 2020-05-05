@@ -1,7 +1,16 @@
+@import "../../assets/scss/variables.scss";
+
 .Logo {
   cursor: pointer;
-  margin-right: auto;
-  img {
-    height: 3rem;
+  font: 900 3rem "Roboto";
+  text-transform: uppercase;
+  .LogoText {
+    color: $menu_color;
+    span {
+      color: $base_color;
+    }
+  }
+  a {
+    text-decoration: none;
   }
 }

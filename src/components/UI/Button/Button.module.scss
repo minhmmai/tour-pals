@@ -1,16 +1,9 @@
+@import "../../../assets/scss/variables.scss";
+
 .Button {
-  font-family: "Lato", sans-serif;
-  font-weight: 300;
-  font-size: 1.2rem;
-  color: white;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  background-color: #EB592D;
-  border-radius: 3rem;
-  border: 2px solid #EB592D;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  &:hover {
-      background-color: transparent;
-  }
+  color: $white_color;
+  background-color: $base_color;
+  border: none;
+  font: 400 1.5rem "Roboto";
+  padding: 1.5rem 3rem;
 }
