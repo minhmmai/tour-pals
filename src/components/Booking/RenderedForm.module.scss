@@ -8,7 +8,6 @@
     text-transform: capitalize;
     margin: 1rem 0;
     color: $white_color;
-    @include normalFont;
   }
   .Complete {
     font: 300 2rem 'Roboto';

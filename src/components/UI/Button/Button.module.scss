@@ -1,9 +1,6 @@
 @import "../../../assets/scss/variables.scss";
+@import "../../../assets/scss/mixins.scss";
 
 .Button {
-  color: $white_color;
-  background-color: $base_color;
-  border: none;
-  font: 400 1.5rem "Roboto";
-  padding: 1.5rem 3rem;
+  @include button;
 }

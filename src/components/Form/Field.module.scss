@@ -1,12 +1,13 @@
 @import "../../assets/scss/variables.scss";
 @import "../../assets/scss/mixins.scss";
+@import "../../assets/scss/keyframes.scss";
 
 .Field {
   margin: 1.5rem;
   color: $font_7;
   .Error {
     color: red;
-    animation: fadeIn ease .2s;
+    animation: fadeIn ease .3s;
   }
 
   .Label,
@@ -62,16 +63,4 @@
 input,
 select,
 option {
-  @include normalFont;
-}
-
-@keyframes fadeIn {
-  0% {
-    font-size: 0rem;
-    opacity: 0;
-  }
-  100% {
-    font-size: 1rem;
-    opacity: 1;
-  }
 }
