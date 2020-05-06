@@ -1,20 +1,20 @@
 import React from 'react';
 
-import NavigationItems from './NavigationItems';
+import NavItems from './NavItems';
 import Button from '../UI/Button/Button';
 import Logo from '../Logo/Logo';
-import classes from './NavigationBar.module.scss';
+import classes from './NavBar.module.scss';
 
-const NavigationBar = props => {
+const NavBar = props => {
     return (
         <header>
-            <nav className={classes.NavigationBar}>
+            <nav className={classes.NavBar}>
                 <Logo link="/"/>
-                <NavigationItems />
+                <NavItems />
                 <Button type="cta">Book Now!</Button>
             </nav>
         </header>
     )
 };
 
-export default NavigationBar;
+export default NavBar;

@@ -1,0 +1,17 @@
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
+
+.NavItem {
+    @include menu-item;
+    a {
+        display: inline-block;
+        height: 100%;
+        padding: 2.5rem;
+        color: $menu_color;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        &:hover {
+            color: $base_color;
+        }
+    }
+}
