@@ -13,5 +13,14 @@
         &:hover {
             color: $secondary;
         }
+        @include respond(tab-land) {
+          padding: 2rem;
+        }
+        @include respond(tab-port) {
+          padding: .7rem;
+        }
+        @include respond(phone) {
+          padding: .5rem;
+        }
     }
 }

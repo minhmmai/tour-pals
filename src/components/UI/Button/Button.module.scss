@@ -2,11 +2,10 @@
 @import "../../../assets/scss/mixins";
 
 .Button {
+  @include menu-item;
   color: $white;
-  cursor: pointer;
-  font: 400 1.7rem "Roboto";
-  padding: 1rem 3rem;
-  text-transform: capitalize;
+  padding: 1.5rem 3rem;
+  backface-visibility: hidden;
   @include respond(tab-land) {
     padding: 1 2rem;
   }
@@ -14,30 +13,39 @@
     padding: 1rem 1.5rem;
   }
   @include respond(phone) {
-    padding: .5rem;
+    padding: 1rem;
   }
 }
 
 .cta {
-  border: 2px solid $secondary;
+  border: none;
   background-color: $secondary;
   &:hover {
-    color: $secondary;
+    background-color: $primary;
+  }
+}
+
+.intro {
+  border: none;
+  background-color: $secondary_light;
+  padding: 3rem 5rem;
+  margin: 3rem;
+  backface-visibility: hidden;
+  &:hover {
+    backface-visibility: hidden;
+    border: none;
+    background-color: $primary_light;
   }
 }
 
 .info {
-  border: 2px solid $primary_light;
+  border: none;
   background-color: $primary_light;
   &:hover {
-    color: $primary_light;
+    background-color: $secondary_light;
   }
 }
 
-.cta, .info {
+.cta, .info, .intro {
   transition: all .3s ease;
-}
-
-.cta:hover, .info:hover {
-  background-color: transparent;
 }

@@ -1,9 +1,43 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
 .Banner {
   position: relative;
   height: 100vh;
   background-image: url(../../assets/img/aerial-beach.jpg);
-  background-size: cover; 
+  background-size: cover;
   background-position: top;
   padding-top: 3rem;
   padding: 3rem 0 5rem 0;
+  min-width: 50rem;
+  .Intro {
+    color: $white;
+    display: block;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .IntroTitle {
+      color: $white;
+      font: 400 7rem "Roboto";
+      margin: 1rem;
+      @include respond(tab-land) {
+      }
+      @include respond(tab-port) {
+      }
+      @include respond(phone) {
+      }
+    }
+    .IntroSubTitle {
+      font: 300 3rem "Roboto";
+      margin: 0.5rem;
+      @include respond(tab-land) {
+      }
+      @include respond(tab-port) {
+      }
+      @include respond(phone) {
+      }
+    }
+  }
 }
