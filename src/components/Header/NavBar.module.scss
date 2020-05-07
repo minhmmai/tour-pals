@@ -1,8 +1,9 @@
-@import "../../assets//scss/variables.scss";
+@import "../../assets//scss/variables";
+@import "../../assets//scss/mixins";
 
 .NavBar {
   align-items: center;
-  background-color: $white_color;
+  background-color: $white;
   box-shadow: $shadow;
   display: flex;
   height: 7rem;
@@ -11,4 +12,7 @@
   position: fixed;
   width: 100%;
   z-index: 9999 !important;
+  @include respond(tab-land) {
+    padding: 0 2rem;
+  }
 }

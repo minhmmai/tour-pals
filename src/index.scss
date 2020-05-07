@@ -20,9 +20,9 @@ html {
   @include respond(tab-port) { //width < 900px
     font-size: 50%; // 1rem = 8px, 8/16 = 50%
   }
-  /* @include respond(phone) { //width < 600px
+  @include respond(phone) { //width < 600px
     font-size: 37.5%; // 1rem = 6px, 6/16 = 37.5%
-  } */
+  }
 }
 
 body {

@@ -5,9 +5,9 @@
   font: 900 3rem "Roboto";
   text-transform: uppercase;
   .LogoText {
-    color: $menu_color;
+    color: $primary;
     span {
-      color: $base_color;
+      color: $secondary;
     }
   }
   a {

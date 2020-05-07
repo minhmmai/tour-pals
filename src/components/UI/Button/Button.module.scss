@@ -1,6 +1,43 @@
-@import "../../../assets/scss/variables.scss";
-@import "../../../assets/scss/mixins.scss";
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
 
 .Button {
-  @include button;
+  color: $white;
+  cursor: pointer;
+  font: 400 1.7rem "Roboto";
+  padding: 1rem 3rem;
+  text-transform: capitalize;
+  @include respond(tab-land) {
+    padding: 1 2rem;
+  }
+  @include respond(tab-port) {
+    padding: 1rem 1.5rem;
+  }
+  @include respond(phone) {
+    padding: .5rem;
+  }
+}
+
+.cta {
+  border: 2px solid $secondary;
+  background-color: $secondary;
+  &:hover {
+    color: $secondary;
+  }
+}
+
+.info {
+  border: 2px solid $primary_light;
+  background-color: $primary_light;
+  &:hover {
+    color: $primary_light;
+  }
+}
+
+.cta, .info {
+  transition: all .3s ease;
+}
+
+.cta:hover, .info:hover {
+  background-color: transparent;
 }
