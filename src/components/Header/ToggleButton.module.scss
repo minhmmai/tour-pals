@@ -1,0 +1,44 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.ToggleButton {
+    display: none;
+    width: 6rem;
+    height: 6rem;
+    cursor: pointer;
+    z-index: 9999 !important;
+
+    div {
+        position: relative;
+        margin-top: 2.5rem;
+        
+        &,
+        &::before,
+        &::after {
+            border-radius: 1rem;
+            width: 6rem;
+            height: .5rem;
+            background-color: $toggle;
+            display: inline-block;
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+
+        &::before { top: -2rem; }
+        &::after { top: 2rem; }
+    }
+
+    @include respond(phone) {
+        display: block;
+    }
+}
+
+.Active {
+    background-color: red;
+}

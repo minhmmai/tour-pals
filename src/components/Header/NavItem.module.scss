@@ -5,7 +5,6 @@
     @include menu-item;
     a {
         display: inline-block;
-        height: 100%;
         padding: 2.5rem;
         color: $primary;
         text-decoration: none;
@@ -14,13 +13,11 @@
             color: $secondary;
         }
         @include respond(tab-land) {
-          padding: 2rem;
+          padding: 3rem 2rem;
         }
         @include respond(tab-port) {
-          padding: .7rem;
-        }
-        @include respond(phone) {
-          padding: .5rem;
+          font-size: 2rem;
+          padding: 4rem 1rem;
         }
     }
 }

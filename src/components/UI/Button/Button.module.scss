@@ -36,6 +36,9 @@
     border: none;
     background-color: $primary_light;
   }
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
 }
 
 .info {
