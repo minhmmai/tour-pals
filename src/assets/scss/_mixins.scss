@@ -1,0 +1,57 @@
+@import "./variables.scss";
+
+@mixin menu-item {
+    display: inline-block;
+    cursor: pointer;
+    font: 400 1.7rem "Roboto";
+    text-transform: capitalize;
+    height: 100%;
+}
+
+@mixin button {
+    background-color: $base_color;
+    border: none;
+    color: $white_color;
+    cursor: pointer;
+    font: 400 1.7rem "Roboto";
+    padding: 1.5rem 3rem;
+    text-transform: capitalize;
+}
+
+// Media query manager
+/*
+0 - 600px:          Phone
+600 - 900px:        Tablet Portrait
+900 - 1200:         Tablet Landscape
+1200 - 1800px:      Normal Style
+1800px:             Big Desktop
+
+$breakpoint argument choices:
+- phone
+-tab-port
+-tab-land
+- big-desktop
+*/
+
+@mixin respond($breakpoint) {
+    @media (max-width: 37.5em) { //16px * 37.5 = 600px 
+    @if $breakpoint == phone {
+        @content;
+        }
+    }
+    @if $breakpoint == tab-port {
+        @media (max-width: 56.25em) { //900px (em is the best unit for media query)
+            @content;
+        }
+    }
+    @if $breakpoint == tab-land {
+        @media (max-width: 75em) { //1200px
+            @content;
+        }
+    }
+    @if $breakpoint == big-desktop {
+        @media (min-width: 112.5em) { //1800px
+            @content;
+        }
+    }
+}
