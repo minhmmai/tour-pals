@@ -5,13 +5,19 @@
     @include menu-item;
     a {
         display: inline-block;
-        height: 100%;
         padding: 2.5rem;
-        color: $menu_color;
+        color: $primary;
         text-decoration: none;
         transition: all 0.3s ease;
         &:hover {
-            color: $base_color;
+            color: $secondary;
+        }
+        @include respond(tab-land) {
+          padding: 3rem 2rem;
+        }
+        @include respond(tab-port) {
+          font-size: 2rem;
+          padding: 4rem 1rem;
         }
     }
 }

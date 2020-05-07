@@ -4,7 +4,7 @@
 
 .Field {
   margin: 1.5rem;
-  color: $font_7;
+  color: $paragraph;
   .Error {
     color: red;
     animation: fadeIn ease .3s;
@@ -27,7 +27,7 @@
   .Control {
     vertical-align: middle;
     cursor: pointer;
-    color: $font_7;
+    color: $paragraph;
     margin: 0.5rem;
   }
 
@@ -56,11 +56,4 @@
   .Tooltip {
     font-size: 0.5rem;
   }
-}
-
-.Field,
-.Control,
-input,
-select,
-option {
 }

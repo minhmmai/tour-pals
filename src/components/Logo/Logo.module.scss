@@ -1,16 +1,23 @@
 @import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
 
 .Logo {
   cursor: pointer;
   font: 900 3rem "Roboto";
   text-transform: uppercase;
   .LogoText {
-    color: $menu_color;
+    color: $primary;
     span {
-      color: $base_color;
+      color: $secondary;
     }
   }
   a {
     text-decoration: none;
+  }
+  
+  @include respond(phone) {
+    .LogoText {
+      font-size: 5rem;
+    }
   }
 }

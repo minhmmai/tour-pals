@@ -1,6 +1,54 @@
-@import "../../../assets/scss/variables.scss";
-@import "../../../assets/scss/mixins.scss";
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
 
 .Button {
-  @include button;
+  @include menu-item;
+  color: $white;
+  padding: 1.5rem 3rem;
+  backface-visibility: hidden;
+  @include respond(tab-land) {
+    padding: 1 2rem;
+  }
+  @include respond(tab-port) {
+    padding: 1rem 1.5rem;
+  }
+  @include respond(phone) {
+    padding: 1rem;
+  }
+}
+
+.cta {
+  border: none;
+  background-color: $secondary;
+  &:hover {
+    background-color: $primary;
+  }
+}
+
+.intro {
+  border: none;
+  background-color: $secondary_light;
+  padding: 3rem 5rem;
+  margin: 3rem;
+  backface-visibility: hidden;
+  &:hover {
+    backface-visibility: hidden;
+    border: none;
+    background-color: $primary_light;
+  }
+  @include respond(phone) {
+    font-size: 2.5rem;
+  }
+}
+
+.info {
+  border: none;
+  background-color: $primary_light;
+  &:hover {
+    background-color: $secondary_light;
+  }
+}
+
+.cta, .info, .intro {
+  transition: all .3s ease;
 }

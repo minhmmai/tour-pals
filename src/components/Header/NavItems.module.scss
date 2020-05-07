@@ -1,4 +1,9 @@
+@import "../../assets/scss/mixins";
+
 .NavItems {
   list-style: none;
   height: 100%;
+  @include respond(phone) {
+    display: none;
+  }
 }

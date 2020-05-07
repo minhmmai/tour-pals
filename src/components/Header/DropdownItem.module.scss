@@ -7,12 +7,12 @@
     line-height: 2.5;
     a {
         display: block;
-        color: $menu_color;
+        color: $primary;
         padding: .25rem 3rem;
         text-decoration: none;
         transition: all .3s ease;
         &:hover {
-            color: $base_color;
+            color: $secondary;
         }
     }
 }
