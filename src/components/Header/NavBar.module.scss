@@ -2,12 +2,10 @@
 @import "../../assets//scss/mixins";
 
 .NavBar {
-  align-items: center;
   background-color: $white;
   box-shadow: $shadow;
-  display: flex;
+  display: block;
   height: 7rem;
-  justify-content: space-between;
   padding: 0 10rem;
   position: fixed;
   width: 100%;
@@ -20,6 +18,7 @@
     height: 10rem;
   }
   @include respond(phone) {
+    position: relative;
     height: 12rem;
     padding: 0 5rem;
     Button {

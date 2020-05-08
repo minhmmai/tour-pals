@@ -19,7 +19,7 @@ $breakpoint argument choices:
 - phone
 -tab-port
 -tab-land
-- big-desktop
+- desktop
 */
 
 @mixin respond($breakpoint) {
@@ -34,12 +34,12 @@ $breakpoint argument choices:
         }
     }
     @if $breakpoint == tab-land {
-        @media (max-width: 75em) { //1200px
+        @media (max-width: 75em) { // < 1200px
             @content;
         }
     }
-    @if $breakpoint == big-desktop {
-        @media (min-width: 112.5em) { //1800px
+    @if $breakpoint == desktop {
+        @media (min-width: 75em) { // < 1200px
             @content;
         }
     }

@@ -18,10 +18,20 @@
 }
 
 .cta {
+  display: block;
+  float: right;
+  margin: 1rem 0;
   border: none;
   background-color: $secondary;
   &:hover {
     background-color: $primary;
+  }
+  @include respond(tab-land) {
+    margin: 1.5rem 0;
+  }
+  @include respond(tab-port) {
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
   }
 }
 
