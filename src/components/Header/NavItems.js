@@ -7,12 +7,10 @@ import DropdownItem from "./DropdownItem";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-const NavItems = ({ isMobile }) => {
-    let navItems = "";
-
-    !isMobile
-        ? navItems = (
-            <ul className={classes.NavItems}>
+const NavItems = () => {
+    return (
+        <div className={classes.NavItems}>
+            <ul className={classes.Other}>
                 <NavItem link="/" exact="true">Home</NavItem>
                 <NavItem link="/destinations">Destinations</NavItem>
                 <NavItem link="/services">Services</NavItem>
@@ -22,8 +20,7 @@ const NavItems = ({ isMobile }) => {
                 </Dropdown>
                 <NavItem link="/about-us">About Us</NavItem>
             </ul>
-        ) : navItems = (
-            <ul className={classes.NavItems}>
+            <ul className={classes.Mobile}>
                 <NavItem link="/" exact="true">Home</NavItem>
                 <NavItem link="/destinations">Destinations</NavItem>
                 <NavItem link="/services">Services</NavItem>
@@ -36,10 +33,7 @@ const NavItems = ({ isMobile }) => {
                 </div>
                 <NavItem link="/about-us">About Us</NavItem>
             </ul>
-        )
-
-    return (
-        navItems
+        </div>
     )
 };
 

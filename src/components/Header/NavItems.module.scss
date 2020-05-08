@@ -2,16 +2,28 @@
 @import "../../assets/scss/variables";
 
 .NavItems {
-  display: inline-block;
-  list-style: none;
-  height: 100%;
+  .Other {
+    display: inline-block;
+    list-style: none;
+    height: 100%;
+  }
+  .Mobile {
+    display: none;
+  }
+
   @include respond(phone) {
+    .Other {
+      display: none;
+    }
+    .Mobile {
+      display: block;
+    }
     height: auto;
     width: 100%;
     position: absolute;
     top: 12rem;
     right: 0;
-    background-color: $nav_menu_bg;
+    background-color: $white;
     box-shadow: $shadow;
     .Dropdown {
       .DropdownItem {
