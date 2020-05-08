@@ -1,9 +1,17 @@
 @import "../../assets/scss/mixins";
+@import "../../assets/scss/variables";
 
 .NavItems {
+  display: inline-block;
   list-style: none;
   height: 100%;
   @include respond(phone) {
-    display: none;
+    height: auto;
+    width: 100%;
+    position: absolute;
+    top: 12rem;
+    right: 0;
+    background-color: $nav_menu_bg;
+    box-shadow: $shadow;
   }
 }

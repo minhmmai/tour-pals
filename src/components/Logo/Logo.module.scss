@@ -2,6 +2,8 @@
 @import "../../assets/scss/mixins.scss";
 
 .Logo {
+  float: left;
+  margin: 1.6rem 0;
   cursor: pointer;
   font: 900 3rem "Roboto";
   text-transform: uppercase;
@@ -14,8 +16,17 @@
   a {
     text-decoration: none;
   }
-  
+
+  @include respond(tab-land) {
+    margin: 2rem 0;
+  }
+
+  @include respond(tab-port) {
+    margin: 3rem 0;
+  }
+
   @include respond(phone) {
+    margin: 3rem 0;
     .LogoText {
       font-size: 5rem;
     }

@@ -2,22 +2,42 @@
 @import "../../assets/scss/mixins.scss";
 
 .NavItem {
-    @include menu-item;
-    a {
-        display: inline-block;
-        padding: 2.5rem;
-        color: $primary;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        &:hover {
-            color: $secondary;
-        }
-        @include respond(tab-land) {
-          padding: 3rem 2rem;
-        }
-        @include respond(tab-port) {
-          font-size: 2rem;
-          padding: 4rem 1rem;
-        }
+  @include menu-item;
+  a {
+    display: inline-block;
+    color: $primary;
+    padding: 2.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    &:hover {
+      color: $secondary;
     }
+  }
+
+  @include respond(tab-land) {
+    a {
+      padding: 3rem 2rem;
+    }
+  }
+  @include respond(tab-port) {
+    a {
+      font-size: 2rem;
+      padding: 4rem 1rem;
+    }
+  }
+  @include respond(phone) {
+    display: block;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: $secondary_light;
+    }
+    a {
+      &:hover {
+        color: $white;
+      }
+      font-size: 3rem;
+      width: 100%;
+      padding: 2rem 0;
+    }
+  }
 }
