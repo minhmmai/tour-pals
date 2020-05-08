@@ -13,5 +13,14 @@
     right: 0;
     background-color: $nav_menu_bg;
     box-shadow: $shadow;
+    .Dropdown {
+      .DropdownItem {
+        display: none;
+      }
+      &:hover .DropdownItem {
+        display: block;
+        background-color: $nav_sub_menu_bg;
+      }
+    }
   }
 }
