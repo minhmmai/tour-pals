@@ -4,8 +4,6 @@ import NavItem from './NavItem';
 import classes from './NavItems.module.scss';
 import Dropdown from "./Dropdown";
 import DropdownItem from "./DropdownItem";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 const NavItems = () => {
     return (

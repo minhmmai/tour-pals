@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import NavItems from './NavItems';
 import NavItemsMobile from './NavItemsMobile';
@@ -18,9 +19,9 @@ const NavBar = () => {
             <nav className={classes.NavBar}>
                 <Logo link="/" />
                 <Button type="cta">Book Now!</Button>
-                <ToggleButton clicked={toggleMenu} menuIsOpen={menuOpen}/>
+                <ToggleButton clicked={toggleMenu} menuIsOpen={menuOpen} />
                 <NavItems />
-                {menuOpen && <NavItemsMobile/>}
+                {menuOpen && <NavItemsMobile />}
             </nav>
         </header>
     )
