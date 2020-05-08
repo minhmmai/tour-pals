@@ -27,8 +27,5 @@
 
   @include respond(phone) {
     margin: 3rem 0;
-    .LogoText {
-      font-size: 5rem;
-    }
   }
 }

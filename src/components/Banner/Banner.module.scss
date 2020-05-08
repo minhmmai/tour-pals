@@ -7,9 +7,6 @@
   background-image: url(../../assets/img/aerial-beach.jpg);
   background-size: cover;
   background-position: top;
-  padding-top: 3rem;
-  padding: 3rem 0 5rem 0;
-  min-width: 50rem;
   .Intro {
     color: $white;
     display: block;
@@ -27,6 +24,7 @@
       @include respond(tab-port) {
       }
       @include respond(phone) {
+        font-size: 5rem;
       }
     }
     .IntroSubTitle {
@@ -37,6 +35,7 @@
       @include respond(tab-port) {
       }
       @include respond(phone) {
+        font-size: 3rem;
       }
     }
   }

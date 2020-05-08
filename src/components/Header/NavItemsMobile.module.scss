@@ -1,0 +1,30 @@
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/variables";
+@import "../../assets/scss/keyframes";
+
+.NavItemsMobile {
+  display: none;
+  transition: all 0.3s ease;
+  animation: expand ease 0.3s;
+  transform-origin: top center;
+
+  @include respond(phone) {
+    display: block;
+    height: auto;
+    width: 100%;
+    position: absolute;
+    top: 12rem;
+    right: 0;
+    background-color: $white;
+    box-shadow: $shadow;
+    .Dropdown {
+      .DropdownItem {
+        display: none;
+      }
+      &:hover .DropdownItem {
+        display: block;
+        background-color: $nav_sub_menu_bg;
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './Banner.module.scss';
 import Button from "../UI/Button/Button";
 
-const Banner = props => {
+const Banner = () => {
     return (
         <section className={classes.Banner}>
             <div className={classes.Intro}>

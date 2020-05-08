@@ -2,37 +2,11 @@
 @import "../../assets/scss/variables";
 
 .NavItems {
-  .Other {
-    display: inline-block;
-    list-style: none;
-    height: 100%;
-  }
-  .Mobile {
-    display: none;
-  }
+  display: inline-block;
+  list-style: none;
+  height: 100%;
 
   @include respond(phone) {
-    .Other {
-      display: none;
-    }
-    .Mobile {
-      display: block;
-    }
-    height: auto;
-    width: 100%;
-    position: absolute;
-    top: 12rem;
-    right: 0;
-    background-color: $white;
-    box-shadow: $shadow;
-    .Dropdown {
-      .DropdownItem {
-        display: none;
-      }
-      &:hover .DropdownItem {
-        display: block;
-        background-color: $nav_sub_menu_bg;
-      }
-    }
+    display: none;
   }
 }
