@@ -13,6 +13,9 @@ const NavBar = () => {
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     };
+    const closeMenu = () => {
+        setMenuOpen(false);
+    };
     return (
         <header>
             <nav className={classes.NavBar}>
@@ -21,7 +24,7 @@ const NavBar = () => {
                 <ToggleButton clicked={toggleMenu} menuIsOpen={menuOpen} />
                 <NavItems />
             </nav>
-                <NavItemsMobile isOpen={menuOpen} />
+                <NavItemsMobile isOpen={menuOpen} itemClicked={closeMenu}/>
         </header>
     )
 };
