@@ -12,7 +12,7 @@
     .DropdownContent {
         display: none;
         position: absolute;
-        animation: scaleY ease 0.3s;
+        animation: expand ease 0.3s;
         transform-origin: top center;
         list-style: none;
         margin-top: 1.5rem;

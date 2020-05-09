@@ -1,0 +1,34 @@
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/variables";
+@import "../../assets/scss/keyframes";
+
+.NavItemsMobile {
+  display: none;
+  transition: all .5s ease;
+
+  @include respond(phone) {
+    display: block;
+    height: auto;
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+    top: 12rem;
+    right: 0;
+    background-color: $white;
+    box-shadow: $shadow;
+  }
+  
+  .Dropdown {
+    position: relative;
+    z-index: -1;
+    .DropdownItem {
+      position: relative;
+      z-index: -1;
+      display: none;
+    }
+    &:hover .DropdownItem {
+      display: block;
+      background-color: $nav_sub_menu_bg;
+    }
+  }
+}
