@@ -5,9 +5,12 @@ import classes from './NavItemsMobile.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-const NavItems = () => {
+const NavItems = ({isOpen}) => {
     return (
-        <ul className={classes.NavItemsMobile}>
+        <ul className={classes.NavItemsMobile}
+            style={{
+                transform: isOpen ? 'translateY(0)' : 'translateY(-100vh)'
+            }}>
             <NavItem link="/" exact="true">Home</NavItem>
             <NavItem link="/destinations">Destinations</NavItem>
             <NavItem link="/services">Services</NavItem>

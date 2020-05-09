@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import NavItems from './NavItems';
 import NavItemsMobile from './NavItemsMobile';
@@ -21,8 +20,8 @@ const NavBar = () => {
                 <Button type="cta">Book Now!</Button>
                 <ToggleButton clicked={toggleMenu} menuIsOpen={menuOpen} />
                 <NavItems />
-                {menuOpen && <NavItemsMobile />}
             </nav>
+                <NavItemsMobile isOpen={menuOpen} />
         </header>
     )
 };
