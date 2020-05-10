@@ -27,7 +27,7 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
-    modalIsOpen: state.formModal.modalIsOpen
+    modalIsOpen: state.modal.modalIsOpen
   }
 }
 

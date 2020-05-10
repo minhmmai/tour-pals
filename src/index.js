@@ -8,12 +8,12 @@ import thunk from 'redux-thunk';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import formModalReducer from "./store/reducers/formModal";
+import modalReducer from "./store/reducers/modal";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  formModal: formModalReducer
+  modal: modalReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

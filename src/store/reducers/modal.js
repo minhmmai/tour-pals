@@ -21,7 +21,7 @@ const closeModal = (state, action) => {
     return updateObject(state, updatedState);
 }
 
-const formModalReducer = (state = initialState, action) => {
+const modalReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.OPEN_MODAL:
             return openModal(state, action);
@@ -32,5 +32,5 @@ const formModalReducer = (state = initialState, action) => {
     }
 };
 
-export default formModalReducer;
+export default modalReducer;
 

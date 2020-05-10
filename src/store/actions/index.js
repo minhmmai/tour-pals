@@ -1,4 +1,4 @@
 export {
     openModal,
     closeModal
-} from './formModal';
+} from './modal';
