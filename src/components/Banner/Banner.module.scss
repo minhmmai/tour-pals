@@ -19,10 +19,6 @@
       color: $white;
       font: 400 7rem "Roboto";
       margin: 1rem;
-      @include respond(tab-land) {
-      }
-      @include respond(tab-port) {
-      }
       @include respond(phone) {
         font-size: 5rem;
       }
@@ -30,10 +26,6 @@
     .IntroSubTitle {
       font: 300 3rem "Roboto";
       margin: 0.5rem;
-      @include respond(tab-land) {
-      }
-      @include respond(tab-port) {
-      }
       @include respond(phone) {
         font-size: 3rem;
       }

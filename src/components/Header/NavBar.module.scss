@@ -8,7 +8,7 @@
   padding: 0 10rem;
   position: fixed;
   width: 100%;
-  z-index: 9999 !important;
+  z-index: 10;
   background-color: $white;
   @include respond(tab-land) {
     height: 8rem;
