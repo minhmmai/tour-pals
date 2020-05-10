@@ -1,6 +1,7 @@
 import React from 'react';
 
 import NavItem from './NavItem';
+import Button from "../UI/Button/Button";
 import classes from './NavItemsMobile.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
@@ -12,6 +13,7 @@ const NavItemsMobile = props => {
             style={{
                 transform: isOpen ? 'translateY(0)' : 'translateY(-100vh)'
             }}>
+            <Button type="cta">Book Now!</Button>
             <NavItem link="/" exact="true" clicked={itemClicked}>Home</NavItem>
             <NavItem link="/destinations" clicked={itemClicked}>Destinations</NavItem>
             <NavItem link="/services" clicked={itemClicked}>Services</NavItem>
