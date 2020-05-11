@@ -11,7 +11,7 @@
     height: auto;
     width: 100%;
     position: absolute;
-    z-index: 100;
+    z-index: 1;
     top: 12rem;
     right: 0;
     background-color: $white;
@@ -20,10 +20,10 @@
   
   .Dropdown {
     position: relative;
-    z-index: -1;
+    z-index: 1;
     .DropdownItem {
       position: relative;
-      z-index: -1;
+      z-index: 1;
       display: none;
     }
     &:hover .DropdownItem {
