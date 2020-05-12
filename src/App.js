@@ -20,6 +20,7 @@ const App = props => {
             <RenderedForm formName="tourForm" />
           </Modal>
         }
+
       </Layout>
     </div>
   );
