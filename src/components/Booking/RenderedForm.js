@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 
-import Adjust from "../Form/Adjust";
-import Date from "../Form/Date";
-import Input from "../Form/Input";
-import Select from "../Form/Select";
-import Section from "../Form/Section";
+import Button from "../UI/Button/Button";
+import Adjust from "../FormElements/Adjust";
+import Date from "../FormElements/Date";
+import Input from "../FormElements/Input";
+import Select from "../FormElements/Select";
+import Section from "../FormElements/Section";
 
 import { getForm, validateField, updateObject } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
@@ -51,7 +50,8 @@ const RenderedForm = (props) => {
     initForm();
   }, [initForm]);
 
-  const handleNext = () => {
+  const handleNext = event => {
+    event.preventDefault();
     const updatedFields = [...fields];
     let valid = true;
     for (let i = 0; i < fields[activeSection].length; i++) {
@@ -73,7 +73,8 @@ const RenderedForm = (props) => {
     valid && setActiveSection((prevActiveSection) => prevActiveSection + 1);
   };
 
-  const handleBack = () => {
+  const handleBack = event => {
+    event.preventDefault();
     setActiveSection((prevActiveSection) => prevActiveSection - 1);
   };
 
@@ -125,18 +126,10 @@ const RenderedForm = (props) => {
       <div>
         {activeSection === sections.length ? (
           <div>
-            <Typography className={classes.Complete} color="secondary" variant="h4">
-              All done!
-            </Typography>
-            <Typography className={classes.Instruction} color="primary" variant="subtitle1">
+            All done!
               You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
-            </Typography>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleReset}
-              className={classes.Button}
-            >
+
+            <Button onClick={event => handleReset(event)}            >
               Book Another Tour
             </Button>
           </div>
@@ -228,17 +221,11 @@ const RenderedForm = (props) => {
                     <div>
                       <Button
                         disabled={activeSection === 0}
-                        onClick={handleBack}
-                        className={classes.Button}>
+                        clicked={event => handleBack(event)}>
                         Back
                       </Button>
-                      <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleNext}
-                        className={classes.Button}>
-                        {activeSection === sections.length - 1
-                          ? "Submit" : "Next"}
+                      <Button clicked={event => handleNext(event)}>
+                        {activeSection === sections.length - 1 ? "Submit" : "Next"}
                       </Button>
                     </div>
                   </Section>
