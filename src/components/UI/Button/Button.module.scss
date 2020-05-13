@@ -70,5 +70,5 @@
 }
 
 .cta, .info, .intro {
-  @include text_transition;
+  @include all_transition;
 }

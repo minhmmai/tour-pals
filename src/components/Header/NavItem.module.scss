@@ -4,7 +4,7 @@
 .NavItem {
   @include menu_item_text;
   a {
-    @include text_transition;
+    @include all_transition;
     display: inline-block;
     color: $primary;
     padding: 2.5rem;

@@ -14,7 +14,7 @@
         .Index {
             border-radius: 50%;
             background-color: $stepper_index;
-            @include white_text;
+            @include paragraph;
             width: 3rem;
             height: 3rem;
             padding: .6rem;
@@ -26,8 +26,8 @@
             @include grey_small_text;
         }
         .Line {
-            height: 1px;
-            background-color: $stepper_index;
+            height: .5px;
+            background-color: $border;
             position: absolute;
             width: 80%;
             top: 40%;

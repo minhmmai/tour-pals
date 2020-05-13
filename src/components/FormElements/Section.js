@@ -1,5 +1,4 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
 
 import classes from "./Section.module.scss";
 
@@ -10,10 +9,10 @@ const Section = props => {
       className={classes.Section}
       hidden={index !== activeSection}
     >
-      <legend><Typography className={classes.Legend} color="secondary" variant="h4">{title}</Typography></legend>
-      <Typography className={classes.Description} color="primary" variant="subtitle1">
+      <legend><h3 className={classes.Legend}>{title}</h3></legend>
+      <p className={classes.Description}>
         {description}
-      </Typography>
+      </p>
       {children}
     </fieldset>
   );
