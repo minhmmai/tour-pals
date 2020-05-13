@@ -3,7 +3,7 @@
 @import "../../assets/scss/mixins.scss";
 
 .Dropdown {
-    @include menu-item;
+    @include menu_item_text;
     color: $primary;
     padding: 2.5rem;
     transition: all 0.3s ease;

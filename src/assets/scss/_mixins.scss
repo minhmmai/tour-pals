@@ -1,10 +1,27 @@
 @import "./variables.scss";
 
-@mixin menu-item {
+@mixin menu_item_text {
+    @include text_transition;
     display: inline-block;
     cursor: pointer;
     font: 400 1.7rem "Roboto";
     text-transform: capitalize;
+}
+
+@mixin white_text {
+    @include text_transition;
+    font: 400 1.7rem "Roboto";
+    color: $white;
+}
+
+@mixin grey_small_text {
+    @include text_transition;
+    font: 300 1.3rem "Roboto";
+    color: $stepper_label;
+}
+
+@mixin text_transition {
+    transition: all .3s ease;
 }
 
 // Media query manager

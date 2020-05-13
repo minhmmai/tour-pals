@@ -4,7 +4,7 @@
 .Form {
   width: 90%;
   margin: auto;  
-  transition: all .3s ease;
+  @include text_transition;
   .Complete {
     font: 300 2rem 'Roboto';
   }

@@ -10,7 +10,7 @@
         color: $primary;
         padding: .25rem 3rem;
         text-decoration: none;
-        transition: all .3s ease;
+        @include text_transition;
         &:hover {
             color: $secondary;
         }

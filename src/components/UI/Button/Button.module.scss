@@ -2,7 +2,7 @@
 @import "../../../assets/scss/mixins";
 
 .Button {
-  @include menu-item;
+  @include menu_item_text;
   color: $white;
   padding: 1.5rem 3rem;
   @include respond(tab-land) {
@@ -70,5 +70,5 @@
 }
 
 .cta, .info, .intro {
-  transition: all .3s ease;
+  @include text_transition;
 }

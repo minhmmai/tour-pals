@@ -2,13 +2,13 @@
 @import "../../assets/scss/mixins.scss";
 
 .NavItem {
-  @include menu-item;
+  @include menu_item_text;
   a {
+    @include text_transition;
     display: inline-block;
     color: $primary;
     padding: 2.5rem;
     text-decoration: none;
-    transition: color 0.3s ease;
     &:hover {
       color: $secondary;
     }
