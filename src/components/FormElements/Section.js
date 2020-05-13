@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import classes from "./Section.module.scss";
 
 const Section = props => {
-  const {activeSection, children,  index, key, title, description } = props;
+  const {activeSection, children,  index, title, description } = props;
   return (
     <fieldset
       className={classes.Section}

@@ -7,7 +7,6 @@ import Layout from './containers/Layout';
 import Banner from './components/Banner/Banner';
 import Modal from "./components/UI/Modal/Modal";
 import RenderedForm from "./components/Booking/RenderedForm";
-import Stepper from "./components/FormElements/Stepper";
 import * as actions from "./store/actions/index";
 
 const App = props => {
@@ -16,11 +15,11 @@ const App = props => {
     <div className="App">
       <Layout>
         <Banner />
-        {/* {props.modalIsOpen
+        {props.modalIsOpen
           && <Modal show={props.modalIsOpen} modalClosed={props.onCloseModal}>
             <RenderedForm formName="tourForm" />
           </Modal>
-        } */}
+        }
         <RenderedForm formName="tourForm" />
 
       </Layout>
