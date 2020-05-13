@@ -8,8 +8,15 @@ import Banner from './components/Banner/Banner';
 import Modal from "./components/UI/Modal/Modal";
 import RenderedForm from "./components/Booking/RenderedForm";
 import * as actions from "./store/actions/index";
+import { useEffect } from 'react';
 
 const App = props => {
+  useEffect(() => {
+    // Disable page scrolling when modal is opened
+    props.modalIsOpen
+      ? document.body.style.overflow = 'hidden'
+      : document.body.style.overflow = 'unset'
+  },[props.modalIsOpen]);
 
   return (
     <div className="App">

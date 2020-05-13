@@ -5,7 +5,7 @@ import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
 
 const Date = (props) => {
-  const { description, error, handleChange, name, optional, label, tooltip, type } = props
+  const { description, error, handleChange, name, optional, label, tooltip, type, value } = props
   return (
     <div className={classes.Field}>
       <div className={classes.Label}>
@@ -14,7 +14,7 @@ const Date = (props) => {
         {tooltip && <Tooltip content={tooltip} />}
       </div>
       <div className={classes.Date}>
-        <input id={name} name={name} type={type} onChange={handleChange} />
+        <input id={name} name={name} type={type} onChange={handleChange} value={value} />
       </div>
       {error !== "" && <p className={classes.Error}>{error}</p>}
       {description && <FormHelperText className={classes.Description}>{description}</FormHelperText>}

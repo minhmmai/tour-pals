@@ -5,7 +5,8 @@
     position: fixed;
     z-index: 20;
     background-color: white;
-    width: 70%;
+    width: 80vw;
+    height: 90vh;
     border: none;
     box-shadow: $shadow;
     padding: 2rem;
@@ -13,11 +14,15 @@
     top: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.3s ease-out;
-}
+    overflow: scroll;
 
-@include respond(phone) {
-    .Modal {
-        width: 500px;
-        left: calc(50% - 250px);
+    @include respond(tab-land) {
+        width: 70vw
+    }
+    @include respond(tab-port) {
+        width: 80vw
+    }
+    @include respond(phone) {
+        width: 100%
     }
 }

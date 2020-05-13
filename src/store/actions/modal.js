@@ -1,6 +1,6 @@
 import * as actionType from "./actionTypes";
 
-export const openModal = (formName) => {
+export const openModal = () => {
     return {
         type: actionType.OPEN_MODAL
     }
