@@ -3,7 +3,8 @@
 
 .Form {
   width: 90%;
-  margin: auto;
+  margin: auto;  
+  transition: all .3s ease;
   .Complete {
     font: 300 2rem 'Roboto';
   }

@@ -3,19 +3,19 @@ import Typography from "@material-ui/core/Typography";
 
 import classes from "./Section.module.scss";
 
-const Select = (props) => {
+const Section = props => {
+  const {activeSection, children,  index, key, title, description } = props;
   return (
     <fieldset
       className={classes.Section}
-      hidden={props.index !== props.activeSection}
+      hidden={index !== activeSection}
     >
-      <legend><Typography  className={classes.Legend} color="secondary" variant="h4">{props.label}</Typography></legend>
+      <legend><Typography className={classes.Legend} color="secondary" variant="h4">{title}</Typography></legend>
       <Typography className={classes.Description} color="primary" variant="subtitle1">
-        {props.description}
+        {description}
       </Typography>
-      {props.children}
+      {children}
     </fieldset>
   );
 };
-
-export default Select;
+export default Section;

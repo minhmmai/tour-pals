@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
 
 import Button from "../UI/Button/Button";
 import Adjust from "../FormElements/Adjust";
@@ -9,6 +6,7 @@ import Date from "../FormElements/Date";
 import Input from "../FormElements/Input";
 import Select from "../FormElements/Select";
 import Section from "../FormElements/Section";
+import Stepper from "../FormElements/Stepper";
 
 import { getForm, validateField, updateObject } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
@@ -28,6 +26,7 @@ const RenderedForm = (props) => {
       formSections.push({
         sectionId: key,
         label: form.sections[key].label,
+        title: form.sections[key].title,
         description: form.sections[key].description
       });
     }
@@ -106,23 +105,11 @@ const RenderedForm = (props) => {
       updatedFields[activeSection][fieldIndex].value = (fieldValue - 1).toString();
     }
     setFields(updatedFields);
-  }
+  };
 
   return (
     <form className={classes.Form}>
-      <Stepper
-        activeStep={activeSection}
-        alternativeLabel
-        className={classes.Stepper}
-      >
-        {sections.map((section, index) => {
-          return (
-            <Step className={classes.Step} key={index}>
-              <StepLabel className={classes.StepLabel}>{section.label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
+      <Stepper formSteps={sections.map(({ label }) => label)} formActiveStep={activeSection}/>
       <div>
         {activeSection === sections.length ? (
           <div>
@@ -141,7 +128,7 @@ const RenderedForm = (props) => {
                     activeSection={activeSection}
                     index={index}
                     key={section.sectionId}
-                    label={section.label}
+                    title={section.title}
                     description={section.description}
                   >
                     {fields[activeSection].map((field, index) => {

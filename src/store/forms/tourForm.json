@@ -2,7 +2,8 @@
     "formId": "tour",
     "sections": {
         "tourDetails": {
-            "label": "Let's Get Started!",
+            "label": "Tour Details",
+            "title": "Let's Get Started!",
             "description": "Let us know about your group and the tour you're looking for",
             "fields": {
                 "tour": {
@@ -147,7 +148,8 @@
             }
         },
         "contactDetails": {
-            "label": "Tell us about you",
+            "label": "Contact Details",
+            "title": "Tell us more about yourself",
             "description": "Let us know how we can contact you",
             "fields": {
                 "fullName": {
@@ -205,7 +207,8 @@
             }
         },
         "paymentDetails": {
-            "label": "Almost There!",
+            "label": "Payment",
+            "title": "Tell us how you'd like to pay",
             "description": "Let us know how you would like to pay for the tour",
             "fields": {
                 "paymentType": {
