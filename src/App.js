@@ -21,7 +21,6 @@ const App = props => {
           </Modal>
         }
         <RenderedForm formName="tourForm" />
-
       </Layout>
     </div>
   );
