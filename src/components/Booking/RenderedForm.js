@@ -208,10 +208,11 @@ const RenderedForm = (props) => {
                     <div>
                       <Button
                         disabled={activeSection === 0}
-                        clicked={event => handleBack(event)}>
+                        clicked={event => handleBack(event)}
+                        type="back">
                         Back
                       </Button>
-                      <Button clicked={event => handleNext(event)}>
+                      <Button clicked={event => handleNext(event)} type="next">
                         {activeSection === sections.length - 1 ? "Submit" : "Next"}
                       </Button>
                     </div>

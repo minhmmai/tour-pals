@@ -10,6 +10,24 @@
 
 @mixin paragraph {
     @include all_transition;
+    font: 300 1.7rem "Roboto";
+    color: $paragraph;
+}
+
+@mixin error {
+    @include all_transition;
+    font: 300 1.2rem "Roboto";
+    color: $red;
+}
+
+@mixin tooltip {
+    @include all_transition;
+    font: 300 1.2rem "Roboto";
+    color: $white;
+}
+
+@mixin button_label {
+    @include all_transition;
     font: 400 1.7rem "Roboto";
     color: $white;
 }
@@ -49,7 +67,7 @@
 }
 
 @mixin h4 {
-    font: 300 2rem "Roboto";
+    font: 300 2.2rem "Roboto";
     margin: .2rem;
     @include respond(phone) {
         font-size: 2rem;

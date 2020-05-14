@@ -4,7 +4,7 @@
         "tourDetails": {
             "label": "Tour Details",
             "title": "Let's Get Started!",
-            "description": "Let us know about your group and the tour you're looking for",
+            "description": "Let us know about your group and the tour you're interested in",
             "fields": {
                 "tour": {
                     "label": "Which tour are you looking for?",

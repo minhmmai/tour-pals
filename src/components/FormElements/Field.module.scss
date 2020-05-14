@@ -3,25 +3,21 @@
 @import "../../assets/scss/keyframes.scss";
 
 .Field {
-  margin: 1.5rem;
-  color: $paragraph;
+  margin: 2rem;
   .Error {
-    color: red;
-    animation: fadeIn ease .3s;
+    @include error;
+    animation: fadeIn ease 0.3s;
   }
 
   .Label,
-  .Description {
-    display: block;
-    margin: 0.5rem;
-    text-align: center;
+  input,
+  select,
+  option {
+    @include paragraph;
   }
-
-  .Input,
-  .Select,
-  .Date,
-  .Adjust {
-    display: block;
+  .Description {
+    @include grey_small_text;
+    text-align: center;
   }
 
   .Control {
@@ -34,12 +30,13 @@
   input,
   select,
   option {
-    height: 2rem;
-    margin: 0.5rem auto;
+    margin: 0.5rem 0;
+    height: 5rem;
+    padding: 0 0.5rem;
   }
 
   .Adjust input {
-    max-width: 5%;
+    width: 5%;
     text-align: center;
   }
 
@@ -49,8 +46,7 @@
 
   .Select select,
   .Date input {
-    min-width: 15%;
-    padding: 0 0.5rem;
+    width: 15%;    
   }
 
   .Tooltip {

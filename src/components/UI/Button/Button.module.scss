@@ -69,6 +69,22 @@
   }
 }
 
+.back {
+  border: none;
+  background-color: $toggle_button;
+  &:hover {
+    background-color: $paragraph;
+  }
+}
+
+.next {
+  border: none;
+  background-color: $secondary_light;
+  &:hover {
+    background-color: $secondary;
+  }
+}
+
 .cta, .info, .intro {
   @include all_transition;
 }

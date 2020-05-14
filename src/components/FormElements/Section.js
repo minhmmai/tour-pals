@@ -10,9 +10,9 @@ const Section = props => {
       hidden={index !== activeSection}
     >
       <legend><h3 className={classes.Legend}>{title}</h3></legend>
-      <p className={classes.Description}>
+      <h4 className={classes.Description}>
         {description}
-      </p>
+      </h4>
       {children}
     </fieldset>
   );
