@@ -16,7 +16,7 @@
 
 @mixin error {
     @include all_transition;
-    font: 300 1.2rem "Roboto";
+    font: 300 1.5rem "Roboto";
     color: $red;
 }
 

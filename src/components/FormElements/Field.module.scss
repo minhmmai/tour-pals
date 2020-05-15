@@ -4,6 +4,7 @@
 
 .Field {
   margin: 2rem;
+  animation: fadeIn ease 0.3s;
   .Error {
     @include error;
     animation: fadeIn ease 0.3s;
@@ -14,6 +15,7 @@
   select,
   option {
     @include paragraph;
+    margin: .5rem 0;
   }
   .Description {
     @include grey_small_text;
@@ -30,23 +32,23 @@
   input,
   select,
   option {
-    margin: 0.5rem 0;
-    height: 5rem;
-    padding: 0 0.5rem;
+    height: 4rem;
+    padding: 0.5rem;
+    border: 1px solid #CCCCCC !important; //fix top border is not showing in modal
   }
 
   .Adjust input {
-    width: 5%;
+    width: 5rem;
     text-align: center;
   }
 
   .Input input {
-    width: 30%;
+    width: 50rem;
   }
 
   .Select select,
   .Date input {
-    width: 15%;    
+    width: 30rem;    
   }
 
   .Tooltip {

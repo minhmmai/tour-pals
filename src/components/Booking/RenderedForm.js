@@ -109,7 +109,7 @@ const RenderedForm = (props) => {
 
   return (
     <form className={classes.Form}>
-      <Stepper formSteps={sections.map(({ label }) => label)} formActiveStep={activeSection}/>
+      <Stepper formSteps={sections.map(({ label }) => label)} formActiveStep={activeSection} />
       <div>
         {activeSection === sections.length ? (
           <div>
@@ -204,23 +204,24 @@ const RenderedForm = (props) => {
                         );
                       }
                       return renderedField;
-                    })}
-                    <div>
-                      <Button
-                        disabled={activeSection === 0}
-                        clicked={event => handleBack(event)}
-                        type="back">
-                        Back
-                      </Button>
-                      <Button clicked={event => handleNext(event)} type="next">
-                        {activeSection === sections.length - 1 ? "Submit" : "Next"}
-                      </Button>
-                    </div>
+                    })};
                   </Section>
                 );
+
               })}
             </div>
           )}
+      </div>
+      <div>
+        <Button
+          disabled={activeSection === 0}
+          clicked={event => handleBack(event)}
+          type="back">
+          Back
+                </Button>
+        <Button clicked={event => handleNext(event)} type="next">
+          {activeSection === sections.length - 1 ? "Submit" : "Next"}
+        </Button>
       </div>
     </form>
   );

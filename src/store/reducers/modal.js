@@ -2,7 +2,8 @@ import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../../shared/utility";
 
 const initialState = {
-    modalIsOpen: false
+    modalIsOpen: false,
+    formName: ""
 };
 
 const openModal = (state, action) => {

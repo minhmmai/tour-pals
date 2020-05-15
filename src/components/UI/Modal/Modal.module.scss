@@ -5,15 +5,16 @@
     position: fixed;
     z-index: 20;
     background-color: white;
-    width: 80vw;
-    height: 90vh;
+    width: auto;
+    max-height: 90vh;
+    width: 100rem;
     border: none;
     box-shadow: $shadow;
     padding: 2rem;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s ease-out;
+    transform: translate(-50%, -50%);  
+    @include all_transition;  
     overflow: scroll;
 
     @include respond(tab-land) {

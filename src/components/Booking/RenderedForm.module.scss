@@ -2,8 +2,8 @@
 @import '../../assets/scss/mixins.scss';
 
 .Form {
-  width: 90%;
-  margin: auto;  
+  width: 100%;
+  margin: 1rem auto;  
   @include all_transition;
   .Complete {
     font: 300 2rem 'Roboto';
