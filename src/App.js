@@ -7,6 +7,7 @@ import Layout from './containers/Layout';
 import Banner from './components/Banner/Banner';
 import Modal from "./components/UI/Modal/Modal";
 import RenderedForm from "./components/Booking/RenderedForm";
+import SelectService from "./components/Booking/SelectService";
 import * as actions from "./store/actions/index";
 import { useEffect } from 'react';
 
@@ -16,7 +17,7 @@ const App = props => {
     props.modalIsOpen
       ? document.body.style.overflow = 'hidden'
       : document.body.style.overflow = 'unset'
-  },[props.modalIsOpen]);
+  }, [props.modalIsOpen]);
 
   return (
     <div className="App">
@@ -24,10 +25,11 @@ const App = props => {
         <Banner />
         {props.modalIsOpen
           && <Modal show={props.modalIsOpen} modalClosed={props.onCloseModal}>
-            <RenderedForm formName="tourForm" />
-          </Modal>
-        }
-        <RenderedForm formName="tourForm" />
+            {props.service
+              ? <RenderedForm type={props.service} />
+              : <SelectService />}
+          </Modal>}
+        <RenderedForm type="tour" />
       </Layout>
     </div>
   );
@@ -35,7 +37,8 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
-    modalIsOpen: state.modal.modalIsOpen
+    modalIsOpen: state.modal.modalIsOpen,
+    service: state.modal.service
   }
 }
 

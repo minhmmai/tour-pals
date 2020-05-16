@@ -3,13 +3,13 @@ import { updateObject } from "../../shared/utility";
 
 const initialState = {
     modalIsOpen: false,
-    formName: ""
+    service: ""
 };
 
 const openModal = (state, action) => {
     const updatedState = {
         modalIsOpen: true,
-        formName: action.form
+        service: ""
     }
     return updateObject(state, updatedState);
 }
@@ -17,7 +17,15 @@ const openModal = (state, action) => {
 const closeModal = (state, action) => {
     const updatedState = {
         modalIsOpen: false,
-        formName: ""
+        service: ""
+    }
+    return updateObject(state, updatedState);
+}
+
+const selectService = (state, action) => {
+    const updatedState = {
+        modalIsOpen: true,
+        service: action.selectedService
     }
     return updateObject(state, updatedState);
 }
@@ -28,6 +36,8 @@ const modalReducer = (state = initialState, action) => {
             return openModal(state, action);
         case actionTypes.CLOSE_MODAL:
             return closeModal(state, action);
+        case actionTypes.SELECT_SERVICE:
+            return selectService(state, action);
         default:
             return state;
     }

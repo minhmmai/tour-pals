@@ -77,6 +77,10 @@
 @mixin border {
     border: 1px solid $border;
 }
+
+@mixin clicked {
+    transform: translateY(.3rem);
+}
 // Media query manager
 /*
 0 - 600px:          Phone

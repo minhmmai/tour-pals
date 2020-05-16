@@ -1,0 +1,45 @@
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/variables";
+
+.SelectServices {
+    .Heading {
+        @include h2;
+        color: $primary;
+    }
+    .SubHeading {
+        @include h4;
+        color: $paragraph;
+    }
+    .Service {
+        display: flex;
+        justify-content: space-around;
+        margin: 5rem 0;
+        .Airport, .Tour, .Hourly {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            background-color: $nav_sub_menu_bg;
+            width: 30%;
+            margin: 0 1rem;
+            padding: 2rem;
+            .Icon {
+                @include h1;
+                color: $secondary_light;
+                font-weight: 100;
+
+            }
+            p{
+                @include paragraph;
+            }
+            .Icon, p, Button {
+                margin: 1rem 0;
+            } 
+            Button:active {
+                @include clicked;
+            }
+        }
+    }
+    @include respond(phone) {
+    }
+}
