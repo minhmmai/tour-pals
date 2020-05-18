@@ -15,21 +15,21 @@ const SelectService = props => {
                 <div className={classes.Airport}>
                     <img className={classes.Icon} src={require("../../assets/icon/airport.svg")} alt="Airport icon"/>
                     <p>
-                        Felis Facilisis sollicitudin nisi pharetra ipsum lobortis nostra purus et magna convallis. Proin sagittis rutrum.
+                        We know your flights' departure, landing time. We know if they have been delayed or cancelled too.
                     </p>
                     <Button type="info" clicked={() => onSelectService("airport")}>Airport Tranfer</Button>
                 </div>
                 <div className={classes.Tour}>
                 <img className={classes.Icon} src={require("../../assets/icon/travel-map.svg")} alt="Airport icon"/>
                     <p>
-                        Laoreet pulvinar venenatis fames lacus commodo blandit leo nam auctor vivamus nascetur.
+                        Our experienced guides will be there for you all the way. Making sure you'll get the best experience.
                    </p>
                     <Button type="info" clicked={() => onSelectService("tour")}>Private Tours</Button>
                 </div>
                 <div className={classes.Hourly}>
                 <img className={classes.Icon} src={require("../../assets/icon/speed.svg")} alt="Airport icon"/>
                     <p>
-                        Massa quisque sit phasellus facilisi vulputate at Tortor suspendisse scelerisque commodo.
+                        Checkout early? Or just simply have some time in hand? Call us for a mini-tour that suits your schedule.
                     </p>
                     <Button type="info" clicked={() => onSelectService("hourly")}>By-The-Hour</Button>
                 </div>
