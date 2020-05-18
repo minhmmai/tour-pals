@@ -14,7 +14,9 @@
         display: flex;
         justify-content: space-around;
         margin: 5rem 0;
-        .Airport, .Tour, .Hourly {
+        .Airport,
+        .Tour,
+        .Hourly {
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -24,17 +26,16 @@
             margin: 0 1rem;
             padding: 2rem;
             .Icon {
-                @include h1;
-                color: $secondary_light;
-                font-weight: 100;
-
+                width: 70%;
             }
-            p{
+            p {
                 @include paragraph;
             }
-            .Icon, p, Button {
+            .Icon,
+            p,
+            Button {
                 margin: 1rem 0;
-            } 
+            }
             Button:active {
                 @include clicked;
             }

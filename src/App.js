@@ -28,6 +28,7 @@ const App = props => {
           && <Modal show={props.modalIsOpen} modalClosed={props.onCloseModal}>
             {modalContent}
           </Modal>}
+          <SelectService />
       </Layout>
     </div>
   );
