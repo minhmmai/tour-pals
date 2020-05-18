@@ -42,5 +42,8 @@
         .Label {
             color: $stepper_label_complete;
         }
+        .Line {
+            background-color: $stepper_index_complete;
+        }
     }
 }
