@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -9,7 +9,6 @@ import Modal from "./components/UI/Modal/Modal";
 import RenderedForm from "./components/Booking/RenderedForm";
 import SelectService from "./components/Booking/SelectService";
 import * as actions from "./store/actions/index";
-import { useEffect } from 'react';
 
 const App = props => {
   useEffect(() => {
@@ -19,17 +18,16 @@ const App = props => {
       : document.body.style.overflow = 'unset'
   }, [props.modalIsOpen]);
 
+  let modalContent = props.service ? <RenderedForm type={props.service} /> : <SelectService />;
+
   return (
     <div className="App">
       <Layout>
         <Banner />
         {props.modalIsOpen
           && <Modal show={props.modalIsOpen} modalClosed={props.onCloseModal}>
-            {props.service
-              ? <RenderedForm type={props.service} />
-              : <SelectService />}
+            {modalContent}
           </Modal>}
-        <RenderedForm type="tour" />
       </Layout>
     </div>
   );

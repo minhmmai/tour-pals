@@ -4,17 +4,17 @@ export const openModal = () => {
     return {
         type: actionType.OPEN_MODAL
     }
-}
+};
 
 export const closeModal = () => {
     return {
         type: actionType.CLOSE_MODAL
     }
-}
+};
 
 export const selectService = (service) => {
     return {
-        type: actionType.CLOSE_MODAL,
-        selectedService: service
+        type: actionType.SELECT_SERVICE,
+        service: service
     }
-}
+};

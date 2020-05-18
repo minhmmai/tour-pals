@@ -25,7 +25,7 @@ const closeModal = (state, action) => {
 const selectService = (state, action) => {
     const updatedState = {
         modalIsOpen: true,
-        service: action.selectedService
+        service: action.service
     }
     return updateObject(state, updatedState);
 }
