@@ -1,13 +1,13 @@
 {
     "formId": "tour",
     "sections": {
-        "tourDetails": {
+        "flightDetails": {
             "label": "Tour Details",
             "title": "Let's Get Started!",
-            "description": "Let us know about your group and the tour you're interested in",
+            "description": "Let us know about your group and the flight your are travelling",
             "fields": {
-                "tour": {
-                    "label": "Which tour are you looking for?",
+                "type": {
+                    "label": "Are you booking for an airport drop-off or pickup?",
                     "type": "select",
                     "options": [
                         {
@@ -15,121 +15,165 @@
                             "label": "Select one"
                         },
                         {
-                            "value": "phillip-island",
-                            "label": "Phillip Island"
+                            "value": "drop-off",
+                            "label": "Drop-Off"
                         },
                         {
-                            "value": "souvereign-hill",
-                            "label": "Souvereign Hill"
-                        },
-                        {
-                            "value": "bright",
-                            "label": "Bright"
-                        },
-                        {
-                            "value": "mt-buller",
-                            "label": "Mt Buller"
-                        },
-                        {
-                            "value": "mt-macedon",
-                            "label": "Mt Macedon"
-                        },
-                        {
-                            "value": "great-ocean-road",
-                            "label": "Great Ocean Road"
-                        },
-                        {
-                            "value": "lake-ountain",
-                            "label": "Lake Mountain"
-                        },
-                        {
-                            "value": "grampians",
-                            "label": "Grampians"
+                            "value": "pickup",
+                            "label": "Pickup"
                         }
                     ],
                     "validations": {
                         "isRequired": {
-                            "errorMsg": "We need to know which tour you're looking for"
+                            "errorMsg": "We need to know if this is a drop-off or pickup"
                         }
                     },
                     "value": ""
                 },
-                "date": {
-                    "label": "When would you like to depart?",
-                    "type": "date",
+                "flightNo": {
+                    "label": "What is your flight number?",
+                    "type": "text",
                     "validations": {
                         "isRequired":{
-                            "errorMsg": "We need to know the date you'd like to travel"
+                            "errorMsg": "We need to know your flight number"
                         },
-                        "dateRange":{
-                            "min": "today",
-                            "max": "withinNext12Months",
-                            "errorMsg": "We can only accept booking for within next 12 months"
-                        }
-                    },
-                    "value": ""
-
-                },
-                "totalPeople": {
-                    "label": "How many people are travelling?",
-                    "tooltip": "Total number of people travelling including you",
-                    "type": "select",
-                    "options": [
-                        {
-                            "value": "",
-                            "label": "Select one"
-                        },
-                        {
-                            "value": "4",
-                            "label": "4 Or Less"
-                        },
-                        {
-                            "value": "7",
-                            "label": "7 Or Less"
-                        },
-                        {
-                            "value": "10",
-                            "label": "10 Or Less"
-                        },
-                        {
-                            "value": "15",
-                            "label": "15 Or Less"
-                        },
-                        {
-                            "value": "20",
-                            "label": "20 Or Less"
-                        },
-                        {
-                            "value": "30",
-                            "label": "30 Or Less"
-                        },
-                        {
-                            "value": "40",
-                            "label": "40 Or Less"
-                        },
-                        {
-                            "value": "60",
-                            "label": "60 Or Less"
-                        }
-                    ],
-                    "validations": {
-                        "isRequired":{
-                            "errorMsg": "We need to know how many people are travelling"
+                        "length": {
+                            "min": 4,
+                            "max": 8,
+                            "errorMsg": "Your flight number must be between 4 and 8 characters long"
                         }
                     },
                     "value": ""
                 },
                 "pickupAddress": {
-                    "label": "What is your pick-up address?",
+                    "label": "What is your pickup address?",
                     "type": "text",
                     "validations": {
                         "isRequired":{
-                            "errorMsg": "We need to know the pick-up address"
+                            "errorMsg": "We need to know the pickup address"
                         },
                         "length": {
                             "min": 10,
                             "max": 50,
                             "errorMsg": "Your pick-up address must be between 10 and 50 characters"
+                        }
+                    },
+                    "showIf": {
+                        "flightDetails.type": {
+                            "equalTo": "drop-off"
+                        }
+                    },
+                    "value": ""
+                },
+                "dropOffAddress": {
+                    "label": "What is your drop-off address?",
+                    "type": "text",
+                    "validations": {
+                        "isRequired":{
+                            "errorMsg": "We need to know the drop-off address"
+                        },
+                        "length": {
+                            "min": 10,
+                            "max": 50,
+                            "errorMsg": "Your drop-off address must be between 10 and 50 characters"
+                        }
+                    },
+                    "showIf": {
+                        "flightDetails.type": {
+                            "equalTo": "pickup"
+                        }
+                    },
+                    "value": ""
+                },
+                "dropOffDate": {
+                    "label": "What date is your flight departure?",
+                    "type": "date",
+                    "validations": {
+                        "isRequired":{
+                            "errorMsg": "We need to know the date of your flight departure"
+                        },
+                        "dateRange":{
+                            "min": "today",
+                            "max": "withinNext12Months",
+                            "errorMsg": "We can only accept booking for within the next 12 months"
+                        }
+                    },
+                    "showIf": {
+                        "flightDetails.type": {
+                            "equalTo": "drop-off"
+                        }
+                    },
+                    "value": ""
+
+                },
+                "pickupDate": {
+                    "label": "What date is your flight landing?",
+                    "tooltip": "This should be the arrival date on your flight itinerary",
+                    "description": "Please consider the differences in time zones",
+                    "type": "date",
+                    "validations": {
+                        "isRequired":{
+                            "errorMsg": "We need to know the date of your flight landing"
+                        },
+                        "dateRange":{
+                            "min": "today",
+                            "max": "withinNext12Months",
+                            "errorMsg": "We can only accept booking for within the next 12 months"
+                        }
+                    },
+                    "showIf": {
+                        "flightDetails.type": {
+                            "equalTo": "drop-off"
+                        }
+                    },
+                    "value": ""
+
+                },
+                "noOfSeater": {
+                    "label": "How many seater would you need?",
+                    "description": "Number of seaters including driver",
+                    "type": "select",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Select one"
+                        },
+                        {
+                            "value": "5",
+                            "label": "5-Seater Small Car"
+                        },
+                        {
+                            "value": "7",
+                            "label": "7-Seater MPV"
+                        },
+                        {
+                            "value": "12",
+                            "label": "12-Seater Van"
+                        },
+                        {
+                            "value": "16",
+                            "label": "16-Seater Van"
+                        },
+                        {
+                            "value": "22",
+                            "label": "22-Seater Minibus"
+                        },
+                        {
+                            "value": "34",
+                            "label": "34-Seater Coach"
+                        },
+                        {
+                            "value": "48",
+                            "label": "48-Seater Coach"
+                        },
+                        {
+                            "value": "58",
+                            "label": "58-Seater Coach"
+                        }
+                    ],
+                    "validations": {
+                        "isRequired":{
+                            "errorMsg": "We need to know how many people are travelling"
                         }
                     },
                     "value": ""
@@ -217,7 +261,7 @@
         "paymentDetails": {
             "label": "Payment",
             "title": "Tell us how you'd like to pay",
-            "description": "Let us know how you would like to pay for the tour",
+            "description": "Let us know how you would like to pay for the trip",
             "fields": {
                 "paymentType": {
                     "label": "Payment Type",
@@ -226,6 +270,10 @@
                         {
                             "value": "",
                             "label": "Select one"
+                        },
+                        {
+                            "value": "cash",
+                            "label": "Cash On The Day"
                         },
                         {
                             "value": "visa",
