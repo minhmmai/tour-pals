@@ -40,7 +40,16 @@
                 @include clicked;
             }
         }
-    }
-    @include respond(phone) {
+
+        @include respond(phone) {
+            flex-direction: column;
+            justify-content: space-around;
+            .Airport,
+            .Tour,
+            .Hourly {
+                width: 100%;
+                margin: 1rem 0;
+            }
+        }
     }
 }
