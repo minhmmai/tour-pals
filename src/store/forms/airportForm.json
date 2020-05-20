@@ -34,7 +34,7 @@
                     "label": "What is your flight number?",
                     "type": "text",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know your flight number"
                         },
                         "length": {
@@ -46,42 +46,48 @@
                     "value": ""
                 },
                 "pickupAddress": {
-                    "label": "What is your pickup address?",
+                    "label": "Where do we pick you up?",
                     "type": "text",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know the pickup address"
                         },
                         "length": {
                             "min": 10,
                             "max": 50,
-                            "errorMsg": "Your pick-up address must be between 10 and 50 characters"
+                            "errorMsg": "The address must be between 10 and 50 characters"
                         }
                     },
                     "showIf": {
-                        "flightDetails.type": {
-                            "equalTo": "drop-off"
-                        }
+                        "type": "equal",
+                        "fieldRef": [
+                            0,
+                            0
+                        ],
+                        "value": "drop-off"
                     },
                     "value": ""
                 },
                 "dropOffAddress": {
-                    "label": "What is your drop-off address?",
+                    "label": "Where are you going to?",
                     "type": "text",
                     "validations": {
-                        "isRequired":{
-                            "errorMsg": "We need to know the drop-off address"
+                        "isRequired": {
+                            "errorMsg": "We need to know the address you are going to"
                         },
                         "length": {
                             "min": 10,
                             "max": 50,
-                            "errorMsg": "Your drop-off address must be between 10 and 50 characters"
+                            "errorMsg": "The address must be between 10 and 50 characters"
                         }
                     },
                     "showIf": {
-                        "flightDetails.type": {
-                            "equalTo": "pickup"
-                        }
+                        "type": "equal",
+                        "fieldRef": [
+                            0,
+                            0
+                        ],
+                        "value": "pickup"
                     },
                     "value": ""
                 },
@@ -89,22 +95,24 @@
                     "label": "What date is your flight departure?",
                     "type": "date",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know the date of your flight departure"
                         },
-                        "dateRange":{
+                        "dateRange": {
                             "min": "today",
                             "max": "withinNext12Months",
                             "errorMsg": "We can only accept booking for within the next 12 months"
                         }
                     },
                     "showIf": {
-                        "flightDetails.type": {
-                            "equalTo": "drop-off"
-                        }
+                        "type": "equal",
+                        "fieldRef": [
+                            0,
+                            0
+                        ],
+                        "value": "drop-off"
                     },
                     "value": ""
-
                 },
                 "pickupDate": {
                     "label": "What date is your flight landing?",
@@ -112,26 +120,28 @@
                     "description": "Please consider the differences in time zones",
                     "type": "date",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know the date of your flight landing"
                         },
-                        "dateRange":{
+                        "dateRange": {
                             "min": "today",
                             "max": "withinNext12Months",
                             "errorMsg": "We can only accept booking for within the next 12 months"
                         }
                     },
                     "showIf": {
-                        "flightDetails.type": {
-                            "equalTo": "drop-off"
-                        }
+                        "type": "equal",
+                        "fieldRef": [
+                            0,
+                            0
+                        ],
+                        "value": "pickup"
                     },
                     "value": ""
-
                 },
                 "noOfSeater": {
-                    "label": "How many seater would you need?",
-                    "description": "Number of seaters including driver",
+                    "label": "How many seat of a vehicle would you need?",
+                    "description": "Number of seats including driver",
                     "type": "select",
                     "options": [
                         {
@@ -172,27 +182,29 @@
                         }
                     ],
                     "validations": {
-                        "isRequired":{
-                            "errorMsg": "We need to know how many people are travelling"
+                        "isRequired": {
+                            "errorMsg": "We need to know which vehicle you need"
                         }
                     },
                     "value": ""
                 },
                 "children": {
-                    "label": "How many children aged between 2 and 7 in your group?",
+                    "label": "How many children aged under 7 in your group?",
                     "tooltip": "We'll prepare car seats for the little ones free of charge",
-                    "description": "Children under 2 are not recommended to travel on our tours unfortunately",
                     "type": "adjust",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know how many children are travelling"
                         },
-                        "valueRange":{
+                        "valueRange": {
                             "min": 0,
                             "max": {
-                                "fieldRef": [0, 2]
+                                "fieldRef": [
+                                    0,
+                                    6
+                                ]
                             },
-                            "errorMsg": "Must be less than total people travelling, enter 0 if there is no children travelling"
+                            "errorMsg": "Must be less than number of vehicle's seats, enter 0 if there is no children travelling"
                         }
                     },
                     "value": "0"
@@ -208,7 +220,7 @@
                     "label": "Full name",
                     "type": "text",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know your name"
                         },
                         "length": {
@@ -223,7 +235,7 @@
                     "label": "Email address",
                     "type": "text",
                     "validations": {
-                        "isEmail":{
+                        "isEmail": {
                             "errorMsg": "Email is not in correct format"
                         }
                     },
@@ -233,7 +245,7 @@
                     "label": "Contact number",
                     "type": "text",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know your contact number"
                         },
                         "length": {
@@ -289,7 +301,7 @@
                         }
                     ],
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know the payment type"
                         }
                     },
@@ -299,7 +311,7 @@
                     "label": "Card Number",
                     "type": "text",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know your card number"
                         },
                         "length": {
@@ -308,15 +320,55 @@
                             "errorMsg": "Your card number must be 15 or 16 digits"
                         }
                     },
+                    "showIf": {
+                        "and": [
+                            {
+                                "type": "differ",
+                                "fieldRef": [
+                                    2,
+                                    0
+                                ],
+                                "value": "cash"
+                            },
+                            {
+                                "type": "differ",
+                                "fieldRef": [
+                                    2,
+                                    0
+                                ],
+                                "value": ""
+                            }
+                        ]
+                    },
                     "value": ""
                 },
                 "expiryDate": {
                     "label": "Expiry Date",
                     "type": "text",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know your card expiry date"
                         }
+                    },
+                    "showIf": {
+                        "and": [
+                            {
+                                "type": "differ",
+                                "fieldRef": [
+                                    2,
+                                    0
+                                ],
+                                "value": "cash"
+                            },
+                            {
+                                "type": "differ",
+                                "fieldRef": [
+                                    2,
+                                    0
+                                ],
+                                "value": ""
+                            }
+                        ]
                     },
                     "value": ""
                 },
@@ -326,7 +378,7 @@
                     "description": "This is also refered to as CVC or CID",
                     "type": "text",
                     "validations": {
-                        "isRequired":{
+                        "isRequired": {
                             "errorMsg": "We need to know your card CVV"
                         },
                         "length": {
@@ -334,6 +386,26 @@
                             "max": 4,
                             "errorMsg": "Your card CVV must be 3 or 4 digits"
                         }
+                    },
+                    "showIf": {
+                        "and": [
+                            {
+                                "type": "differ",
+                                "fieldRef": [
+                                    2,
+                                    0
+                                ],
+                                "value": "cash"
+                            },
+                            {
+                                "type": "differ",
+                                "fieldRef": [
+                                    2,
+                                    0
+                                ],
+                                "value": ""
+                            }
+                        ]
                     },
                     "value": ""
                 }

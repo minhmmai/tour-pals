@@ -5,9 +5,9 @@ import Tooltip from './Tooltip';
 import classes from "./Field.module.scss";
 
 const Select = (props) => {
-  const { description, error,handleChange, name, options, label, tooltip, value } = props
+  const { description, error,handleChange, name, options, label, show, tooltip, value } = props
   return (
-    <div className={classes.Field}>
+    <div className={[classes.Field, !show && classes.Hidden].join(" ")}>
       <div className={classes.Label}>
       <label htmlFor={name}>
         {label}

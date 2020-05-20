@@ -8,33 +8,34 @@ import Select from "../FormElements/Select";
 import Section from "../FormElements/Section";
 import Stepper from "../FormElements/Stepper";
 
-import { getForm, validateField, updateObject } from "../../shared/utility";
+import { getForm, validateField, updateObject, fieldIsShown } from "../../shared/utility";
 import classes from "./RenderedForm.module.scss";
 import { useEffect, useCallback } from "react";
 
 const RenderedForm = (props) => {
-  let form = "";
-  switch (props.type) {
-    case "tour":
-      form = getForm("tourForm");
-      break;
-    case "hourly":
-      form = getForm("hourlyForm");
-      break;
-    case "airport":
-      form = getForm("airportForm");
-      break;
-    default:
-      break;
-  };
   const [activeSection, setActiveSection] = useState(0);
   const [sections, setSections] = useState([]);
   const [fields, setFields] = useState([]);
 
   const initForm = useCallback(() => {
+    let form = "";
+    switch (props.type) {
+      case "tour":
+        form = getForm("tourForm");
+        break;
+      case "hourly":
+        form = getForm("hourlyForm");
+        break;
+      case "airport":
+        form = getForm("airportForm");
+        break;
+      default:
+        break;
+    };
     const formSections = [];
     const formFields = []
 
+    // Populate sections from form JSON
     for (let key in form.sections) {
       formSections.push({
         sectionId: key,
@@ -45,27 +46,33 @@ const RenderedForm = (props) => {
     }
     setSections(formSections);
 
+    // Populate fields from form JSON
     for (let sectionKey in form.sections) {
       const sectionFields = []
       for (let fieldKey in form.sections[sectionKey].fields) {
         sectionFields.push({
           id: fieldKey,
+          isShown: form.sections[sectionKey].fields[fieldKey].showIf ? false : true,
           ...form.sections[sectionKey].fields[fieldKey]
         })
       }
       formFields.push(sectionFields)
     }
     setFields(formFields);
-  }, [form])
+  }, [props.type])
 
   useEffect(() => {
     initForm();
   }, [initForm]);
 
   const handleNext = event => {
+    // Prevent the default refresh
     event.preventDefault();
+
+    // Update section's validity
     const updatedFields = [...fields];
     let valid = true;
+    // Check validity of each field in this section
     for (let i = 0; i < fields[activeSection].length; i++) {
       const updatedField = fields[activeSection][i]
       const result = validateField(fields, updatedField, updatedField.validations);
@@ -82,28 +89,44 @@ const RenderedForm = (props) => {
       updatedFields[activeSection][i] = updatedField;
     }
     setFields(updatedFields);
+
+    // Check section validity and go to the next section
     valid && setActiveSection((prevActiveSection) => prevActiveSection + 1);
   };
 
   const handleBack = event => {
+    // Prevent the default refresh
     event.preventDefault();
+
+    // Go back to previous section
     setActiveSection((prevActiveSection) => prevActiveSection - 1);
   };
 
   const handleReset = () => {
+    // Initialize form
     initForm();
+    // Set active section to the first one
     setActiveSection(0);
   };
 
   const changeHandler = (event, fieldIndex) => {
+    // Get value from user input and set state for "fields"
     const updatedField = updateObject(fields[activeSection][fieldIndex], {
       value: event.target.value
     });
     const updatedFields = [...fields];
     updatedFields[activeSection][fieldIndex] = updatedField;
     setFields(updatedFields);
+
+    // Update other field's visibility in case it reference to this change
+    updatedFields[activeSection].forEach(field => {
+      if (field.showIf) {
+        field.isShown = fieldIsShown(fields, field.showIf);
+      }
+    })
   };
 
+  // Increase function for adjust field
   const increase = (fieldValue, fieldIndex) => {
     const updatedFields = [...fields];
     if (fieldValue >= 0) {
@@ -112,6 +135,7 @@ const RenderedForm = (props) => {
     setFields(updatedFields);
   }
 
+  // Decrease function for adjust field
   const decrease = (fieldValue, fieldIndex) => {
     const updatedFields = [...fields];
     if (fieldValue > 0) {
@@ -129,7 +153,7 @@ const RenderedForm = (props) => {
             All done!
               You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
 
-            <Button onClick={event => handleReset(event)}            >
+            <Button onClick={event => handleReset(event)}>
               Book Another Tour
             </Button>
           </div>
@@ -142,8 +166,7 @@ const RenderedForm = (props) => {
                     index={index}
                     key={section.sectionId}
                     title={section.title}
-                    description={section.description}
-                  >
+                    description={section.description}>
                     {fields[activeSection].map((field, index) => {
                       let renderedField = "";
                       if (field.type === "text") {
@@ -154,6 +177,7 @@ const RenderedForm = (props) => {
                             handleChange={(event) => changeHandler(event, index)}
                             key={index}
                             label={field.label}
+                            show={field.isShown}
                             name={field.id}
                             optional={field.validations.isRequired ? false : true}
                             tooltip={field.tooltip}
@@ -169,6 +193,7 @@ const RenderedForm = (props) => {
                             handleChange={(event) => changeHandler(event, index)}
                             key={index}
                             label={field.label}
+                            show={field.isShown}
                             name={field.id}
                             optional={field.validations.isRequired ? false : true}
                             options={field.options}
@@ -184,6 +209,7 @@ const RenderedForm = (props) => {
                             handleChange={(event) => changeHandler(event, index)}
                             key={index}
                             label={field.label}
+                            show={field.isShown}
                             name={field.id}
                             optional={field.validations.isRequired ? false : true}
                             options={field.options}
@@ -208,6 +234,7 @@ const RenderedForm = (props) => {
                             handleChange={(event) => changeHandler(event, index)}
                             key={index}
                             label={field.label}
+                            show={field.isShown}
                             name={field.id}
                             optional={field.validations.isRequired ? false : true}
                             tooltip={field.tooltip}

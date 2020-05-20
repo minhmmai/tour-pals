@@ -4,9 +4,9 @@ import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
 
 const Input = (props) => {
-  const { description, error, handleChange, name, optional, label, tooltip, type } = props
+  const { description, error, handleChange, name, optional, label, show, tooltip, type } = props;
   return (
-    <div className={classes.Field}>
+    <div className={[classes.Field, !show && classes.Hidden].join(" ")}>
       <div className={classes.Label}>
         <label htmlFor={name}>{label}</label>
         {optional && <span>(optional)</span>}
