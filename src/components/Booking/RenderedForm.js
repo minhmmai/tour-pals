@@ -50,10 +50,11 @@ const RenderedForm = (props) => {
     for (let sectionKey in form.sections) {
       const sectionFields = []
       for (let fieldKey in form.sections[sectionKey].fields) {
+        const field = form.sections[sectionKey].fields[fieldKey];
         sectionFields.push({
           id: fieldKey,
-          isShown: form.sections[sectionKey].fields[fieldKey].showIf ? false : true,
-          ...form.sections[sectionKey].fields[fieldKey]
+          isShown: field.showIf ? false : true,
+          ...field
         })
       }
       formFields.push(sectionFields)
@@ -219,12 +220,14 @@ const RenderedForm = (props) => {
                           />
                         );
                       } else if (field.type === "adjust") {
-                        const minValue = typeof (field.validations.valueRange.min) === "object"
-                          ? parseInt(fields[field.validations.valueRange.min.fieldRef[0]][field.validations.valueRange.min.fieldRef[1]].value)
-                          : parseInt(field.validations.valueRange.min);
-                        const maxValue = typeof (field.validations.valueRange.max) === "object"
-                          ? parseInt(fields[field.validations.valueRange.max.fieldRef[0]][field.validations.valueRange.max.fieldRef[1]].value)
-                          : parseInt(field.validations.valueRange.max);
+                        let min = field.validations.valueRange.min;
+                        let max = field.validations.valueRange.max;
+                        const minValue = typeof (min) === "object"
+                          ? parseInt(fields[min.fieldRef[0]][min.fieldRef[1]].value)
+                          : parseInt(min);
+                        const maxValue = typeof (max) === "object"
+                          ? parseInt(fields[max.fieldRef[0]][max.fieldRef[1]].value)
+                          : parseInt(max);
                         renderedField = (
                           <Adjust
                             increase={() => increase(parseInt(field.value), index, minValue, maxValue)}
