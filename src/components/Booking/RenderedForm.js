@@ -92,7 +92,7 @@ const RenderedForm = (props) => {
     setFields(updatedFields);
 
     // Check section validity and go to the next section
-    valid && setActiveSection((prevActiveSection) => prevActiveSection + 1);
+    valid && setActiveSection(prevActiveSection => prevActiveSection + 1);
   };
 
   const handleBack = event => {
@@ -150,11 +150,12 @@ const RenderedForm = (props) => {
       <Stepper formSteps={sections.map(({ label }) => label)} formActiveStep={activeSection} />
       <div>
         {activeSection === sections.length ? (
-          <div>
-            All done!
+          <div className={classes.Finished}>
+            <div className={classes.Heading}>All done!</div>
+            <div className={classes.Message}>
               You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
-
-            <Button onClick={event => handleReset(event)}>
+            </div>
+            <Button onClick={handleReset} type="reset">
               Book Another Tour
             </Button>
           </div>
@@ -255,14 +256,16 @@ const RenderedForm = (props) => {
             </div>
           )}
       </div>
-      <div>
+      <div hidden={activeSection === sections.length}>
         <Button
-          disabled={activeSection === 0}
           clicked={event => handleBack(event)}
+          disabled={activeSection === 0}
           type="back">
           Back
                 </Button>
-        <Button clicked={event => handleNext(event)} type="next">
+        <Button
+          clicked={event => handleNext(event)}
+          type="next">
           {activeSection === sections.length - 1 ? "Submit" : "Next"}
         </Button>
       </div>
