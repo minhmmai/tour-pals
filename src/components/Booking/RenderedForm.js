@@ -13,25 +13,12 @@ import classes from "./RenderedForm.module.scss";
 import { useEffect, useCallback } from "react";
 
 const RenderedForm = (props) => {
+  const form = props.type && getForm(props.type);
   const [activeSection, setActiveSection] = useState(0);
   const [sections, setSections] = useState([]);
   const [fields, setFields] = useState([]);
 
   const initForm = useCallback(() => {
-    let form = "";
-    switch (props.type) {
-      case "tour":
-        form = getForm("tourForm");
-        break;
-      case "hourly":
-        form = getForm("hourlyForm");
-        break;
-      case "airport":
-        form = getForm("airportForm");
-        break;
-      default:
-        break;
-    };
     const formSections = [];
     const formFields = []
 
@@ -60,7 +47,7 @@ const RenderedForm = (props) => {
       formFields.push(sectionFields)
     }
     setFields(formFields);
-  }, [props.type])
+  }, [form])
 
   useEffect(() => {
     initForm();

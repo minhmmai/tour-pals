@@ -24,10 +24,11 @@ const App = props => {
     <div className="App">
       <Layout>
         <Banner />
-        {props.modalIsOpen
+        {/* {props.modalIsOpen
           && <Modal show={props.modalIsOpen} modalClosed={props.onCloseModal}>
             {modalContent}
-          </Modal>}
+          </Modal>} */}
+          {modalContent}
       </Layout>
     </div>
   );
