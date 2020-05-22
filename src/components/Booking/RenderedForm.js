@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Button from "../UI/Button/Button";
 import Adjust from "../FormElements/Adjust";
@@ -8,56 +8,25 @@ import Select from "../FormElements/Select";
 import Section from "../FormElements/Section";
 import Stepper from "../FormElements/Stepper";
 
-import { getForm, validateField, updateObject, fieldIsShown } from "../../shared/utility";
+import { updateObject } from "../../methods/utility";
+import { initFormState, validateField, getForm, showField, getRefField, getFieldRelations } from "../../methods/formMethods";
 import classes from "./RenderedForm.module.scss";
-import { useEffect, useCallback } from "react";
 
 const RenderedForm = (props) => {
-  const form = props.type && getForm(props.type);
+  const formJSON = props.type && getForm(props.type);
+
   const [activeSection, setActiveSection] = useState(0);
-  const [sections, setSections] = useState([]);
-  const [fields, setFields] = useState([]);
-
-  const initForm = useCallback(() => {
-    const formSections = [];
-    const formFields = []
-
-    // Populate sections from form JSON
-    for (let key in form.sections) {
-      formSections.push({
-        sectionId: key,
-        label: form.sections[key].label,
-        title: form.sections[key].title,
-        description: form.sections[key].description
-      });
-    }
-    setSections(formSections);
-
-    // Populate fields from form JSON
-    for (let sectionKey in form.sections) {
-      const sectionFields = []
-      for (let fieldKey in form.sections[sectionKey].fields) {
-        const field = form.sections[sectionKey].fields[fieldKey];
-        sectionFields.push({
-          id: fieldKey,
-          isShown: field.showIf ? false : true,
-          ...field
-        })
-      }
-      formFields.push(sectionFields)
-    }
-    setFields(formFields);
-  }, [form])
+  const [form, setForm] = useState();
 
   useEffect(() => {
-    initForm();
-  }, [initForm]);
+    setForm(initFormState(formJSON));
+  }, [formJSON]);
 
   const handleNext = event => {
     // Prevent the default refresh
     event.preventDefault();
 
-    // Update section's validity
+    /* // Update section's validity
     const updatedFields = [...fields];
     let valid = true;
     // Check validity of each field in this section
@@ -76,10 +45,10 @@ const RenderedForm = (props) => {
       }
       updatedFields[activeSection][i] = updatedField;
     }
-    setFields(updatedFields);
+    setFields(updatedFields); */
 
     // Check section validity and go to the next section
-    valid && setActiveSection(prevActiveSection => prevActiveSection + 1);
+    /* valid && */ setActiveSection(prevActiveSection => prevActiveSection + 1);
   };
 
   const handleBack = event => {
@@ -91,14 +60,14 @@ const RenderedForm = (props) => {
   };
 
   const handleReset = () => {
-    // Initialize form
-    initForm();
+    /* // Initialize form
+    setFields(initFormState(formJSON)); */
     // Set active section to the first one
     setActiveSection(0);
   };
 
   const changeHandler = (event, fieldIndex) => {
-    // Get value from user input and set state for "fields"
+    /* // Get value from user input and set state for "fields"
     const updatedField = updateObject(fields[activeSection][fieldIndex], {
       value: event.target.value
     });
@@ -109,31 +78,31 @@ const RenderedForm = (props) => {
     // Update other field's visibility in case it reference to this change
     updatedFields[activeSection].forEach(field => {
       if (field.showIf) {
-        field.isShown = fieldIsShown(fields, field.showIf);
+        field.isShown = showField(fields, field.showIf);
       }
-    })
+    }) */
   };
 
   // Increase function for adjust field
   const increase = (fieldValue, fieldIndex) => {
-    const updatedFields = [...fields];
+    /* const updatedFields = [...fields];
     if (fieldValue >= 0) {
       updatedFields[activeSection][fieldIndex].value = (fieldValue + 1).toString();
     }
-    setFields(updatedFields);
+    setFields(updatedFields); */
   }
 
   // Decrease function for adjust field
   const decrease = (fieldValue, fieldIndex) => {
-    const updatedFields = [...fields];
+    /* const updatedFields = [...fields];
     if (fieldValue > 0) {
       updatedFields[activeSection][fieldIndex].value = (fieldValue - 1).toString();
     }
-    setFields(updatedFields);
+    setFields(updatedFields); */
   };
 
   return (
-    <form className={classes.Form}>
+    <div>{/* <form className={classes.Form}>
       <Stepper formSteps={sections.map(({ label }) => label)} formActiveStep={activeSection} />
       <div>
         {activeSection === sections.length ? (
@@ -148,23 +117,22 @@ const RenderedForm = (props) => {
           </div>
         ) : (
             <div>
-              {sections.map((section, index) => {
+              {sections.map((section, sectionIndex) => {
                 return (
                   <Section
-                    activeSection={activeSection}
-                    index={index}
                     key={section.sectionId}
                     title={section.title}
+                    isHidden={sectionIndex !== activeSection}
                     description={section.description}>
-                    {fields[activeSection].map((field, index) => {
+                    {fields.length > 0 && fields[activeSection].map((field, fieldIndex) => {
                       let renderedField = "";
                       if (field.type === "text") {
                         renderedField = (
                           <Input
                             description={field.description}
                             error={field.errorMsg ? field.errorMsg : ""}
-                            handleChange={(event) => changeHandler(event, index)}
-                            key={index}
+                            handleChange={(event) => changeHandler(event, fieldIndex)}
+                            key={fieldIndex}
                             label={field.label}
                             show={field.isShown}
                             name={field.id}
@@ -179,8 +147,8 @@ const RenderedForm = (props) => {
                           <Select
                             description={field.description}
                             error={field.errorMsg ? field.errorMsg : ""}
-                            handleChange={(event) => changeHandler(event, index)}
-                            key={index}
+                            handleChange={(event) => changeHandler(event, fieldIndex)}
+                            key={fieldIndex}
                             label={field.label}
                             show={field.isShown}
                             name={field.id}
@@ -195,8 +163,8 @@ const RenderedForm = (props) => {
                           <Date
                             description={field.description}
                             error={field.errorMsg ? field.errorMsg : ""}
-                            handleChange={(event) => changeHandler(event, index)}
-                            key={index}
+                            handleChange={(event) => changeHandler(event, fieldIndex)}
+                            key={fieldIndex}
                             label={field.label}
                             show={field.isShown}
                             name={field.id}
@@ -218,12 +186,12 @@ const RenderedForm = (props) => {
                           : parseInt(max);
                         renderedField = (
                           <Adjust
-                            increase={() => increase(parseInt(field.value), index, minValue, maxValue)}
-                            decrease={() => decrease(parseInt(field.value), index, minValue, maxValue)}
+                            increase={() => increase(parseInt(field.value), fieldIndex, minValue, maxValue)}
+                            decrease={() => decrease(parseInt(field.value), fieldIndex, minValue, maxValue)}
                             description={field.description}
                             error={field.errorMsg ? field.errorMsg : ""}
-                            handleChange={(event) => changeHandler(event, index)}
-                            key={index}
+                            handleChange={(event) => changeHandler(event, fieldIndex)}
+                            key={fieldIndex}
                             label={field.label}
                             show={field.isShown}
                             name={field.id}
@@ -235,10 +203,9 @@ const RenderedForm = (props) => {
                         );
                       }
                       return renderedField;
-                    })};
+                    })}
                   </Section>
                 );
-
               })}
             </div>
           )}
@@ -256,7 +223,7 @@ const RenderedForm = (props) => {
           {activeSection === sections.length - 1 ? "Submit" : "Next"}
         </Button>
       </div>
-    </form>
+    </form> */}</div>
   );
 };
 

@@ -1,17 +1,75 @@
 import * as dayjs from 'dayjs';
 
-export const updateObject = (oldObject, updatedProperties) => {
-    return {
-        ...oldObject,
-        ...updatedProperties
-    };
-};
-
 export const getForm = formName => {
     return (require(`../store/forms/${formName}.json`));
 };
 
-export const fieldIsShown = (allFields, showIf) => {
+// Initialize all form's fields
+export const initFormState = formJSON => {
+    const sections = [];
+    let fields = [];
+
+    formJSON.sections.forEach(section => {
+        fields = [];
+        section.fields.forEach(field => {
+            fields.push({
+                fieldId: field.fieldId,
+                value: field.value,
+                validity: {},
+                errorMsg: "",
+                isShown: field.showIf ? false : true
+            });
+        });
+        sections.push({
+            sectionId: section.sectionId,
+            fields
+        });
+    });
+    return { sections }
+}
+
+export const getRefField = (formObj, ref) => {
+    const refArr = ref.split(".");
+    const section = formObj.sections.find(el => el.sectionId === refArr[0]);
+    const field = section.fields.find(el => el.fieldId === refArr[1]);
+
+    return field;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const showField = (allFields, showIf) => {
 
     const evalShowIfRule = showIfRule => {
         let isShown = true;
