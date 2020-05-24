@@ -9,24 +9,24 @@ import Section from "../FormElements/Section";
 import Stepper from "../FormElements/Stepper";
 
 import { updateObject } from "../../methods/utility";
-import { initFormState, validateField, getForm, showField, getRefField, getFieldRelations } from "../../methods/formMethods";
+import { initFormState, validateField, getForm, showField, evalRefs, getRefField, getFieldRelations } from "../../methods/formMethods";
 import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
-  const formJSON = props.type && getForm(props.type);
+  const formObj = props.type && getForm(props.type);
 
-  const [activeSection, setActiveSection] = useState(0);
-  const [form, setForm] = useState();
+    const [activeSection, setActiveSection] = useState(0);
+    const [form, setForm] = useState();
 
   useEffect(() => {
-    setForm(initFormState(formJSON));
-  }, [formJSON]);
+    setForm(initFormState(formObj));
+  }, [formObj]);
 
-  const handleNext = event => {
+  /* const handleNext = event => {
     // Prevent the default refresh
     event.preventDefault();
 
-    /* // Update section's validity
+    // Update section's validity
     const updatedFields = [...fields];
     let valid = true;
     // Check validity of each field in this section
@@ -45,10 +45,10 @@ const RenderedForm = (props) => {
       }
       updatedFields[activeSection][i] = updatedField;
     }
-    setFields(updatedFields); */
+    setFields(updatedFields); 
 
     // Check section validity and go to the next section
-    /* valid && */ setActiveSection(prevActiveSection => prevActiveSection + 1);
+     valid &&  setActiveSection(prevActiveSection => prevActiveSection + 1);
   };
 
   const handleBack = event => {
@@ -60,14 +60,14 @@ const RenderedForm = (props) => {
   };
 
   const handleReset = () => {
-    /* // Initialize form
-    setFields(initFormState(formJSON)); */
+     // Initialize form
+    setFields(initFormState(formJSON));
     // Set active section to the first one
     setActiveSection(0);
   };
 
   const changeHandler = (event, fieldIndex) => {
-    /* // Get value from user input and set state for "fields"
+     // Get value from user input and set state for "fields"
     const updatedField = updateObject(fields[activeSection][fieldIndex], {
       value: event.target.value
     });
@@ -80,26 +80,26 @@ const RenderedForm = (props) => {
       if (field.showIf) {
         field.isShown = showField(fields, field.showIf);
       }
-    }) */
+    })
   };
 
   // Increase function for adjust field
   const increase = (fieldValue, fieldIndex) => {
-    /* const updatedFields = [...fields];
+     const updatedFields = [...fields];
     if (fieldValue >= 0) {
       updatedFields[activeSection][fieldIndex].value = (fieldValue + 1).toString();
     }
-    setFields(updatedFields); */
+    setFields(updatedFields); 
   }
 
   // Decrease function for adjust field
   const decrease = (fieldValue, fieldIndex) => {
-    /* const updatedFields = [...fields];
+    const updatedFields = [...fields];
     if (fieldValue > 0) {
       updatedFields[activeSection][fieldIndex].value = (fieldValue - 1).toString();
     }
-    setFields(updatedFields); */
-  };
+    setFields(updatedFields);
+  }; */
 
   return (
     <div>{/* <form className={classes.Form}>

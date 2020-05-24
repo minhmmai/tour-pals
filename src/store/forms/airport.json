@@ -71,7 +71,9 @@
                     ],
                     "showIf": {
                         "type": "equal",
-                        "fieldRef": "flightDetails.type",
+                        "ref": {
+                            "fieldRef": "flightDetails.type"
+                        },
                         "value": "drop-off"
                     },
                     "value": ""
@@ -95,7 +97,9 @@
                     ],
                     "showIf": {
                         "type": "equal",
-                        "fieldRef": "flightDetails.type",
+                        "ref": {
+                            "fieldRef": "flightDetails.type"
+                        },
                         "value": "pickup"
                     },
                     "value": ""
@@ -119,7 +123,9 @@
                     ],
                     "showIf": {
                         "type": "equal",
-                        "fieldRef": "flightDetails.type",
+                        "ref": {
+                            "fieldRef": "flightDetails.type"
+                        },
                         "value": "drop-off"
                     },
                     "value": ""
@@ -145,7 +151,9 @@
                     ],
                     "showIf": {
                         "type": "equal",
-                        "fieldRef": "flightDetails.type",
+                        "ref": {
+                            "fieldRef": "flightDetails.type"
+                        },
                         "value": "pickup"
                     },
                     "value": ""
@@ -359,12 +367,16 @@
                         "and": [
                             {
                                 "type": "differ",
-                                "fieldRef": "paymentDetails.paymentType",
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": "cash"
                             },
                             {
                                 "type": "differ",
-                                "fieldRef": "paymentDetails.paymentType",
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": ""
                             }
                         ]
@@ -385,12 +397,16 @@
                         "and": [
                             {
                                 "type": "differ",
-                                "fieldRef": "paymentDetails.paymentType",
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": "cash"
                             },
                             {
                                 "type": "differ",
-                                "fieldRef": "paymentDetails.paymentType",
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": ""
                             }
                         ]
@@ -420,12 +436,16 @@
                         "and": [
                             {
                                 "type": "differ",
-                                "fieldRef": "paymentDetails.paymentType",
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": "cash"
                             },
                             {
                                 "type": "differ",
-                                "fieldRef": "paymentDetails.paymentType",
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": ""
                             }
                         ]
