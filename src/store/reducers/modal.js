@@ -1,5 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
-import { updateObject } from "../../shared/utility";
+import { updateObject } from "../../methods/utility";
 
 const initialState = {
     modalIsOpen: false,
@@ -24,7 +24,6 @@ const closeModal = (state, action) => {
 
 const selectService = (state, action) => {
     const updatedState = {
-        modalIsOpen: true,
         service: action.service
     }
     return updateObject(state, updatedState);

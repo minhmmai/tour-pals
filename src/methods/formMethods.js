@@ -1,17 +1,161 @@
 import * as dayjs from 'dayjs';
 
-export const updateObject = (oldObject, updatedProperties) => {
-    return {
-        ...oldObject,
-        ...updatedProperties
-    };
+export const getForm = formType => {
+    return require(`../store/forms/${formType}.json`);
 };
 
-export const getForm = formName => {
-    return (require(`../store/forms/${formName}.json`));
+// Initialize all form's fields
+export const initFormState = formObj => {
+    const newFormObj = { ...formObj };
+    let sections = [];
+    let fields = [];
+
+    const evalRefs = (fieldObj) => {
+        for (let key in fieldObj) {
+            if (fieldObj[key] instanceof Array && fieldObj[key].length > 0) {
+                // If this property is an array
+                fieldObj[key].forEach(el => {
+                    evalRefs(el);
+                })
+            } else if (fieldObj[key] instanceof Object) {
+                // If this property is an object
+                if (fieldObj[key].fieldRef) {
+                    const ref = fieldObj[key].fieldRef;
+                    delete fieldObj[key];
+                    Object.defineProperty(fieldObj, key, {
+                        get: function () { return getRefField(newFormObj, ref).value }
+                    });
+                }
+                else {
+                    evalRefs(fieldObj[key]);
+                }
+            }
+        }
+    }
+
+    newFormObj.sections.forEach(section => {
+        fields = [];
+        section.fields.forEach(field => {
+            evalRefs(field);
+            fields.push(field);
+        });
+        sections.push(section)
+    });
+    return { sections }
+}
+
+const getRefField = (formObj, ref) => {
+    const refArr = ref.split(".");
+    const section = formObj.sections.find(el => el.sectionId === refArr[0]);
+    const field = section && section.fields.find(el => el.fieldId === refArr[1]);
+
+    return field;
 };
 
-export const fieldIsShown = (allFields, showIf) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* export const getFieldRelations = formJSON => {
+    const relations = {};
+    
+
+    formJSON.sections.forEach(section => {
+        const sectionId = section.sectionId;
+        section.fields.forEach(field => {
+            const fieldId = field.fieldId;
+
+
+            showIfRefs && showIfRefs.length > 0
+                && showIfRefs.forEach(refField => {
+                    const referencingShowIf = `${sectionId}.${fieldId}.showIf`;
+                    if (relations[refField]) {
+                        !relations[refField].includes(referencingShowIf)
+                            && relations[refField].push(referencingShowIf)
+                    } else {
+                        relations[refField] = [referencingShowIf]
+                    }
+
+                });
+
+            valdiationsRefs && valdiationsRefs.length > 0
+                && valdiationsRefs.forEach(refField => {
+                    const referencingValidations = `${sectionId}.${fieldId}.validations`;
+                    if (relations[refField]) {
+                        !relations[refField].includes(referencingValidations)
+                            && relations[refField].push(referencingValidations)
+                    } else {
+                        relations[refField] = [referencingValidations]
+                    }
+
+                });
+        });
+    });
+    console.log(relations);
+}; */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const showField = (allFields, showIf) => {
 
     const evalShowIfRule = showIfRule => {
         let isShown = true;

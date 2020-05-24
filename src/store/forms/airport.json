@@ -1,12 +1,14 @@
 {
     "formId": "tour",
-    "sections": {
-        "flightDetails": {
+    "sections": [
+        {
+            "sectionId": "flightDetails",
             "label": "Tour Details",
             "title": "Let's Get Started!",
             "description": "Let us know about your group and the flight your are travelling",
-            "fields": {
-                "type": {
+            "fields": [
+                {
+                    "fieldId": "type",
                     "label": "Are you booking for an airport drop-off or pickup?",
                     "type": "select",
                     "options": [
@@ -23,123 +25,141 @@
                             "label": "Pickup"
                         }
                     ],
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know if this is a drop-off or pickup"
                         }
-                    },
+                    ],
                     "value": ""
                 },
-                "flightNo": {
+                {
+                    "fieldId": "flightNo",
                     "label": "What is your flight number?",
                     "type": "text",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know your flight number"
                         },
-                        "length": {
-                            "min": 4,
-                            "max": 8,
-                            "errorMsg": "Your flight number must be between 4 and 8 characters long"
+                        {
+                            "length": {
+                                "min": 4,
+                                "max": 8,
+                                "errorMsg": "Your flight number must be between 4 and 8 characters long"
+                            }
                         }
-                    },
+                    ],
                     "value": ""
                 },
-                "pickupAddress": {
+                {
+                    "fieldId": "pickupAddress",
                     "label": "Where do we pick you up?",
                     "type": "text",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know the pickup address"
                         },
-                        "length": {
-                            "min": 10,
-                            "max": 50,
-                            "errorMsg": "The address must be between 10 and 50 characters"
+                        {
+                            "length": {
+                                "min": 10,
+                                "max": 50,
+                                "errorMsg": "The address must be between 10 and 50 characters"
+                            }
                         }
-                    },
+                    ],
                     "showIf": {
                         "type": "equal",
-                        "fieldRef": [
-                            0,
-                            0
-                        ],
+                        "ref": {
+                            "fieldRef": "flightDetails.type"
+                        },
                         "value": "drop-off"
                     },
                     "value": ""
                 },
-                "dropOffAddress": {
+                {
+                    "fieldId": "dropOffAddress",
                     "label": "Where are you going to?",
                     "type": "text",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know the address you are going to"
                         },
-                        "length": {
-                            "min": 10,
-                            "max": 50,
-                            "errorMsg": "The address must be between 10 and 50 characters"
+                        {
+                            "length": {
+                                "min": 10,
+                                "max": 50,
+                                "errorMsg": "The address must be between 10 and 50 characters"
+                            }
                         }
-                    },
+                    ],
                     "showIf": {
                         "type": "equal",
-                        "fieldRef": [
-                            0,
-                            0
-                        ],
+                        "ref": {
+                            "fieldRef": "flightDetails.type"
+                        },
                         "value": "pickup"
                     },
                     "value": ""
                 },
-                "dropOffDate": {
+                {
+                    "fieldId": "dropOffDate",
                     "label": "What date is your flight departure?",
                     "type": "date",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know the date of your flight departure"
                         },
-                        "dateRange": {
-                            "min": "today",
-                            "max": "withinNext12Months",
-                            "errorMsg": "We can only accept booking for within the next 12 months"
+                        {
+                            "dateRange": {
+                                "min": "today",
+                                "max": "withinNext12Months",
+                                "errorMsg": "We can only accept booking for within the next 12 months"
+                            }
                         }
-                    },
+                    ],
                     "showIf": {
                         "type": "equal",
-                        "fieldRef": [
-                            0,
-                            0
-                        ],
+                        "ref": {
+                            "fieldRef": "flightDetails.type"
+                        },
                         "value": "drop-off"
                     },
                     "value": ""
                 },
-                "pickupDate": {
+                {
+                    "fieldId": "pickupDate",
                     "label": "What date is your flight landing?",
                     "tooltip": "This should be the arrival date on your flight itinerary",
                     "description": "Please consider the differences in time zones",
                     "type": "date",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know the date of your flight landing"
                         },
-                        "dateRange": {
-                            "min": "today",
-                            "max": "withinNext12Months",
-                            "errorMsg": "We can only accept booking for within the next 12 months"
+                        {
+                            "dateRange": {
+                                "min": "today",
+                                "max": "withinNext12Months",
+                                "errorMsg": "We can only accept booking for within the next 12 months"
+                            }
                         }
-                    },
+                    ],
                     "showIf": {
                         "type": "equal",
-                        "fieldRef": [
-                            0,
-                            0
-                        ],
+                        "ref": {
+                            "fieldRef": "flightDetails.type"
+                        },
                         "value": "pickup"
                     },
                     "value": ""
                 },
-                "noOfSeater": {
+                {
+                    "fieldId": "noOfSeater",
                     "label": "How many seat of a vehicle would you need?",
                     "description": "Number of seats including driver",
                     "type": "select",
@@ -181,101 +201,119 @@
                             "label": "58-Seater Coach"
                         }
                     ],
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know which vehicle you need"
                         }
-                    },
+                    ],
                     "value": ""
                 },
-                "children": {
+                {
+                    "fieldId": "children",
                     "label": "How many children aged under 7 in your group?",
                     "tooltip": "We'll prepare car seats for the little ones free of charge",
                     "type": "adjust",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know how many children are travelling"
                         },
-                        "valueRange": {
-                            "min": 0,
-                            "max": {
-                                "fieldRef": [
-                                    0,
-                                    6
-                                ]
-                            },
-                            "errorMsg": "Must be less than number of vehicle's seats, enter 0 if there is no children travelling"
+                        {
+                            "valueRange": {
+                                "min": 0,
+                                "max": {
+                                    "fieldRef": "flightDetails.noOfSeater"
+                                },
+                                "errorMsg": "Must be less than number of vehicle's seats, enter 0 if there is no children travelling"
+                            }
                         }
-                    },
+                    ],
                     "value": "0"
                 }
-            }
+            ]
         },
-        "contactDetails": {
+        {
+            "sectionId": "contactDetails",
             "label": "Contact Details",
             "title": "Tell us more about yourself",
             "description": "Let us know how we can contact you",
-            "fields": {
-                "fullName": {
+            "fields": [
+                {
+                    "fieldId": "fullName",
                     "label": "Full name",
                     "type": "text",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know your name"
                         },
-                        "length": {
-                            "min": 10,
-                            "max": 50,
-                            "errorMsg": "Your full name must be between 10 and 50 characters"
+                        {
+                            "length": {
+                                "min": 10,
+                                "max": 50,
+                                "errorMsg": "Your full name must be between 10 and 50 characters"
+                            }
                         }
-                    },
+                    ],
                     "value": ""
                 },
-                "email": {
+                {
+                    "fieldId": "email",
                     "label": "Email address",
                     "type": "text",
-                    "validations": {
-                        "isEmail": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "Email is not in correct format"
                         }
-                    },
+                    ],
                     "value": ""
                 },
-                "contactNumber": {
+                {
+                    "fieldId": "contactNumber",
                     "label": "Contact number",
                     "type": "text",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know your contact number"
                         },
-                        "length": {
-                            "min": 7,
-                            "max": 50,
-                            "errorMsg": "Your contact number must be between 7 and 50 characters"
+                        {
+                            "length": {
+                                "min": 7,
+                                "max": 50,
+                                "errorMsg": "Your contact number must be between 7 and 50 characters"
+                            }
                         }
-                    },
+                    ],
                     "value": ""
                 },
-                "altContactNumber": {
+                {
+                    "fieldId": "altContactNumber",
                     "label": "Alternative Contact number",
                     "type": "text",
-                    "validations": {
-                        "length": {
-                            "min": 7,
-                            "max": 50,
-                            "errorMsg": "Your alternative contact number must be between 7 and 50 characters"
+                    "validations": [
+                        {
+                            "length": {
+                                "min": 7,
+                                "max": 50,
+                                "errorMsg": "Your alternative contact number must be between 7 and 50 characters"
+                            }
                         }
-                    },
+                    ],
                     "value": ""
                 }
-            }
+            ]
         },
-        "paymentDetails": {
+        {
+            "sectionId": "paymentDetails",
             "label": "Payment",
             "title": "Tell us how you'd like to pay",
             "description": "Let us know how you would like to pay for the trip",
-            "fields": {
-                "paymentType": {
+            "fields": [
+                {
+                    "fieldId": "paymentType",
                     "label": "Payment Type",
                     "type": "select",
                     "options": [
@@ -300,116 +338,121 @@
                             "label": "American Express"
                         }
                     ],
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know the payment type"
                         }
-                    },
+                    ],
                     "value": ""
                 },
-                "cardNumber": {
+                {
+                    "fieldId": "cardNumber",
                     "label": "Card Number",
                     "type": "text",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know your card number"
                         },
-                        "length": {
-                            "min": 15,
-                            "max": 16,
-                            "errorMsg": "Your card number must be 15 or 16 digits"
+                        {
+                            "length": {
+                                "min": 15,
+                                "max": 16,
+                                "errorMsg": "Your card number must be 15 or 16 digits"
+                            }
                         }
-                    },
+                    ],
                     "showIf": {
                         "and": [
                             {
                                 "type": "differ",
-                                "fieldRef": [
-                                    2,
-                                    0
-                                ],
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": "cash"
                             },
                             {
                                 "type": "differ",
-                                "fieldRef": [
-                                    2,
-                                    0
-                                ],
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": ""
                             }
                         ]
                     },
                     "value": ""
                 },
-                "expiryDate": {
+                {
+                    "fieldId": "expiryDate",
                     "label": "Expiry Date",
                     "type": "text",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know your card expiry date"
                         }
-                    },
+                    ],
                     "showIf": {
                         "and": [
                             {
                                 "type": "differ",
-                                "fieldRef": [
-                                    2,
-                                    0
-                                ],
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": "cash"
                             },
                             {
                                 "type": "differ",
-                                "fieldRef": [
-                                    2,
-                                    0
-                                ],
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": ""
                             }
                         ]
                     },
                     "value": ""
                 },
-                "cvv": {
+                {
+                    "fieldId": "cvv",
                     "label": "CVV",
                     "tooltip": "This is a 3 to 4 digits code at the back of your card",
                     "description": "This is also refered to as CVC or CID",
                     "type": "text",
-                    "validations": {
-                        "isRequired": {
+                    "validations": [
+                        {
+                            "isRequired": true,
                             "errorMsg": "We need to know your card CVV"
                         },
-                        "length": {
-                            "min": 3,
-                            "max": 4,
-                            "errorMsg": "Your card CVV must be 3 or 4 digits"
+                        {
+                            "length": {
+                                "min": 3,
+                                "max": 4,
+                                "errorMsg": "Your card CVV must be 3 or 4 digits"
+                            }
                         }
-                    },
+                    ],
                     "showIf": {
                         "and": [
                             {
                                 "type": "differ",
-                                "fieldRef": [
-                                    2,
-                                    0
-                                ],
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": "cash"
                             },
                             {
                                 "type": "differ",
-                                "fieldRef": [
-                                    2,
-                                    0
-                                ],
+                                "ref": {
+                                    "fieldRef": "paymentDetails.paymentType"
+                                },
                                 "value": ""
                             }
                         ]
                     },
                     "value": ""
                 }
-            }
+            ]
         }
-    }
+    ]
 }

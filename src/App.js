@@ -18,16 +18,17 @@ const App = props => {
       : document.body.style.overflow = 'unset'
   }, [props.modalIsOpen]);
 
-  let modalContent = props.service ? <RenderedForm type={props.service} /> : <SelectService />;
+  let modalContent = props.service ? <RenderedForm type="airport" /> : <SelectService />;
 
   return (
     <div className="App">
       <Layout>
         <Banner />
-        {props.modalIsOpen
+        {/* {props.modalIsOpen
           && <Modal show={props.modalIsOpen} modalClosed={props.onCloseModal}>
             {modalContent}
-          </Modal>}
+          </Modal>} */}
+          {modalContent}
       </Layout>
     </div>
   );
