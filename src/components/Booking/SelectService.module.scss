@@ -2,14 +2,6 @@
 @import "../../assets/scss/variables";
 
 .SelectServices {
-    .Heading {
-        @include h2;
-        color: $primary;
-    }
-    .SubHeading {
-        @include h4;
-        color: $paragraph;
-    }
     .Service {
         display: flex;
         justify-content: space-around;

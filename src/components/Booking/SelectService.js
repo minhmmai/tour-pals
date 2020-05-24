@@ -8,9 +8,7 @@ import * as actions from "../../store/actions/index";
 const SelectService = props => {
     const {onSelectService} = props;
     return (
-        <div className={classes.SelectServices}>
-            <h2 className={classes.Heading}>Select a service</h2>
-            <h4 className={classes.SubHeading}>Let us know which service you are looking to book</h4>
+        <section className={classes.SelectServices}>            
             <div className={classes.Service}>
                 <div className={classes.Airport}>
                     <img className={classes.Icon} src={require("../../assets/icon/airport.svg")} alt="Airport icon"/>
@@ -34,7 +32,7 @@ const SelectService = props => {
                     <Button type="info" clicked={() => onSelectService("hourly")}>By-The-Hour</Button>
                 </div>
             </div>
-        </div>
+        </section>
     )
 };
 

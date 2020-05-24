@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { connect } from 'react-redux';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 
 import './App.css';
-import './components/Banner/Banner';
+import './components/Cover/Cover';
 import Layout from './containers/Layout';
-import Banner from './components/Banner/Banner';
+import Cover from './components/Cover/Cover';
 import Modal from "./components/UI/Modal/Modal";
-import RenderedForm from "./components/Booking/RenderedForm";
-import SelectService from "./components/Booking/SelectService";
+import Booking from "./components/Booking/Booking";
 import * as actions from "./store/actions/index";
 
 const App = props => {
@@ -18,17 +18,19 @@ const App = props => {
       : document.body.style.overflow = 'unset'
   }, [props.modalIsOpen]);
 
-  let modalContent = props.service ? <RenderedForm type="airport" /> : <SelectService />;
+  let routes = (
+    <Switch>
+      {/*Auth component is lazy loaded*/}
+      <Route path="/booking" component={Booking} />
+      <Route path="/" exact component={Cover} />
+      <Redirect to="/" />
+    </Switch>
+  );
 
   return (
     <div className="App">
       <Layout>
-        <Banner />
-        {/* {props.modalIsOpen
-          && <Modal show={props.modalIsOpen} modalClosed={props.onCloseModal}>
-            {modalContent}
-          </Modal>} */}
-          {modalContent}
+        <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
       </Layout>
     </div>
   );
@@ -46,4 +48,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

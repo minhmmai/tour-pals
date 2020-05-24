@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import classes from './Banner.module.scss';
+import classes from './Cover.module.scss';
 import Button from "../UI/Button/Button";
 
-const Banner = () => {
+const Cover = () => {
     return (
-        <section className={classes.Banner}>
+        <section className={classes.Cover}>
             <div className={classes.Intro}>
                 <h1 className={classes.IntroTitle}>
                     It's Summer Time
@@ -24,4 +24,4 @@ const Banner = () => {
     )
 };
 
-export default Banner;
+export default Cover;

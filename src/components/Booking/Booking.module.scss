@@ -1,0 +1,16 @@
+@import '../../assets/scss/variables.scss';
+@import '../../assets/scss/mixins.scss';
+
+.Booking {
+    .Heading {
+        @include h2;
+        color: $primary;
+    }
+    .SubHeading {
+        @include h4;
+        color: $paragraph;
+    }
+    .Content {
+
+    }
+}
