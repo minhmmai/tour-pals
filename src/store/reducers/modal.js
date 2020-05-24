@@ -3,28 +3,19 @@ import { updateObject } from "../../methods/utility";
 
 const initialState = {
     modalIsOpen: false,
-    service: ""
+    content: ""
 };
 
 const openModal = (state, action) => {
     const updatedState = {
-        modalIsOpen: true,
-        service: ""
+        modalIsOpen: true
     }
     return updateObject(state, updatedState);
 }
 
 const closeModal = (state, action) => {
     const updatedState = {
-        modalIsOpen: false,
-        service: ""
-    }
-    return updateObject(state, updatedState);
-}
-
-const selectService = (state, action) => {
-    const updatedState = {
-        service: action.service
+        modalIsOpen: false
     }
     return updateObject(state, updatedState);
 }
@@ -35,8 +26,6 @@ const modalReducer = (state = initialState, action) => {
             return openModal(state, action);
         case actionTypes.CLOSE_MODAL:
             return closeModal(state, action);
-        case actionTypes.SELECT_SERVICE:
-            return selectService(state, action);
         default:
             return state;
     }

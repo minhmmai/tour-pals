@@ -1,5 +1,8 @@
 export {
     openModal,
-    closeModal,
-    selectService
+    closeModal
 } from './modal';
+
+export {
+    selectService
+} from './service';

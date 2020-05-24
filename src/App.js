@@ -36,8 +36,7 @@ const App = props => {
 
 const mapStateToProps = state => {
   return {
-    modalIsOpen: state.modal.modalIsOpen,
-    service: state.modal.service
+    modalIsOpen: state.modal.modalIsOpen
   }
 }
 
