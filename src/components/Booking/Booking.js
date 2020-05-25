@@ -12,13 +12,13 @@ const Booking = ({ service }) => {
 
     if (service === "airport") {
         heading = "Airport Transfer";
-        subHeading = "Complementary water &bull; Toll roads &bull; Fully insured"
+        subHeading = "Complementary water • Toll roads • Fully insured"
     } else if (service === "tour") {
         heading = "Private Tour";
-        subHeading = "Complementary water &bull; Time flexible &bull; Fully insured"
+        subHeading = "Complementary water • Time flexible • Fully insured"
     } else if (service === "hourly") {
         heading = "By The Hour";
-        subHeading = "Complementary water &bull; Top locations &bull; Fully insured"
+        subHeading = "Complementary water • Top locations • Fully insured"
     }else {
         heading = "Select A Service";
         subHeading = "Let us know which service you are looking to book"
