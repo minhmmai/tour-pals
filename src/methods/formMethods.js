@@ -1,4 +1,4 @@
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 export const getForm = formType => {
     return require(`../store/forms/${formType}.json`);
@@ -120,7 +120,7 @@ export const showField = (showIf) => {
 };
 
 // Validate input, return on the first failed validation
-// So that each field won't show too many error at one time
+// So that each field won't show too many errors at once
 export const validateValue = (inputValue, rules) => {
 
     const value = inputValue.trim();
