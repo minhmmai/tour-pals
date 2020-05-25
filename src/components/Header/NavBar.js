@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {withRouter} from "react-router-dom";
 
 import NavItems from './NavItems';
 import NavItemsMobile from './NavItemsMobile';
@@ -20,7 +21,7 @@ const NavBar = props => {
         <header>
             <nav className={classes.NavBar}>
                 <Logo link="/" />
-                <Button type="cta">Book Now!</Button>
+                <Button type="cta" clicked={() => props.history.push("/booking")}>Book Now!</Button>
                 <ToggleButton clicked={toggleMenu} menuIsOpen={toggleMenuIsOpen} />
                 <NavItems />
             </nav>
@@ -28,4 +29,4 @@ const NavBar = props => {
         </header>
     )
 };
-export default NavBar;
+export default withRouter(NavBar);

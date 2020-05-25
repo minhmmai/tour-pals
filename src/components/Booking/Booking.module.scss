@@ -2,6 +2,9 @@
 @import '../../assets/scss/mixins.scss';
 
 .Booking {
+    position: absolute;
+    top: 7rem;
+    padding: 5rem;
     .Heading {
         @include h2;
         color: $primary;

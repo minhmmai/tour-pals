@@ -9,11 +9,13 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import modalReducer from "./store/reducers/modal";
+import serviceReducer from "./store/reducers/service";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  modal: modalReducer
+  modal: modalReducer,
+  service: serviceReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

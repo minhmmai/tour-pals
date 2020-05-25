@@ -22,6 +22,8 @@ const RenderedForm = (props) => {
     setForm(initFormState(formObj));
   }, [formObj]);
 
+  console.log(form)
+
   /* const handleNext = event => {
     // Prevent the default refresh
     event.preventDefault();
