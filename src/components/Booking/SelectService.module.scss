@@ -2,14 +2,6 @@
 @import "../../assets/scss/variables";
 
 .SelectServices {
-    .Heading {
-        @include h2;
-        color: $primary;
-    }
-    .SubHeading {
-        @include h4;
-        color: $paragraph;
-    }
     .Service {
         display: flex;
         justify-content: space-around;
@@ -19,25 +11,32 @@
         .Hourly {
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
             background-color: $nav_sub_menu_bg;
-            width: 30%;
-            margin: 0 1rem;
-            padding: 2rem;
+            width: 32%;
+            padding: 1rem;
+            height: 40rem;
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: $service_shadow;
+            }
+            @include all_transition;
+            cursor: pointer;
             .Icon {
-                width: 70%;
+                width: 50%;
+            }
+            .ServiceName {
+                @include h4;
+                color: $primary;
             }
             p {
                 @include paragraph;
             }
             .Icon,
             p,
-            Button {
+            .ServiceName {
                 margin: 1rem 0;
-            }
-            Button:active {
-                @include clicked;
             }
         }
 

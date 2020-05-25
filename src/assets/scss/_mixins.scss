@@ -12,6 +12,9 @@
     @include all_transition;
     font: 300 1.7rem "Roboto";
     color: $paragraph;
+    @include respond(phone) {
+        font-size: 2.5rem;
+    }
 }
 
 @mixin error {
@@ -70,7 +73,7 @@
     font: 300 2.2rem "Roboto";
     margin: .2rem;
     @include respond(phone) {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 }
 

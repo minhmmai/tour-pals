@@ -11,10 +11,3 @@ export const closeModal = () => {
         type: actionType.CLOSE_MODAL
     }
 };
-
-export const selectService = (service) => {
-    return {
-        type: actionType.SELECT_SERVICE,
-        service: service
-    }
-};

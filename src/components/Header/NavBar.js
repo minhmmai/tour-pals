@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import {withRouter} from "react-router-dom";
 
 import NavItems from './NavItems';
 import NavItemsMobile from './NavItemsMobile';
@@ -7,7 +7,6 @@ import Button from '../UI/Button/Button';
 import Logo from '../Logo/Logo';
 import ToggleButton from "../Header/ToggleButton";
 import classes from './NavBar.module.scss';
-import * as actions from '../../store/actions/index';
 
 const NavBar = props => {
     const [toggleMenuIsOpen, setToggleMenuIsOpen] = useState(false);
@@ -22,7 +21,7 @@ const NavBar = props => {
         <header>
             <nav className={classes.NavBar}>
                 <Logo link="/" />
-                <Button type="cta" clicked={props.onOpenModal}>Book Now!</Button>
+                <Button type="cta" clicked={() => props.history.push("/booking")}>Book Now!</Button>
                 <ToggleButton clicked={toggleMenu} menuIsOpen={toggleMenuIsOpen} />
                 <NavItems />
             </nav>
@@ -30,11 +29,4 @@ const NavBar = props => {
         </header>
     )
 };
-
-const mapDispatchToProps = dispatch => {
-    return {
-        onOpenModal: () => dispatch(actions.openModal())
-    }
-}
-
-export default connect(null, mapDispatchToProps)(NavBar);
+export default withRouter(NavBar);

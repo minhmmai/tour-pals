@@ -4,12 +4,22 @@ export const getForm = formType => {
     return require(`../store/forms/${formType}.json`);
 };
 
+// Return he field object given the form and the field reference
+const getRefField = (formObj, ref) => {
+    const refArr = ref.split(".");
+    const section = formObj.sections.find(el => el.sectionId === refArr[0]);
+    const field = section && section.fields.find(el => el.fieldId === refArr[1]);
+
+    return field;
+};
+
 // Initialize all form's fields
 export const initFormState = formObj => {
     const newFormObj = { ...formObj };
     let sections = [];
     let fields = [];
 
+    // Find and replace all field reference object with a getter
     const evalRefs = (fieldObj) => {
         for (let key in fieldObj) {
             if (fieldObj[key] instanceof Array && fieldObj[key].length > 0) {
@@ -33,152 +43,62 @@ export const initFormState = formObj => {
         }
     }
 
+    // Prepare a set of new fields to be used in form's state
     newFormObj.sections.forEach(section => {
         fields = [];
         section.fields.forEach(field => {
             evalRefs(field);
-            fields.push(field);
+            const newField = {
+                fieldId: field.fieldId,
+                value: field.value,
+                // errorMsg: "",
+                validations: field.validations ? field.validations : undefined,
+                ...(field.showIf &&  {showIf: field.showIf})
+            };
+            Object.defineProperty(newField, "isShown", {
+                get: function () { return showField(newField.showIf) }
+            });
+            Object.defineProperty(newField, "isValid", {
+                get: function () { return newField.isShown ? validateValue(newField.value, newField.validations) : true }
+            });
+            Object.defineProperty(newField, "errorMsg", {
+                get: function () { return this.isValid[1] }
+            });
+            fields.push(newField)
         });
-        sections.push(section)
+        sections.push(fields)
     });
     return { sections }
-}
-
-const getRefField = (formObj, ref) => {
-    const refArr = ref.split(".");
-    const section = formObj.sections.find(el => el.sectionId === refArr[0]);
-    const field = section && section.fields.find(el => el.fieldId === refArr[1]);
-
-    return field;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* export const getFieldRelations = formJSON => {
-    const relations = {};
-    
-
-    formJSON.sections.forEach(section => {
-        const sectionId = section.sectionId;
-        section.fields.forEach(field => {
-            const fieldId = field.fieldId;
-
-
-            showIfRefs && showIfRefs.length > 0
-                && showIfRefs.forEach(refField => {
-                    const referencingShowIf = `${sectionId}.${fieldId}.showIf`;
-                    if (relations[refField]) {
-                        !relations[refField].includes(referencingShowIf)
-                            && relations[refField].push(referencingShowIf)
-                    } else {
-                        relations[refField] = [referencingShowIf]
-                    }
-
-                });
-
-            valdiationsRefs && valdiationsRefs.length > 0
-                && valdiationsRefs.forEach(refField => {
-                    const referencingValidations = `${sectionId}.${fieldId}.validations`;
-                    if (relations[refField]) {
-                        !relations[refField].includes(referencingValidations)
-                            && relations[refField].push(referencingValidations)
-                    } else {
-                        relations[refField] = [referencingValidations]
-                    }
-
-                });
-        });
-    });
-    console.log(relations);
-}; */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export const showField = (allFields, showIf) => {
-
+// Return a boolean whether field is displayed or not
+export const showField = (showIf) => {
+    // This evaluate individual show-if rule
     const evalShowIfRule = showIfRule => {
         let isShown = true;
-        const ref = showIfRule.fieldRef;
         const val = showIfRule.value;
 
         if (showIfRule.type === "equal") {
-            isShown = allFields[ref[0]][ref[1]].value === val && isShown;
+            isShown = showIfRule.ref === val && isShown;
         }
         if (showIfRule.type === "greater") {
-            isShown = allFields[ref[0]][ref[1]].value > val && isShown;
+            isShown = showIfRule.ref > val && isShown;
         }
         if (showIfRule.type === "smaller") {
-            isShown = allFields[ref[0]][ref[1]].value < val && isShown;
+            isShown = showIfRule.ref < val && isShown;
         }
         if (showIfRule.type === "differ") {
-            isShown = allFields[ref[0]][ref[1]].value !== val && isShown;
+            isShown = showIfRule.ref !== val && isShown;
         }
         return isShown;
     };
 
+    // This evaluate the whole show-if object
     const evalShowIf = showIfObj => {
         let result = true;
+
+        if (!showIfObj) { return true }
+
         if (showIfObj["and"]) {
             let andResult = true;
             showIfObj["and"].forEach(andEl => {
@@ -195,67 +115,47 @@ export const showField = (allFields, showIf) => {
             return evalShowIfRule(showIfObj)
         }
         return result;
-
     }
     return evalShowIf(showIf);
 };
 
-export const validateField = (allFields, field, rules) => {
+// Validate input, return on the first failed validation
+// So that each field won't show too many error at one time
+export const validateValue = (inputValue, rules) => {
 
-    const result = {}
-    const value = field.value.trim();
-
-    const getValue = refArr => {
-        return parseInt(allFields[refArr.fieldRef[0]][refArr.fieldRef[1]].value);
-    }
+    const value = inputValue.trim();
 
     if (!rules) {
-        return true;
+        return [true, ""];
     }
-    if (field.isShown) {
-        if (rules.isRequired) {
-            value !== ""
-                ? result["isRequired"] = "passed"
-                : result["isRequired"] = rules.isRequired.errorMsg
-        }
-
-        if (value && rules.length) {
-            (value.length >= rules.length.min && value.length <= rules.length.max)
-                ? result["length"] = "passed"
-                : result["length"] = rules.length.errorMsg
-        }
-
-        if (value && rules.isEmail) {
-            const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-            pattern.test(value)
-                ? result["isEmail"] = "passed"
-                : result["isEmail"] = rules.isEmail.errorMsg
-
-        }
-
-        if (value && rules.valueRange) {
-            const minValue = typeof (rules.valueRange.min) === 'object'
-                ? getValue(rules.valueRange.min.fieldRef) : rules.valueRange.min;
-            const maxValue = typeof (rules.valueRange.max.fieldRef) === 'object'
-                ? getValue(rules.valueRange.max) : rules.valueRange.max;
-
-            (value >= minValue && value < maxValue)
-                ? result["valueRange"] = "passed"
-                : result["valueRange"] = rules.valueRange.errorMsg
-        }
-
-        if (value && rules.dateRange) {
-            const dateValue = dayjs(value);
-            const minValue = dayjs();
-            const maxValue = minValue.add(12, "month");
-
-            dateValue.isBefore(maxValue) && dateValue.isAfter(minValue)
-                ? result["dateRange"] = "passed"
-                : result["dateRange"] = rules.dateRange.errorMsg
-        }
-    } else {
-        return true
+    if (rules.isRequired) {
+        return value === "" && [false, rules.isRequired.errorMsg]
     }
 
-    return result;
+    if (value && rules.length) {
+        return !(value.length >= rules.length.min && value.length <= rules.length.max)
+            && [false, rules.length.errorMsg]
+    }
+
+    if (value && rules.isEmail) {
+        const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        return !pattern.test(value) && [false, rules.isEmail.errorMsg]
+
+    }
+
+    if (value && rules.valueRange) {
+        return !(value >= rules.valueRange.min && value < rules.valueRange.max)
+            && [false, rules.valueRange.errorMsg]
+    }
+
+    if (value && rules.dateRange) {
+        const dateValue = dayjs(value);
+        const minValue = dayjs();
+        const maxValue = minValue.add(12, "month");
+
+        return !(dateValue.isBefore(maxValue) && dateValue.isAfter(minValue))
+            && [false, rules.dateRange.errorMsg]
+    }
+
+    return [true, ""];
 };

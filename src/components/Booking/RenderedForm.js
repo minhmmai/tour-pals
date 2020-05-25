@@ -18,9 +18,14 @@ const RenderedForm = (props) => {
     const [activeSection, setActiveSection] = useState(0);
     const [form, setForm] = useState();
 
+    const sections = form && form.sections;
+    const fields = sections && sections[activeSection].fields;
+
   useEffect(() => {
     setForm(initFormState(formObj));
   }, [formObj]);
+
+  console.log(form)
 
   /* const handleNext = event => {
     // Prevent the default refresh
@@ -102,8 +107,8 @@ const RenderedForm = (props) => {
   }; */
 
   return (
-    <div>{/* <form className={classes.Form}>
-      <Stepper formSteps={sections.map(({ label }) => label)} formActiveStep={activeSection} />
+    <form className={classes.Form}>
+      {/* <Stepper formSteps={sections.map(({ label }) => label)} formActiveStep={activeSection} />
       <div>
         {activeSection === sections.length ? (
           <div className={classes.Finished}>
@@ -222,8 +227,8 @@ const RenderedForm = (props) => {
           type="next">
           {activeSection === sections.length - 1 ? "Submit" : "Next"}
         </Button>
-      </div>
-    </form> */}</div>
+      </div> */}
+    </form>
   );
 };
 
