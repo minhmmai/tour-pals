@@ -10,7 +10,10 @@ const Booking = ({ service }) => {
     let heading = "";
     let subHeading = "";
 
-    if (service === "airport") {
+    if (service === "") {
+        heading = "Select A Service";
+        subHeading = "Let us know which service you are looking to book"
+    } else if (service === "airport") {
         heading = "Airport Transfer";
         subHeading = "Complementary water • Toll roads • Fully insured"
     } else if (service === "tour") {
@@ -19,9 +22,6 @@ const Booking = ({ service }) => {
     } else if (service === "hourly") {
         heading = "By The Hour";
         subHeading = "Complementary water • Top locations • Fully insured"
-    }else {
-        heading = "Select A Service";
-        subHeading = "Let us know which service you are looking to book"
     }
 
 
@@ -39,7 +39,7 @@ const Booking = ({ service }) => {
 
 const mapStateToProps = state => {
     return {
-        service: state.service.service
+        service: state.service.selectedService
     }
 }
 

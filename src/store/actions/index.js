@@ -4,5 +4,6 @@ export {
 } from './modal';
 
 export {
-    selectService
+    selectService,
+    deselectService
 } from './service';

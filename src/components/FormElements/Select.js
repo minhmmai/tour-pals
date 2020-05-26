@@ -1,5 +1,4 @@
 import React from "react";
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 import Tooltip from './Tooltip';
 import classes from "./Field.module.scss";
@@ -30,7 +29,7 @@ const Select = (props) => {
       </select>
       </div>
       {error && <p className={classes.Error}>{error}</p>}
-      {description && <FormHelperText className={classes.Description}>{description}</FormHelperText>}
+      {description && <p className={classes.Description}>{description}</p>}
     </div>
   );
 };

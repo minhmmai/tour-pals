@@ -1,5 +1,4 @@
 import React from 'react';
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
@@ -14,10 +13,10 @@ const Date = (props) => {
         {tooltip && <Tooltip content={tooltip} />}
       </div>
       <div className={classes.Date}>
-        <input id={name} name={name} type={type} onChange={handleChange} value={value} />
+        <input id={name} name={name} type="date" onChange={handleChange} value={value} />
       </div>
-      {error !== "" && <p className={classes.Error}>{error}</p>}
-      {description && <FormHelperText className={classes.Description}>{description}</FormHelperText>}
+      {error && <p className={classes.Error}>{error}</p>}
+      {description && <p className={classes.Description}>{description}</p>}
     </div>
   );
 };

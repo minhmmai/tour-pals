@@ -1,5 +1,4 @@
 import React from 'react';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from "@material-ui/core/Button";
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
@@ -22,8 +21,8 @@ const Adjust = (props) => {
         <input id={name} name={name} onChange={handleChange} value={value} />
         <Button className={classes.Control} onClick={increase}><AddIcon /></Button>
       </div>
-      {error !== "" && <p className={classes.Error}>{error}</p>}
-      {description && <FormHelperText className={classes.Description}>{description}</FormHelperText>}
+      {error && <p className={classes.Error}>{error}</p>}
+      {description && <p className={classes.Description}>{description}</p>}
     </div>
   );
 };

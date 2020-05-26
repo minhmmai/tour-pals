@@ -13,47 +13,55 @@ const getRefField = (formObj, ref) => {
     return field;
 };
 
-// Initialize all form's fields
-export const initFormState = formObj => {
-    const newFormObj = { ...formObj };
-    let sections = [];
-    let fields = [];
-
-    // Find and replace all field reference object with a getter
-    const evalRefs = (fieldObj) => {
-        for (let key in fieldObj) {
-            if (fieldObj[key] instanceof Array && fieldObj[key].length > 0) {
-                // If this property is an array
-                fieldObj[key].forEach(el => {
-                    evalRefs(el);
-                })
-            } else if (fieldObj[key] instanceof Object) {
-                // If this property is an object
-                if (fieldObj[key].fieldRef) {
-                    const ref = fieldObj[key].fieldRef;
-                    delete fieldObj[key];
-                    Object.defineProperty(fieldObj, key, {
-                        get: function () { return getRefField(newFormObj, ref).value }
-                    });
-                }
-                else {
-                    evalRefs(fieldObj[key]);
-                }
+// Find and replace all field reference object with a getter
+const evalRefs = (formObj, fieldObj) => {
+    for (let key in fieldObj) {
+        if (fieldObj[key] instanceof Array && fieldObj[key].length > 0) {
+            // If this property is an array
+            fieldObj[key].forEach(el => {
+                evalRefs(el);
+            })
+        } else if (fieldObj[key] instanceof Object) {
+            // If this property is an object
+            if (fieldObj[key].fieldRef) {
+                const ref = fieldObj[key].fieldRef;
+                delete fieldObj[key];
+                Object.defineProperty(fieldObj, key, {
+                    get: function () { return getRefField(formObj, ref).value }
+                });
+            }
+            else {
+                evalRefs(fieldObj[key]);
             }
         }
     }
+}
 
-    // Prepare a set of new fields to be used in form's state
+// Initialize all form's fields
+export const initFormState = formObj => {
+    const newFormObj = { ...formObj };   
+
+    // Prepare a set of new fields to be used in form's state    
+    let newSections = [];
+    let newSection = {};
     newFormObj.sections.forEach(section => {
-        fields = [];
+        newSection = {
+            sectionId: section.sectionId,
+            label: section.label,
+            title: section.title,
+            description: section.description,
+            fields: []
+        };
         section.fields.forEach(field => {
             evalRefs(field);
             const newField = {
+                ...(field.description && { description: field.description }),
                 fieldId: field.fieldId,
                 value: field.value,
-                // errorMsg: "",
+                ...(field.showIf && { showIf: field.showIf }),
+                ...(field.tooltip && { tooltip: field.tooltip }),
                 validations: field.validations ? field.validations : undefined,
-                ...(field.showIf &&  {showIf: field.showIf})
+                type: field.type
             };
             Object.defineProperty(newField, "isShown", {
                 get: function () { return showField(newField.showIf) }
@@ -64,11 +72,11 @@ export const initFormState = formObj => {
             Object.defineProperty(newField, "errorMsg", {
                 get: function () { return this.isValid[1] }
             });
-            fields.push(newField)
+            newSection.fields.push(newField);
         });
-        sections.push(fields)
+        newSections.push(newSection);
     });
-    return { sections }
+    return { sections: newSections }
 };
 
 // Return a boolean whether field is displayed or not
@@ -159,3 +167,14 @@ export const validateValue = (inputValue, rules) => {
 
     return [true, ""];
 };
+
+// Validate the whole section by checking every field
+export const validateSection = section => {
+    let isValid = true;
+
+    section.fields.forEach(field => {
+        isValid = field.isValid && isValid;
+    });
+
+    return isValid
+}

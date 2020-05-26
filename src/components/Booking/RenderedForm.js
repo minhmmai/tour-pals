@@ -1,59 +1,51 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import * as actions from "../../store/actions/index";
 
+import Stepper from "../FormElements/Stepper";
 import Button from "../UI/Button/Button";
+import Section from "../FormElements/Section";
+import Spinner from "../UI/Spinner/Spinner";
 import Adjust from "../FormElements/Adjust";
 import Date from "../FormElements/Date";
 import Input from "../FormElements/Input";
 import Select from "../FormElements/Select";
-import Section from "../FormElements/Section";
-import Stepper from "../FormElements/Stepper";
-
 import { updateObject } from "../../methods/utility";
-import { initFormState, validateField, getForm, showField, evalRefs, getRefField, getFieldRelations } from "../../methods/formMethods";
+import { initFormState, getForm, validateSection } from "../../methods/formMethods";
 import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
   const formObj = props.type && getForm(props.type);
 
-    const [activeSection, setActiveSection] = useState(0);
-    const [form, setForm] = useState();
+  const [activeSection, setActiveSection] = useState(0);
+  const [form, setForm] = useState();
 
-    const sections = form && form.sections;
-    const fields = sections && sections[activeSection].fields;
+  let sections = [];
+  let fields = [];
+  const fieldType = {
+    adjust: Adjust,
+    date: Date,
+    input: Input,
+    select: Select
+  }
+
+  if (form) {
+    sections = form.sections;
+    fields = form.sections[activeSection].fields
+  }
 
   useEffect(() => {
-    setForm(initFormState(formObj));
+    const retrievedForm = initFormState(formObj);
+    setForm(retrievedForm);
   }, [formObj]);
 
-  console.log(form)
-
-  /* const handleNext = event => {
+  const handleNext = event => {
     // Prevent the default refresh
     event.preventDefault();
 
-    // Update section's validity
-    const updatedFields = [...fields];
-    let valid = true;
-    // Check validity of each field in this section
-    for (let i = 0; i < fields[activeSection].length; i++) {
-      const updatedField = fields[activeSection][i]
-      const result = validateField(fields, updatedField, updatedField.validations);
-      for (let key in result) {
-        if (result[key] !== "passed") {
-          updatedField["errorMsg"] = result[key];
-          valid = false;
-          break;
-        } else {
-          updatedField["errorMsg"] = "";
-          valid = valid === true;
-        }
-      }
-      updatedFields[activeSection][i] = updatedField;
-    }
-    setFields(updatedFields); 
-
     // Check section validity and go to the next section
-     valid &&  setActiveSection(prevActiveSection => prevActiveSection + 1);
+    const sectionIsValid = validateSection(form.sections[activeSection]);
+    sectionIsValid && setActiveSection(prevActiveSection => prevActiveSection + 1);
   };
 
   const handleBack = event => {
@@ -61,56 +53,58 @@ const RenderedForm = (props) => {
     event.preventDefault();
 
     // Go back to previous section
-    setActiveSection((prevActiveSection) => prevActiveSection - 1);
+    activeSection === 0
+      ? setActiveSection((prevActiveSection) => prevActiveSection - 1)
+      : props.onDeselectService()
   };
 
   const handleReset = () => {
-     // Initialize form
-    setFields(initFormState(formJSON));
+    // Initialize form
+    setForm(initFormState(formObj));
     // Set active section to the first one
     setActiveSection(0);
   };
 
   const changeHandler = (event, fieldIndex) => {
-     // Get value from user input and set state for "fields"
-    const updatedField = updateObject(fields[activeSection][fieldIndex], {
-      value: event.target.value
-    });
-    const updatedFields = [...fields];
-    updatedFields[activeSection][fieldIndex] = updatedField;
-    setFields(updatedFields);
-
-    // Update other field's visibility in case it reference to this change
-    updatedFields[activeSection].forEach(field => {
-      if (field.showIf) {
-        field.isShown = showField(fields, field.showIf);
-      }
-    })
+    /* // Get value from user input and set state for "fields"
+   const updatedField = updateObject(fields[activeSection][fieldIndex], {
+     value: event.target.value
+   });
+   const updatedFields = [...fields];
+   updatedFields[activeSection][fieldIndex] = updatedField;
+   setFields(updatedFields);
+  
+   // Update other field's visibility in case it reference to this change
+   updatedFields[activeSection].forEach(field => {
+     if (field.showIf) {
+       field.isShown = showField(fields, field.showIf);
+     }
+   }) */
   };
 
   // Increase function for adjust field
-  const increase = (fieldValue, fieldIndex) => {
-     const updatedFields = [...fields];
+  const increase = (fieldIndex) => {
+    /*  const updatedFields = [...fields];
     if (fieldValue >= 0) {
       updatedFields[activeSection][fieldIndex].value = (fieldValue + 1).toString();
     }
-    setFields(updatedFields); 
+    setFields(updatedFields);  */
   }
 
   // Decrease function for adjust field
-  const decrease = (fieldValue, fieldIndex) => {
-    const updatedFields = [...fields];
+  const decrease = (fieldIndex) => {
+    /* const updatedFields = [...fields];
     if (fieldValue > 0) {
       updatedFields[activeSection][fieldIndex].value = (fieldValue - 1).toString();
     }
-    setFields(updatedFields);
-  }; */
+    setFields(updatedFields); */
+  };
 
   return (
-    <form className={classes.Form}>
-      {/* <Stepper formSteps={sections.map(({ label }) => label)} formActiveStep={activeSection} />
+    form ? <form className={classes.Form}>
+      <Stepper formSteps={sections && sections.map(({ label }) => label)} formActiveStep={activeSection} />
       <div>
-        {activeSection === sections.length ? (
+        {sections && activeSection === sections.length ? (
           <div className={classes.Finished}>
             <div className={classes.Heading}>All done!</div>
             <div className={classes.Message}>
@@ -129,85 +123,24 @@ const RenderedForm = (props) => {
                     title={section.title}
                     isHidden={sectionIndex !== activeSection}
                     description={section.description}>
-                    {fields.length > 0 && fields[activeSection].map((field, fieldIndex) => {
-                      let renderedField = "";
-                      if (field.type === "text") {
-                        renderedField = (
-                          <Input
-                            description={field.description}
-                            error={field.errorMsg ? field.errorMsg : ""}
-                            handleChange={(event) => changeHandler(event, fieldIndex)}
-                            key={fieldIndex}
-                            label={field.label}
-                            show={field.isShown}
-                            name={field.id}
-                            optional={field.validations.isRequired ? false : true}
-                            tooltip={field.tooltip}
-                            type={field.type}
-                            value={field.value}
-                          />
-                        );
-                      } else if (field.type === "select") {
-                        renderedField = (
-                          <Select
-                            description={field.description}
-                            error={field.errorMsg ? field.errorMsg : ""}
-                            handleChange={(event) => changeHandler(event, fieldIndex)}
-                            key={fieldIndex}
-                            label={field.label}
-                            show={field.isShown}
-                            name={field.id}
-                            optional={field.validations.isRequired ? false : true}
-                            options={field.options}
-                            tooltip={field.tooltip}
-                            value={field.value}
-                          />
-                        );
-                      } else if (field.type === "date") {
-                        renderedField = (
-                          <Date
-                            description={field.description}
-                            error={field.errorMsg ? field.errorMsg : ""}
-                            handleChange={(event) => changeHandler(event, fieldIndex)}
-                            key={fieldIndex}
-                            label={field.label}
-                            show={field.isShown}
-                            name={field.id}
-                            optional={field.validations.isRequired ? false : true}
-                            options={field.options}
-                            tooltip={field.tooltip}
-                            type={field.type}
-                            value={field.value}
-                          />
-                        );
-                      } else if (field.type === "adjust") {
-                        let min = field.validations.valueRange.min;
-                        let max = field.validations.valueRange.max;
-                        const minValue = typeof (min) === "object"
-                          ? parseInt(fields[min.fieldRef[0]][min.fieldRef[1]].value)
-                          : parseInt(min);
-                        const maxValue = typeof (max) === "object"
-                          ? parseInt(fields[max.fieldRef[0]][max.fieldRef[1]].value)
-                          : parseInt(max);
-                        renderedField = (
-                          <Adjust
-                            increase={() => increase(parseInt(field.value), fieldIndex, minValue, maxValue)}
-                            decrease={() => decrease(parseInt(field.value), fieldIndex, minValue, maxValue)}
-                            description={field.description}
-                            error={field.errorMsg ? field.errorMsg : ""}
-                            handleChange={(event) => changeHandler(event, fieldIndex)}
-                            key={fieldIndex}
-                            label={field.label}
-                            show={field.isShown}
-                            name={field.id}
-                            optional={field.validations.isRequired ? false : true}
-                            tooltip={field.tooltip}
-                            type={field.type}
-                            value={field.value < 0 ? field.value = 0 : field.value}
-                          />
-                        );
-                      }
-                      return renderedField;
+                    {fields.length > 0 && fields.map((field, index) => {
+                      const Comp = fieldType[field.type];
+console.log(Comp);
+                      /* return <Comp
+                        type={field.type}
+                        description={field.description || undefined}
+                        error={field.errorMsg || undefined}
+                        handleChange={(event) => changeHandler(event, index)}
+                        key={field.fieldId}
+                        label={field.label}
+                        name={field.id}
+                        optional={field.validations.isRequired ? false : true}
+                        options={field.options || undefined}
+                        show={field.isShown}
+                        tooltip={field.tooltip || undefined}
+                        value={field.value}
+                        increase={() => increase(index)}
+                        decrease={() => decrease(index)} /> */
                     })}
                   </Section>
                 );
@@ -215,21 +148,33 @@ const RenderedForm = (props) => {
             </div>
           )}
       </div>
-      <div hidden={activeSection === sections.length}>
+      <div hidden={activeSection === form.sections.length}>
         <Button
           clicked={event => handleBack(event)}
-          disabled={activeSection === 0}
           type="back">
           Back
                 </Button>
         <Button
           clicked={event => handleNext(event)}
           type="next">
-          {activeSection === sections.length - 1 ? "Submit" : "Next"}
+          {activeSection === form.sections.length - 1 ? "Submit" : "Next"}
         </Button>
-      </div> */}
-    </form>
+      </div>
+    </form> : <Spinner />
   );
 };
 
-export default RenderedForm;
+const mapStateToProps = state => {
+  return {
+    service: state.service.selectedSerive
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onDeselectService: () => dispatch(actions.deselectService())
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(RenderedForm);
