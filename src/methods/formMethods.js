@@ -128,10 +128,10 @@ export const validateField = (formObj, fieldObj) => {
 
     if (rules.valueRange) {
         const min = rules.valueRange.min.fieldRef
-            ? getRefField(formObj, rules.valueRange.min.fieldRef).value || 0
+            ? parseInt(getRefField(formObj, rules.valueRange.min.fieldRef).value) || 0
             : parseInt(rules.valueRange.min)
         const max = rules.valueRange.max.fieldRef
-            ? getRefField(formObj, rules.valueRange.max.fieldRef).value || 0
+            ? parseInt(getRefField(formObj, rules.valueRange.max.fieldRef).value) || 0
             : parseInt(rules.valueRange.max)
         if (parseInt(value) === 0) { return [true, ""] };
         if (value < min || value >= max) {
@@ -150,20 +150,3 @@ export const validateField = (formObj, fieldObj) => {
     }
     return [true, ""];
 };
-
-export const validateSection = (formObj, section) => {
-    let sectionIsValid = true;
-
-    section.fields.forEach(field => {
-        const isShown = showField(formObj, field.showIf);
-        const isValid = validateField(formObj, field)[0];
-        if (isShown) {
-            if (isValid) {
-                sectionIsValid = true && sectionIsValid;
-            } else {
-                return false;
-            }
-        }
-    });
-    return sectionIsValid;
-}

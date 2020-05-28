@@ -33,10 +33,20 @@ const RenderedForm = (props) => {
 
   const handleNext = (event) => {
     event.preventDefault();
-    const sectionIsValid = validateSection(form, form.sections[activeSection]);
-    console.log(sectionIsValid)
-    // sectionIsValid && setActiveSection(prevActiveSection => prevActiveSection + 1)
-
+    const updatedForm = { ...form };
+    const fields = updatedForm.sections[activeSection].fields;
+    let sectionIsValid = true;
+    for (let i = 0; i < fields.length; i++) {
+      const isShown = showField(formObj, fields[i].showIf);
+      const isValid = validateField(formObj, fields[i])[0];
+      if (isShown) {
+        fields[i].touched = !isValid && true;
+      }
+      sectionIsValid = isShown && isValid && sectionIsValid;
+    };
+    sectionIsValid
+      ? setActiveSection(prevActiveSection => prevActiveSection + 1)
+      : setForm(updatedForm);
   };
 
   const handleBack = (event) => {
