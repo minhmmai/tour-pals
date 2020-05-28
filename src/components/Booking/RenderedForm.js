@@ -10,7 +10,6 @@ import Adjust from "../FormElements/Adjust";
 import Date from "../FormElements/Date";
 import Input from "../FormElements/Input";
 import Select from "../FormElements/Select";
-import { updateObject } from "../../methods/utility";
 import { initFormState, getForm, validateSection, showField, validateField } from "../../methods/formMethods";
 import classes from "./RenderedForm.module.scss";
 

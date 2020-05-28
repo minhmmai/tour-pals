@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from 'react-redux';
 
-import SelectService from "./SelectService";
-import RenderedForm from "./RenderedForm";
+import SelectService from "../../components/Booking/SelectService";
+import RenderedForm from "../../components/Booking/RenderedForm";
 import classes from "./Booking.module.scss";
 
 const Booking = ({ service }) => {

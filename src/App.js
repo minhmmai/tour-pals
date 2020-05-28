@@ -6,8 +6,8 @@ import './App.css';
 import './components/Cover/Cover';
 import Layout from './containers/Layout';
 import Cover from './components/Cover/Cover';
-import Modal from "./components/UI/Modal/Modal";
-import Booking from "./components/Booking/Booking";
+import Booking from "./views/Booking/Booking";
+import Spinner from "./components/UI/Spinner/Spinner";
 import * as actions from "./store/actions/index";
 
 const App = props => {
@@ -30,7 +30,7 @@ const App = props => {
   return (
     <div className="App">
       <Layout>
-        <Suspense fallback={<p>Loading...</p>}>{routes}</Suspense>
+        <Suspense fallback={<Spinner/>}>{routes}</Suspense>
       </Layout>
     </div>
   );
