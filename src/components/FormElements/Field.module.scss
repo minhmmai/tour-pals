@@ -4,10 +4,10 @@
 
 .Field {
   margin: 2rem;
-  animation: fadeIn ease 0.3s;
+  animation: fadeInText ease 0.3s;
   .Error {
     @include error;
-    animation: fadeIn ease 0.3s;
+    animation: fadeInText ease 0.3s;
   }
 
   .Label,
@@ -23,10 +23,14 @@
   }
 
   .Control {
-    vertical-align: middle;
+    @include paragraph;
+    @include all_transition;
     cursor: pointer;
-    color: $paragraph;
-    margin: 0.5rem;
+    margin: auto 2rem;
+    color: $toggle_button;
+    &:active {
+      transform: translateY(.2rem);
+    }
   }
 
   input,
@@ -34,7 +38,7 @@
   option {
     height: 4rem;
     padding: 0.5rem;
-    border: 1px solid #CCCCCC !important; //fix top border is not showing in modal
+    border: 1px solid $border !important; //fix top border is not showing in modal
   }
 
   .Adjust input {

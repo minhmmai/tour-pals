@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import classes from "./SelectService.module.scss";
 import * as actions from "../../store/actions/index";
@@ -13,7 +13,7 @@ const SelectService = props => {
                 <div className={classes.Airport} onClick={() => props.onSelectService("airport")}>
                     <img className={classes.Icon} src={require("../../assets/icon/airport.svg")} alt="Airport icon" />
                     <p>
-                        We know your flights' departure, landing time. We know if they have been delayed or cancelled too.
+                        We know your flights" departure, landing time. We know if they have been delayed or cancelled too.
                     </p>
                     <h4 className={classes.ServiceName}>
                         Airport Transfer &nbsp;
@@ -23,7 +23,7 @@ const SelectService = props => {
                 <div className={classes.Tour} onClick={() => props.onSelectService("tour")}>
                     <img className={classes.Icon} src={require("../../assets/icon/travel-map.svg")} alt="Airport icon" />
                     <p>
-                        Our experienced guides will be there for you all the way. Making sure you'll get the best experience.
+                        Our experienced guides will be there for you all the way. Making sure you"ll get the best experience.
                    </p>
                     <h4 className={classes.ServiceName}>
                         Private Tours &nbsp;

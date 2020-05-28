@@ -23,22 +23,23 @@
     color: $red;
 }
 
-@mixin tooltip {
+@mixin grey_small_text {
     @include all_transition;
-    font: 300 1.2rem "Roboto";
+    font: 300 1.3rem "Roboto";
+    color: $stepper_label;
+}
+
+@mixin white_small_text {
+    @include all_transition;
+    font: 300 1.3rem "Roboto";
     color: $white;
+    text-align: left;
 }
 
 @mixin button_label {
     @include all_transition;
     font: 400 1.7rem "Roboto";
     color: $white;
-}
-
-@mixin grey_small_text {
-    @include all_transition;
-    font: 300 1.3rem "Roboto";
-    color: $stepper_label;
 }
 
 @mixin all_transition {

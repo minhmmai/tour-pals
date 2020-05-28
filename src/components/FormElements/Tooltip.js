@@ -1,22 +1,16 @@
 import React from 'react';
-import { withStyles } from "@material-ui/core/styles";
-import HelpIcon from '@material-ui/icons/Help';
-import Tooltip from '@material-ui/core/Tooltip';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 
-const CustomTooltip = (props) => {
-    const styles = {
-        tooltip: {
-            fontWeight: 300,
-            fontSize: '.8rem'
-        }
-    };
+import classes from "./Tooltip.module.scss";
 
-    const StyledTooltip = withStyles(styles)(Tooltip);
+const Tooltip = (props) => {
     return (
-        <StyledTooltip title={props.content} placement="bottom">
-            <HelpIcon style={{fontSize: '1rem', margin: '0 .3rem', verticalAlign: 'middle'}}></HelpIcon>
-        </StyledTooltip>
+        <div className={classes.Tooltip}>
+            <FontAwesomeIcon className={classes.Icon} icon={faQuestionCircle} />
+            <p className={classes.HelpText}>{props.helpText}</p>
+        </div>
     );
 };
 
-export default CustomTooltip;
+export default Tooltip;
