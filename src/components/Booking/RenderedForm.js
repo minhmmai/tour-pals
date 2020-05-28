@@ -11,7 +11,7 @@ import Date from "../FormElements/Date";
 import Input from "../FormElements/Input";
 import Select from "../FormElements/Select";
 import { updateObject } from "../../methods/utility";
-import { initFormState, getForm, validateSection } from "../../methods/formMethods";
+import { initFormState, getForm, validateSection, showField, validateField } from "../../methods/formMethods";
 import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
@@ -22,17 +22,13 @@ const RenderedForm = (props) => {
 
   let sections = [];
   let fields = [];
-  const fieldType = {
+
+  const Fields = {
     adjust: Adjust,
     date: Date,
-    input: Input,
+    text: Input,
     select: Select
-  }
-
-  if (form) {
-    sections = form.sections;
-    fields = form.sections[activeSection].fields
-  }
+  };
 
   useEffect(() => {
     const retrievedForm = initFormState(formObj);
@@ -66,29 +62,29 @@ const RenderedForm = (props) => {
   };
 
   const changeHandler = (event, fieldIndex) => {
-    /* // Get value from user input and set state for "fields"
-   const updatedField = updateObject(fields[activeSection][fieldIndex], {
-     value: event.target.value
-   });
-   const updatedFields = [...fields];
-   updatedFields[activeSection][fieldIndex] = updatedField;
-   setFields(updatedFields);
-  
-   // Update other field's visibility in case it reference to this change
-   updatedFields[activeSection].forEach(field => {
-     if (field.showIf) {
-       field.isShown = showField(fields, field.showIf);
-     }
-   }) */
+    event.preventDefault();
+    setForm(prevForm => {
+      const updatedForm = { ...prevForm };
+      updatedForm.sections[activeSection].fields[fieldIndex].value = event.target.value;
+      updatedForm.sections[activeSection].fields[fieldIndex].touched = true;
+      return updatedForm
+    });
   };
 
+  const enterKeyPress = event => {
+    event.preventDefault();
+  }
+
   // Increase function for adjust field
-  const increase = (fieldIndex) => {
-    /*  const updatedFields = [...fields];
-    if (fieldValue >= 0) {
-      updatedFields[activeSection][fieldIndex].value = (fieldValue + 1).toString();
-    }
-    setFields(updatedFields);  */
+  const increase = (fieldValue, fieldIndex) => {
+    setForm(prevForm => {
+      const updatedForm = { ...prevForm };
+      if (parseInt(fieldValue) >= 0) {
+        updatedForm.sections[activeSection].fields[fieldIndex].value = (parseInt(fieldValue) + 1).toString();
+        updatedForm.sections[activeSection].fields[fieldIndex].touched = true;
+      }
+      return updatedForm;
+    });
   }
 
   // Decrease function for adjust field
@@ -102,9 +98,9 @@ const RenderedForm = (props) => {
 
   return (
     form ? <form className={classes.Form}>
-      <Stepper formSteps={sections && sections.map(({ label }) => label)} formActiveStep={activeSection} />
+      <Stepper formSteps={form.sections.map(({ label }) => label)} formActiveStep={activeSection} />
       <div>
-        {sections && activeSection === sections.length ? (
+        {activeSection === form.sections.length ? (
           <div className={classes.Finished}>
             <div className={classes.Heading}>All done!</div>
             <div className={classes.Message}>
@@ -116,31 +112,33 @@ const RenderedForm = (props) => {
           </div>
         ) : (
             <div>
-              {sections.map((section, sectionIndex) => {
+              {form.sections.map((section, sectionIndex) => {
                 return (
                   <Section
                     key={section.sectionId}
                     title={section.title}
                     isHidden={sectionIndex !== activeSection}
                     description={section.description}>
-                    {fields.length > 0 && fields.map((field, index) => {
-                      const Comp = fieldType[field.type];
-console.log(Comp);
-                      /* return <Comp
-                        type={field.type}
-                        description={field.description || undefined}
-                        error={field.errorMsg || undefined}
-                        handleChange={(event) => changeHandler(event, index)}
-                        key={field.fieldId}
-                        label={field.label}
-                        name={field.id}
-                        optional={field.validations.isRequired ? false : true}
-                        options={field.options || undefined}
-                        show={field.isShown}
-                        tooltip={field.tooltip || undefined}
-                        value={field.value}
-                        increase={() => increase(index)}
-                        decrease={() => decrease(index)} /> */
+                    {form.sections[activeSection].fields.map((field, index) => {
+                      const validity = field.touched && validateField(form, field);
+                      const isShown = showField(form, field.showIf);
+                      return (Fields[field.type] && isShown)
+                        && React.createElement(Fields[field.type], {
+                          description: field.description || undefined,
+                          error: validity[0] ? "" : validity[1],
+                          handleChange: (event) => changeHandler(event, index),
+                          key: field.fieldId,
+                          label: field.label,
+                          name: field.id,
+                          onEnter: event => enterKeyPress(event),
+                          optional: field.validations.isRequired.errorMsg ? false : true,
+                          options: field.options || undefined,
+                          show: true,
+                          tooltip: field.tooltip || undefined,
+                          value: field.value,
+                          increase: () => increase(field.value, index),
+                          decrease: () => decrease(field.value, index)
+                        });
                     })}
                   </Section>
                 );

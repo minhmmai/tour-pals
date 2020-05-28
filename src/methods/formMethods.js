@@ -13,38 +13,12 @@ const getRefField = (formObj, ref) => {
     return field;
 };
 
-// Find and replace all field reference object with a getter
-const evalRefs = (formObj, fieldObj) => {
-    for (let key in fieldObj) {
-        if (fieldObj[key] instanceof Array && fieldObj[key].length > 0) {
-            // If this property is an array
-            fieldObj[key].forEach(el => {
-                evalRefs(el);
-            })
-        } else if (fieldObj[key] instanceof Object) {
-            // If this property is an object
-            if (fieldObj[key].fieldRef) {
-                const ref = fieldObj[key].fieldRef;
-                delete fieldObj[key];
-                Object.defineProperty(fieldObj, key, {
-                    get: function () { return getRefField(formObj, ref).value }
-                });
-            }
-            else {
-                evalRefs(fieldObj[key]);
-            }
-        }
-    }
-}
-
 // Initialize all form's fields
 export const initFormState = formObj => {
-    const newFormObj = { ...formObj };   
-
     // Prepare a set of new fields to be used in form's state    
     let newSections = [];
     let newSection = {};
-    newFormObj.sections.forEach(section => {
+    formObj.sections.forEach(section => {
         newSection = {
             sectionId: section.sectionId,
             label: section.label,
@@ -53,51 +27,42 @@ export const initFormState = formObj => {
             fields: []
         };
         section.fields.forEach(field => {
-            evalRefs(field);
             const newField = {
-                ...(field.description && { description: field.description }),
                 fieldId: field.fieldId,
-                value: field.value,
-                ...(field.showIf && { showIf: field.showIf }),
+                type: field.type,
+                label: field.label,
+                ...(field.description && { description: field.description }),
                 ...(field.tooltip && { tooltip: field.tooltip }),
+                ...(field.options && { options: field.options }),
+                ...(field.showIf && { showIf: field.showIf }),
                 validations: field.validations ? field.validations : undefined,
-                type: field.type
+                touched: false,
+                value: field.value,
             };
-            Object.defineProperty(newField, "isShown", {
-                get: function () { return showField(newField.showIf) }
-            });
-            Object.defineProperty(newField, "isValid", {
-                get: function () { return newField.isShown ? validateValue(newField.value, newField.validations) : true }
-            });
-            Object.defineProperty(newField, "errorMsg", {
-                get: function () { return this.isValid[1] }
-            });
             newSection.fields.push(newField);
         });
         newSections.push(newSection);
     });
+
     return { sections: newSections }
 };
 
 // Return a boolean whether field is displayed or not
-export const showField = (showIf) => {
+export const showField = (formObj, showIf) => {
     // This evaluate individual show-if rule
     const evalShowIfRule = showIfRule => {
         let isShown = true;
         const val = showIfRule.value;
+        const type = showIfRule.type;
+        const ref = showIfRule.ref.fieldRef
+            ? getRefField(formObj, showIfRule.ref.fieldRef).value
+            : showIfRule.ref;
 
-        if (showIfRule.type === "equal") {
-            isShown = showIfRule.ref === val && isShown;
-        }
-        if (showIfRule.type === "greater") {
-            isShown = showIfRule.ref > val && isShown;
-        }
-        if (showIfRule.type === "smaller") {
-            isShown = showIfRule.ref < val && isShown;
-        }
-        if (showIfRule.type === "differ") {
-            isShown = showIfRule.ref !== val && isShown;
-        }
+        if (type === "equal") { isShown = ref === val && isShown; }
+        if (type === "greater") { isShown = ref > val && isShown; }
+        if (type === "smaller") { isShown = ref < val && isShown; }
+        if (type === "differ") { isShown = ref !== val && isShown; }
+
         return isShown;
     };
 
@@ -128,53 +93,65 @@ export const showField = (showIf) => {
 };
 
 // Validate input, return on the first failed validation
-// So that each field won't show too many errors at once
-export const validateValue = (inputValue, rules) => {
+export const validateField = (formObj, fieldObj) => {
 
-    const value = inputValue.trim();
+    const value = fieldObj.value.trim();
+    const rules = fieldObj.validations;
 
     if (!rules) {
         return [true, ""];
     }
     if (rules.isRequired) {
-        return value === "" && [false, rules.isRequired.errorMsg]
+        if (value === "") {
+            return [false, rules.isRequired.errorMsg]
+        }
     }
 
-    if (value && rules.length) {
-        return !(value.length >= rules.length.min && value.length <= rules.length.max)
-            && [false, rules.length.errorMsg]
+    if (rules.length) {
+        const min = rules.length.min.fieldRef
+            ? getRefField(formObj, rules.length.min.fieldRef).value
+            : parseInt(rules.length.min)
+        const max = rules.length.max.fieldRef
+            ? getRefField(formObj, rules.length.max.fieldRef).value
+            : parseInt(rules.length.max)
+        if (value.length < min || value.length > max) {
+            return [false, rules.length.errorMsg]
+        }
     }
 
-    if (value && rules.isEmail) {
+    if (rules.isEmail) {
         const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-        return !pattern.test(value) && [false, rules.isEmail.errorMsg]
-
+        if (!pattern.test(value)) {
+            return [false, rules.isEmail.errorMsg]
+        }
     }
 
-    if (value && rules.valueRange) {
-        return !(value >= rules.valueRange.min && value < rules.valueRange.max)
-            && [false, rules.valueRange.errorMsg]
+    if (rules.valueRange) {
+        const min = rules.valueRange.min.fieldRef
+            ? getRefField(formObj, rules.valueRange.min.fieldRef).value || 0
+            : parseInt(rules.valueRange.min)
+        const max = rules.valueRange.max.fieldRef
+            ? getRefField(formObj, rules.valueRange.max.fieldRef).value || 0
+            : parseInt(rules.valueRange.max)
+
+        if (value < min || value >= max) {
+            return [false, rules.valueRange.errorMsg]
+        }
     }
 
-    if (value && rules.dateRange) {
+    if (rules.withinNext12Months) {
         const dateValue = dayjs(value);
         const minValue = dayjs();
         const maxValue = minValue.add(12, "month");
 
-        return !(dateValue.isBefore(maxValue) && dateValue.isAfter(minValue))
-            && [false, rules.dateRange.errorMsg]
+        if (dateValue.isAfter(maxValue) || dateValue.isBefore(minValue)) {
+            return [false, rules.withinNext12Months.errorMsg]
+        }
     }
-
     return [true, ""];
 };
 
 // Validate the whole section by checking every field
 export const validateSection = section => {
-    let isValid = true;
 
-    section.fields.forEach(field => {
-        isValid = field.isValid && isValid;
-    });
-
-    return isValid
 }

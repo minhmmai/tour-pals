@@ -64,9 +64,7 @@
                         "isRequired": {
                             "errorMsg": "We need to know the date you'd like to travel"
                         },
-                        "dateRange": {
-                            "min": "today",
-                            "max": "withinNext12Months",
+                        "withinNext12Months": {
                             "errorMsg": "We can only accept booking for within next 12 months"
                         }
                     },

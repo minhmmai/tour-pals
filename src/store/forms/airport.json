@@ -102,9 +102,7 @@
                         "isRequired": {
                             "errorMsg": "We need to know the date of your flight departure"
                         },
-                        "dateRange": {
-                            "min": "today",
-                            "max": "withinNext12Months",
+                        "withinNext12Months": {
                             "errorMsg": "We can only accept booking for within the next 12 months"
                         }
                     },
@@ -127,9 +125,7 @@
                         "isRequired": {
                             "errorMsg": "We need to know the date of your flight landing"
                         },
-                        "dateRange": {
-                            "min": "today",
-                            "max": "withinNext12Months",
+                        "withinNext12Months": {
                             "errorMsg": "We can only accept booking for within the next 12 months"
                         }
                     },
@@ -209,7 +205,7 @@
                             "errorMsg": "Must be less than number of vehicle's seats, enter 0 if there is no children travelling"
                         }
                     },
-                    "value": "0"
+                    "value": 0
                 }
             ]
         },

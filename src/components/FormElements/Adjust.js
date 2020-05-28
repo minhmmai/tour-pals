@@ -7,7 +7,7 @@ import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
 
 const Adjust = (props) => {
-  const { description, error, handleChange, name, optional, label, show, tooltip, value, increase, decrease } = props;
+  const { description, error, handleChange, name, optional, onEnter, label, show, tooltip, value, increase, decrease } = props;
 
   return (
     <div className={[classes.Field, !show && classes.Hidden].join(" ")}>
@@ -18,7 +18,7 @@ const Adjust = (props) => {
       </div>
       <div className={classes.Adjust}>
         <Button className={classes.Control} onClick={decrease}><RemoveIcon /></Button>
-        <input id={name} name={name} onChange={handleChange} value={value} />
+        <input id={name} name={name} onChange={handleChange} onKeyPress={onEnter} value={value} />
         <Button className={classes.Control} onClick={increase}><AddIcon /></Button>
       </div>
       {error && <p className={classes.Error}>{error}</p>}
