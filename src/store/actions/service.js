@@ -6,3 +6,9 @@ export const selectService = (service) => {
         service: service
     }
 };
+
+export const deselectService = () => {
+    return {
+        type: actionType.DESELECT_SERVICE
+    }
+};

@@ -1,5 +1,4 @@
 import React from 'react';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Button from "@material-ui/core/Button";
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
@@ -8,10 +7,10 @@ import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
 
 const Adjust = (props) => {
-  const { description, error, handleChange, name, optional, label, show, tooltip, value, increase, decrease } = props;
+  const { description, error, handleChange, name, optional, onEnter, label, isShown, isValid, isTouched, tooltip, value, increase, decrease } = props;
 
   return (
-    <div className={[classes.Field, !show && classes.Hidden].join(" ")}>
+    <div className={[classes.Field, !isShown && classes.Hidden].join(" ")}>
       <div className={classes.Label}>
         <label htmlFor={name}>{label}</label>
         {optional && <span>(optional)</span>}
@@ -19,11 +18,11 @@ const Adjust = (props) => {
       </div>
       <div className={classes.Adjust}>
         <Button className={classes.Control} onClick={decrease}><RemoveIcon /></Button>
-        <input id={name} name={name} onChange={handleChange} value={value} />
+        <input id={name} name={name} onChange={handleChange} onKeyPress={onEnter} value={value} />
         <Button className={classes.Control} onClick={increase}><AddIcon /></Button>
       </div>
-      {error !== "" && <p className={classes.Error}>{error}</p>}
-      {description && <FormHelperText className={classes.Description}>{description}</FormHelperText>}
+      {isShown && isValid && isTouched && <p className={classes.Error}>{error}</p>}
+      {description && <p className={classes.Description}>{description}</p>}
     </div>
   );
 };
