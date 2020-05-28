@@ -95,8 +95,8 @@ export const showField = (formObj, showIf) => {
 // Validate input, return on the first failed validation
 export const validateField = (formObj, fieldObj) => {
 
-    const value = fieldObj.value.trim();
-    const rules = fieldObj.validations;
+    const value = typeof(fieldObj.value) === "string" ? fieldObj.value.trim() : fieldObj.value;
+    const rules = fieldObj ? fieldObj.validations : {};
 
     if (!rules) {
         return [true, ""];
