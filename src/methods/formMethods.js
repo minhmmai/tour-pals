@@ -95,7 +95,7 @@ export const showField = (formObj, showIf) => {
 // Validate input, return on the first failed validation
 export const validateField = (formObj, fieldObj) => {
 
-    const value = typeof(fieldObj.value) === "string" ? fieldObj.value.trim() : fieldObj.value;
+    const value = typeof (fieldObj.value) === "string" ? fieldObj.value.trim() : fieldObj.value;
     const rules = fieldObj ? fieldObj.validations : {};
 
     if (!rules) {
@@ -133,7 +133,7 @@ export const validateField = (formObj, fieldObj) => {
         const max = rules.valueRange.max.fieldRef
             ? getRefField(formObj, rules.valueRange.max.fieldRef).value || 0
             : parseInt(rules.valueRange.max)
-
+        if (parseInt(value) === 0) { return [true, ""] };
         if (value < min || value >= max) {
             return [false, rules.valueRange.errorMsg]
         }
@@ -151,7 +151,19 @@ export const validateField = (formObj, fieldObj) => {
     return [true, ""];
 };
 
-// Validate the whole section by checking every field
-export const validateSection = section => {
+export const validateSection = (formObj, section) => {
+    let sectionIsValid = true;
 
+    section.fields.forEach(field => {
+        const isShown = showField(formObj, field.showIf);
+        const isValid = validateField(formObj, field)[0];
+        if (isShown) {
+            if (isValid) {
+                sectionIsValid = true && sectionIsValid;
+            } else {
+                return false;
+            }
+        }
+    });
+    return sectionIsValid;
 }

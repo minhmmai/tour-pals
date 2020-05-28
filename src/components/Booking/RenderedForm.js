@@ -19,9 +19,6 @@ const RenderedForm = (props) => {
   const [activeSection, setActiveSection] = useState(0);
   const [form, setForm] = useState();
 
-  let sections = [];
-  let fields = [];
-
   const Fields = {
     adjust: Adjust,
     date: Date,
@@ -34,23 +31,20 @@ const RenderedForm = (props) => {
     setForm(retrievedForm);
   }, [formObj]);
 
-  const handleNext = event => {
-    // Prevent the default refresh
+  const handleNext = (event) => {
     event.preventDefault();
+    const sectionIsValid = validateSection(form, form.sections[activeSection]);
+    console.log(sectionIsValid)
+    // sectionIsValid && setActiveSection(prevActiveSection => prevActiveSection + 1)
 
-    // Check section validity and go to the next section
-    const sectionIsValid = validateSection(form.sections[activeSection]);
-    sectionIsValid && setActiveSection(prevActiveSection => prevActiveSection + 1);
   };
 
-  const handleBack = event => {
-    // Prevent the default refresh
+  const handleBack = (event) => {
     event.preventDefault();
-
     // Go back to previous section
     activeSection === 0
-      ? setActiveSection((prevActiveSection) => prevActiveSection - 1)
-      : props.onDeselectService()
+      ? props.onDeselectService()
+      : setActiveSection((prevActiveSection) => prevActiveSection - 1)
   };
 
   const handleReset = () => {
@@ -61,7 +55,6 @@ const RenderedForm = (props) => {
   };
 
   const changeHandler = (event, fieldIndex) => {
-    event.preventDefault();
     setForm(prevForm => {
       const updatedForm = { ...prevForm };
       updatedForm.sections[activeSection].fields[fieldIndex].value = event.target.value;
@@ -136,7 +129,7 @@ const RenderedForm = (props) => {
                         label: field.label,
                         name: field.id,
                         onEnter: event => enterKeyPress(event),
-                        optional: field.validations.isRequired.errorMsg ? false : true,
+                        optional: field.validations.isRequired ? false : true,
                         options: field.options || undefined,
                         tooltip: field.tooltip || undefined,
                         value: field.value,
