@@ -1,0 +1,29 @@
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
+@import "../../assets/scss/keyframes.scss";
+
+.Tooltip {
+    display: inline-block;
+    position: relative;
+    .Icon {
+        margin: auto 0.5rem;
+        color: $toggle_button;
+    }
+    .HelpText {
+        @include white_small_text;
+        animation: fadeInBlock ease 0.3s;
+        display: none;
+        color: $white;
+        padding: 1rem;
+        position: absolute;
+        top: 2.5rem;
+        transform: translateX(-50%);
+        width: 25rem;
+        background-color: $paragraph;
+    }
+    &:hover {
+        .HelpText {
+            display: block;
+        }
+    }
+}

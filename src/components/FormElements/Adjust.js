@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from "@material-ui/core/Button";
-import RemoveIcon from '@material-ui/icons/Remove';
-import AddIcon from '@material-ui/icons/Add';
+import Button from "../UI/Button/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
@@ -14,12 +14,12 @@ const Adjust = (props) => {
       <div className={classes.Label}>
         <label htmlFor={name}>{label}</label>
         {optional && <span>(optional)</span>}
-        {tooltip && <Tooltip content={tooltip} />}
+        {tooltip && <Tooltip helpText={tooltip}/>}
       </div>
       <div className={classes.Adjust}>
-        <Button className={classes.Control} onClick={decrease}><RemoveIcon /></Button>
+        <FontAwesomeIcon className={classes.Control} onClick={decrease} icon={faMinus} />
         <input id={name} name={name} onChange={handleChange} onKeyPress={onEnter} value={value} />
-        <Button className={classes.Control} onClick={increase}><AddIcon /></Button>
+        <FontAwesomeIcon className={classes.Control} onClick={increase} icon={faPlus} />
       </div>
       {isShown && isValid && isTouched && <p className={classes.Error}>{error}</p>}
       {description && <p className={classes.Description}>{description}</p>}

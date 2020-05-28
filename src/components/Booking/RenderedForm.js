@@ -10,7 +10,7 @@ import Adjust from "../FormElements/Adjust";
 import Date from "../FormElements/Date";
 import Input from "../FormElements/Input";
 import Select from "../FormElements/Select";
-import { initFormState, getForm, validateSection, showField, validateField } from "../../methods/formMethods";
+import { initFormState, getForm, showField, validateField } from "../../methods/formMethods";
 import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
