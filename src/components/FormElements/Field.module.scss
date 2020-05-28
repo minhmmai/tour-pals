@@ -4,10 +4,10 @@
 
 .Field {
   margin: 2rem;
-  animation: fadeIn ease 0.3s;
+  animation: fadeInText ease 0.3s;
   .Error {
     @include error;
-    animation: fadeIn ease 0.3s;
+    animation: fadeInText ease 0.3s;
   }
 
   .Label,
