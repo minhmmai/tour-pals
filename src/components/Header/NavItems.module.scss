@@ -2,9 +2,12 @@
 @import "../../assets/scss/variables";
 
 .NavItems {
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   list-style: none;
   height: 100%;
+  width: 60%;
 
   @include respond(phone) {
     display: none;

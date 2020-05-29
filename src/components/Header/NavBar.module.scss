@@ -3,7 +3,9 @@
 
 .NavBar {
   box-shadow: $shadow;
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   height: 7rem;
   padding: 0 10rem;
   position: fixed;

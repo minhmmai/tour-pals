@@ -21,9 +21,9 @@ const NavBar = props => {
         <header>
             <nav className={classes.NavBar}>
                 <Logo link="/" />
+                <NavItems />
                 <Button type="cta" clicked={() => props.history.push("/booking")}>Book Now!</Button>
                 <ToggleButton clicked={toggleMenu} menuIsOpen={toggleMenuIsOpen} />
-                <NavItems />
             </nav>
             <NavItemsMobile isOpen={toggleMenuIsOpen} itemClicked={closeMenu} />
         </header>

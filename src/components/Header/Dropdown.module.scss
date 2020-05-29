@@ -4,11 +4,11 @@
 
 .Dropdown {
     @include paragraph;
-    display: inline-block;
+    align-items: center;
     color: $primary;
-    padding: 2.5rem;
-    text-decoration: none;
-    padding: 2.5rem;
+    cursor: pointer;
+    display: flex;
+    height: 100%;
     &:hover {
         color: $secondary;
     }
@@ -24,13 +24,6 @@
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
     }
-    @include respond(tab-land) {
-        padding: 3rem 2rem;
-    }
-    @include respond(tab-port) {
-        font-size: 2rem;
-        padding: 4rem 1rem;
-    }
     @include respond(phone) {
         width: 100%;
         display: block;
@@ -44,7 +37,7 @@
                 display: block;
                 width: 100%;
             }
-          }
+        }
     }
 }
 
