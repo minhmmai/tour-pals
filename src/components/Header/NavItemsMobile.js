@@ -1,21 +1,21 @@
-import React from 'react';
-import { connect } from "react-redux";
+import React, { useRef, useEffect } from 'react';
 
 import NavItem from './NavItem';
 import Button from "../UI/Button/Button";
 import classes from './NavItemsMobile.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import * as actions from "../../store/actions/index";
 
 const NavItemsMobile = props => {
-    const { isOpen, itemClicked } = props
+    const { isOpen, itemClicked } = props;
+
     return (
         <ul className={classes.NavItemsMobile}
+            
             style={{
                 transform: isOpen ? 'translateY(0)' : 'translateY(-100vh)'
             }}>
-            <Button type="cta" clicked={() => { props.onOpenModal(); itemClicked() }}>Book Now!</Button>
+            <Button type="cta" clicked={() => { /* open booking view */; itemClicked() }}>Book Now!</Button>
             <NavItem link="/" exact="true" clicked={itemClicked}>Home</NavItem>
             <NavItem link="/destinations" clicked={itemClicked}>Destinations</NavItem>
             <NavItem link="/services" clicked={itemClicked}>Services</NavItem>
@@ -31,10 +31,4 @@ const NavItemsMobile = props => {
     )
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onOpenModal: () => dispatch(actions.openModal())
-    }
-}
-
-export default connect(null, mapDispatchToProps)(NavItemsMobile);
+export default NavItemsMobile;

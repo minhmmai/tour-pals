@@ -3,32 +3,34 @@
 @import "../../assets/scss/keyframes";
 
 .NavItemsMobile {
+  @include all_transition;
   display: none;
-  transition: all .5s ease;
+  transform-style: preserve-3d;
 
   @include respond(phone) {
-    display: block;
-    height: auto;
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    top: 12rem;
-    right: 0;
     background-color: $white;
     box-shadow: $shadow;
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    position: fixed;
+    top: 12rem;
+    width: 100%;
+    z-index: 2;
   }
-  
+
   .Dropdown {
     position: relative;
-    z-index: 1;
     .DropdownItem {
-      position: relative;
-      z-index: 1;
-      display: none;
+      @include all_transition;
+      background-color: $nav_sub_menu_bg;
+      position: absolute;
+      top: -10rem;
+      transform: translateZ(-1px);
+      width: 100%;
     }
     &:hover .DropdownItem {
-      display: block;
-      background-color: $nav_sub_menu_bg;
+      top: 7.5rem;
     }
   }
 }

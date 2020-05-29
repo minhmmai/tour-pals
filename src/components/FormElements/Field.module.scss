@@ -18,8 +18,9 @@
     margin: .5rem 0;
   }
   .Description {
-    @include grey_small_text;
+    @include note;
     text-align: center;
+    color: $stepper_label;
   }
 
   .Control {

@@ -2,7 +2,7 @@
 @import "../../../assets/scss/mixins";
 
 .Button {
-  @include menu_item_text;
+  @include paragraph;
   color: $white;
   padding: 1.5rem 3rem;
   @include respond(tab-land) {
@@ -72,13 +72,6 @@
   &:hover {
     background-color: $paragraph;
   }
-  &:disabled {
-    color: $cloudy;
-    cursor: not-allowed;
-    &:hover {
-      background-color: $back_button;
-    }
-  }
 }
 
 .next {
@@ -86,6 +79,16 @@
   background-color: $secondary_light;
   &:hover {
     background-color: $secondary;
+  }
+}
+
+.back, .next {  
+  @include respond(tab-port) {
+    padding: 2rem 4rem;
+  }
+  @include respond(phone) {
+    padding: 2rem 3rem;
+    font-size: 2.5rem;
   }
 }
 

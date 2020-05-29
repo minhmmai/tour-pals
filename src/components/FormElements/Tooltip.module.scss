@@ -10,7 +10,7 @@
         color: $toggle_button;
     }
     .HelpText {
-        @include white_small_text;
+        @include note;
         animation: fadeInBlock ease 0.3s;
         display: none;
         color: $white;

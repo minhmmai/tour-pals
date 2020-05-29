@@ -11,15 +11,16 @@
         .Hourly {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             background-color: $nav_sub_menu_bg;
             width: 32%;
-            padding: 1rem;
-            height: 40rem;
+            padding: 5rem 3rem;
+            height: auto;
             &:hover {
-                transform: scale(1.05);
+                transform: scale(1.02);
                 box-shadow: $service_shadow;
+                background-color: $service_background_dark;
             }
             @include all_transition;
             cursor: pointer;
@@ -27,17 +28,24 @@
                 width: 50%;
             }
             .ServiceName {
-                @include h4;
+                @include paragraph;
                 color: $primary;
             }
-            p {
-                @include paragraph;
+            .ServiceDesc {
+                @include note;
+                color: $paragraph;
             }
             .Icon,
-            p,
+            .ServiceDescp,
             .ServiceName {
-                margin: 1rem 0;
+                margin: 3rem 0;
             }
+        }
+
+        @include respond(tab-land) {
+        }
+
+        @include respond(tab-port) {
         }
 
         @include respond(phone) {
@@ -46,8 +54,21 @@
             .Airport,
             .Tour,
             .Hourly {
+                padding: 2rem;
+                flex-direction: row;
                 width: 100%;
                 margin: 1rem 0;
+                .Icon {
+                    width: 40%;
+                }
+                .ServiceInfo {
+                    width: 60%;
+                    .ServiceName,
+                    .ServiceDesc {
+                        margin: 3rem auto;
+                        display: block;
+                    }
+                }
             }
         }
     }

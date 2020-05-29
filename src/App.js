@@ -23,7 +23,6 @@ const App = props => {
       {/*Auth component is lazy loaded*/}
       <Route path="/booking" component={Booking} />
       <Route path="/" exact component={Cover} />
-      <Redirect to="/" />
     </Switch>
   );
 
