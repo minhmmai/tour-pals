@@ -9,6 +9,7 @@
   height: 100%;
   text-transform: capitalize;
   a {
+    display: block;
     @include all_transition;
     color: $primary;
     text-decoration: none;
@@ -17,6 +18,7 @@
     }
   }
   @include respond(phone) {
+    height: 100%;
     display: block;
     transition: background-color 0.3s ease;
     &:hover {

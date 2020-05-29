@@ -4,31 +4,32 @@
 
 .NavItemsMobile {
   display: none;
-  transition: all .5s ease;
+  @include all_transition;
 
   @include respond(phone) {
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: auto;
     width: 100%;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 12rem;
-    right: 0;
     background-color: $white;
     box-shadow: $shadow;
   }
-  
+
   .Dropdown {
-    position: relative;
-    z-index: 1;
+    z-index: 2;
     .DropdownItem {
-      position: relative;
-      z-index: 1;
+      @include all_transition;
       display: none;
+      transform: translateY(-100vh);
+      background-color: $nav_sub_menu_bg;
+      width: 100%;
     }
     &:hover .DropdownItem {
       display: block;
-      background-color: $nav_sub_menu_bg;
+      transform: translateY(0);
     }
   }
 }
