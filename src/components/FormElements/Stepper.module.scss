@@ -23,7 +23,8 @@
         }
 
         .Label {
-            @include grey_small_text;
+            @include note;
+            color: $paragraph;
         }
         .Line {
             height: .5px;

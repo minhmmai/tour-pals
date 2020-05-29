@@ -3,10 +3,12 @@
 @import "../../assets/scss/mixins.scss";
 
 .Dropdown {
-    @include menu_item_text;
+    @include paragraph;
+    display: inline-block;
     color: $primary;
     padding: 2.5rem;
-    transition: all 0.3s ease;
+    text-decoration: none;
+    padding: 2.5rem;
     &:hover {
         color: $secondary;
     }

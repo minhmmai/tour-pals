@@ -2,7 +2,10 @@
 @import "../../assets/scss/mixins.scss";
 
 .NavItem {
-  @include menu_item_text;
+  @include paragraph;
+  display: inline-block;
+    cursor: pointer;
+    text-transform: capitalize;
   a {
     @include all_transition;
     display: inline-block;
