@@ -107,7 +107,7 @@ export const validateField = (formObj, fieldObj) => {
         }
     }
 
-    if (rules.length) {
+    if (value && rules.length) {
         const min = rules.length.min.fieldRef
             ? getRefField(formObj, rules.length.min.fieldRef).value
             : parseInt(rules.length.min)
@@ -119,14 +119,14 @@ export const validateField = (formObj, fieldObj) => {
         }
     }
 
-    if (rules.isEmail) {
+    if (value && rules.isEmail) {
         const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
         if (!pattern.test(value)) {
             return [false, rules.isEmail.errorMsg]
         }
     }
 
-    if (rules.valueRange) {
+    if (value && rules.valueRange) {
         const min = rules.valueRange.min.fieldRef
             ? parseInt(getRefField(formObj, rules.valueRange.min.fieldRef).value) || 0
             : parseInt(rules.valueRange.min)
@@ -139,7 +139,7 @@ export const validateField = (formObj, fieldObj) => {
         }
     }
 
-    if (rules.withinNext12Months) {
+    if (value && rules.withinNext12Months) {
         const dateValue = dayjs(value);
         const minValue = dayjs();
         const maxValue = minValue.add(12, "month");

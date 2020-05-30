@@ -42,8 +42,8 @@
                         },
                         "length": {
                             "min": 4,
-                            "max": 8,
-                            "errorMsg": "Your flight number must be between 4 and 8 characters long"
+                            "max": 6,
+                            "errorMsg": "Your flight number must be between 4 and 6 characters long"
                         }
                     },
                     "value": ""
@@ -236,7 +236,7 @@
                     "label": "Email address",
                     "type": "text",
                     "validations": {
-                        "isRequired": {
+                        "isEmail": {
                             "errorMsg": "Email is not in correct format"
                         }
                     },
