@@ -121,7 +121,7 @@ const RenderedForm = (props) => {
             You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
             </div>
           <Button onClick={handleReset} type="reset">
-            Book Another Tour
+            Book Another Service
             </Button>
         </div>
       ) : (

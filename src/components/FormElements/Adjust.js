@@ -14,7 +14,7 @@ const Adjust = (props) => {
       <div className={classes.Label}>
         <label htmlFor={name}>{label}</label>
         {optional && <span>(optional)</span>}
-        {tooltip && <Tooltip helpText={tooltip}/>}
+        {tooltip && <Tooltip content={tooltip}/>}
       </div>
       <div className={classes.Adjust}>
         <FontAwesomeIcon className={classes.Control} onClick={decrease} icon={faMinus} />
