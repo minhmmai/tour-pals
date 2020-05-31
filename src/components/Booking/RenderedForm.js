@@ -111,7 +111,7 @@ const RenderedForm = (props) => {
 
   const renderedForm = form ? <form className={classes.Form}>
     <Stepper formSteps={form.sections.map(({ label }) => label)} formActiveStep={activeSection} />
-    <div>
+    <div className={classes.FormSection} >
       {activeSection === form.sections.length ? (
         <div className={classes.Finished}>
           <h3 className={classes.Heading}>All done!</h3>
@@ -166,7 +166,7 @@ const RenderedForm = (props) => {
         clicked={event => handleBack(event)}
         type="back">
         Back
-                </Button>
+      </Button>
       <Button
         clicked={event => handleNext(event)}
         type="next">

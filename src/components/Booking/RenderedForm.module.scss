@@ -6,29 +6,29 @@
   margin: 1rem auto;
   position: relative;
   width: 100%;
-  .Complete {
-    font: 300 2rem "Roboto";
+  .FormSection, .FormButtons {
+    margin-top: 5rem;
   }
-  .Instruction {
-    font-weight: 300;
-    margin-bottom: 2rem;
-  }
-  Button {
-    cursor: pointer;
-  }
-  .Finished {
-    color: $secondary;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    margin: auto;
-    transform: translate(-50%, 50%);
-    width: 100%;
-    .Heading {
-      @include h3;
+  .FormSection {
+    .Finished {
+      color: $secondary;
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      margin: auto;
+      transform: translate(-50%, 50%);
+      width: 100%;
+      .Heading {
+        @include h3;
+      }
+      .Message {
+        @include paragraph;
+      }
     }
-    .Message {
-      @include paragraph;
+  }
+  .FormButtons {
+    Button {
+      cursor: pointer;
     }
   }
 }
