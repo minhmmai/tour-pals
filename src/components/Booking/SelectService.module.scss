@@ -32,7 +32,7 @@
                 color: $primary;
             }
             .ServiceDesc {
-                @include note;
+                @include small_text;
                 color: $paragraph;
             }
             .Icon,

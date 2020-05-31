@@ -23,7 +23,7 @@
         }
 
         .Label {
-            @include note;
+            @include small_text;
             color: $paragraph;
         }
         .Line {

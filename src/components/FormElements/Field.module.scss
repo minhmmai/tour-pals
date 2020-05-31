@@ -6,7 +6,8 @@
   margin: 2rem;
   animation: fadeInText ease 0.3s;
   .Error {
-    @include error;
+    @include small_text;
+    color: $red;
     animation: fadeInText ease 0.3s;
   }
 
@@ -18,7 +19,7 @@
     margin: 0.5rem 0;
   }
   .Description {
-    @include note;
+    @include small_text;
     text-align: center;
     color: $stepper_label;
   }
