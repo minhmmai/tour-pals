@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from "../UI/Button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,7 +17,7 @@ const Adjust = (props) => {
       </div>
       <div className={classes.Adjust}>
         <FontAwesomeIcon className={classes.Control} onClick={decrease} icon={faMinus} />
-        <input id={name} name={name} onChange={handleChange} onKeyPress={onEnter} value={value} />
+        <input id={name} name={name} onChange={handleChange} onKeyPress={onEnter} readOnly value={value}/>
         <FontAwesomeIcon className={classes.Control} onClick={increase} icon={faPlus} />
       </div>
       {isShown && isValid && isTouched && <p className={classes.Error}>{error}</p>}

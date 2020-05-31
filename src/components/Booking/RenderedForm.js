@@ -79,7 +79,7 @@ const RenderedForm = (props) => {
   };
 
   const enterKeyPress = event => {
-    if (event.target.key === 'Enter') {
+    if (event.which === 13 /* Enter */) {
       event.preventDefault();
     }
   }
