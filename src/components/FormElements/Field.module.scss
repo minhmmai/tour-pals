@@ -15,7 +15,7 @@
   select,
   option {
     @include paragraph;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
   .Description {
     @include note;
@@ -30,7 +30,7 @@
     margin: auto 2rem;
     color: $toggle_button;
     &:active {
-      transform: translateY(.2rem);
+      transform: translateY(0.2rem);
     }
   }
 
@@ -47,13 +47,10 @@
     text-align: center;
   }
 
-  .Input input {
-    width: 50rem;
-  }
-
+  .Input input,
   .Select select,
   .Date input {
-    width: 30rem;    
+    width: 30rem;
   }
 
   .Tooltip {
