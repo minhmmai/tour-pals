@@ -114,10 +114,10 @@ const RenderedForm = (props) => {
     <div>
       {activeSection === form.sections.length ? (
         <div className={classes.Finished}>
-          <div className={classes.Heading}>All done!</div>
-          <div className={classes.Message}>
+          <h3 className={classes.Heading}>All done!</h3>
+          <p className={classes.Message}>
             You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
-            </div>
+            </p>
           <Button clicked={handleReset} type="reset">
             Book Another Service
             </Button>
