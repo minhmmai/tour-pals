@@ -9,7 +9,7 @@
         margin: auto 0.5rem;
         color: $toggle_button;
     }
-    .HelpText {
+    .Content {
         @include note;
         animation: fadeInBlock ease 0.3s;
         display: none;
@@ -22,7 +22,7 @@
         background-color: $paragraph;
     }
     &:hover {
-        .HelpText {
+        .Content {
             display: block;
         }
     }

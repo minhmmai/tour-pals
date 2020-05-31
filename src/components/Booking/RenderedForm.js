@@ -37,13 +37,20 @@ const RenderedForm = (props) => {
     const fields = updatedForm.sections[activeSection].fields;
     let sectionIsValid = true;
     for (let i = 0; i < fields.length; i++) {
-      const isShown = showField(formObj, fields[i].showIf);
-      const isValid = validateField(formObj, fields[i])[0];
+      const isShown = showField(updatedForm, fields[i].showIf);
+      const isValid = validateField(updatedForm, fields[i])[0];
       if (isShown) {
-        fields[i].touched = !isValid && true;
+        if (isValid) {
+          sectionIsValid = true && sectionIsValid;
+        } else {
+          fields[i].touched = true;
+          sectionIsValid = false && sectionIsValid;
+        }
+      } else {
+        sectionIsValid = true && sectionIsValid;
       }
-      sectionIsValid = isShown && isValid && sectionIsValid;
     };
+    console.log(sectionIsValid);
     sectionIsValid
       ? setActiveSection(prevActiveSection => prevActiveSection + 1)
       : setForm(updatedForm);
@@ -58,10 +65,8 @@ const RenderedForm = (props) => {
   };
 
   const handleReset = () => {
-    // Initialize form
-    setForm(initFormState(formObj));
-    // Set active section to the first one
-    setActiveSection(0);
+    // Deselect service
+    props.onDeselectService();
   };
 
   const changeHandler = (event, fieldIndex) => {
@@ -113,8 +118,8 @@ const RenderedForm = (props) => {
           <div className={classes.Message}>
             You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
             </div>
-          <Button onClick={handleReset} type="reset">
-            Book Another Tour
+          <Button clicked={handleReset} type="reset">
+            Book Another Service
             </Button>
         </div>
       ) : (
@@ -156,7 +161,7 @@ const RenderedForm = (props) => {
           </div>
         )}
     </div>
-    <div hidden={activeSection === form.sections.length}>
+    <div className={classes.FormButtons} hidden={activeSection === form.sections.length}>
       <Button
         clicked={event => handleBack(event)}
         type="back">

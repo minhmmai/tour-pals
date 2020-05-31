@@ -8,7 +8,7 @@ const Tooltip = (props) => {
     return (
         <div className={classes.Tooltip}>
             <FontAwesomeIcon className={classes.Icon} icon={faQuestionCircle} />
-            <p className={classes.HelpText}>{props.helpText}</p>
+            <p className={classes.Content}>{props.content}</p>
         </div>
     );
 };
