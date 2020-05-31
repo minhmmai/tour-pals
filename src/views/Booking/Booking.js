@@ -25,7 +25,6 @@ const Booking = ({ service }) => {
     }
 
 
-
     return (
         <section className={classes.Booking}>
             <h2 className={classes.Heading}>{heading}</h2>

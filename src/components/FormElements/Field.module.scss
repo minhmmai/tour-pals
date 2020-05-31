@@ -6,7 +6,8 @@
   margin: 2rem;
   animation: fadeInText ease 0.3s;
   .Error {
-    @include error;
+    @include small_text;
+    color: $red;
     animation: fadeInText ease 0.3s;
   }
 
@@ -15,10 +16,10 @@
   select,
   option {
     @include paragraph;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
   .Description {
-    @include note;
+    @include small_text;
     text-align: center;
     color: $stepper_label;
   }
@@ -30,7 +31,7 @@
     margin: auto 2rem;
     color: $toggle_button;
     &:active {
-      transform: translateY(.2rem);
+      transform: translateY(0.2rem);
     }
   }
 
@@ -43,17 +44,14 @@
   }
 
   .Adjust input {
-    width: 5rem;
+    width: 7rem;
     text-align: center;
   }
 
-  .Input input {
-    width: 50rem;
-  }
-
+  .Input input,
   .Select select,
   .Date input {
-    width: 30rem;    
+    width: 30rem;
   }
 
   .Tooltip {

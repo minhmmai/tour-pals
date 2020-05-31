@@ -2,17 +2,33 @@
 @import "../../assets/scss/mixins.scss";
 
 .Form {
-  width: 100%;
-  margin: 1rem auto;
   @include all_transition;
-  .Complete {
-    font: 300 2rem "Roboto";
+  margin: 1rem auto;
+  position: relative;
+  width: 100%;
+  .FormSection, .FormButtons {
+    margin-top: 5rem;
   }
-  .Instruction {
-    font-weight: 300;
-    margin-bottom: 2rem;
+  .FormSection {
+    .Finished {
+      color: $secondary;
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      margin: auto;
+      transform: translate(-50%, 50%);
+      width: 100%;
+      .Heading {
+        @include h3;
+      }
+      .Message {
+        @include paragraph;
+      }
+    }
   }
-  Button {
-    cursor: pointer;
+  .FormButtons {
+    Button {
+      cursor: pointer;
+    }
   }
 }

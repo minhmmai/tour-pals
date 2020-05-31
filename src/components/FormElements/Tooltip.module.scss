@@ -10,20 +10,21 @@
         color: $toggle_button;
     }
     .Content {
-        @include note;
+        @include small_text;
         animation: fadeInBlock ease 0.3s;
         display: none;
         color: $white;
         padding: 1rem;
         position: absolute;
-        top: 2.5rem;
-        transform: translateX(-50%);
-        width: 25rem;
-        background-color: $paragraph;
+        top: 0;
+        transform: translateX(-100%);
+        width: 30rem;
+        background-color: rgba($color: $paragraph, $alpha: 0.8);
     }
     &:hover {
         .Content {
             display: block;
         }
     }
+
 }

@@ -67,27 +67,38 @@
         font-size: 2.2rem;
     }
     @include respond(phone) {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 }
 
-@mixin error {
+@mixin small_text {
     @include all_transition;
     font: 300 1.5rem "Roboto";
-    color: $red;
-}
-
-@mixin note {
-    @include all_transition;
-    font: 300 1.7rem "Roboto";
     @include respond(tab-land) {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     @include respond(tab-port) {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     @include respond(phone) {
-        font-size: 2.3rem;
+        font-size: 2rem;
+    }
+}
+
+@mixin nav_item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    text-transform: capitalize;
+    @include respond(desktop) {
+        margin: 0 2rem;
+    }
+    @include respond(tab-land) {
+        margin: 0 2rem;
+    }
+    @include respond(tab-port) {
+        margin: 0;
     }
 }
 

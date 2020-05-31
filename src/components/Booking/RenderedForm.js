@@ -79,7 +79,7 @@ const RenderedForm = (props) => {
   };
 
   const enterKeyPress = event => {
-    if (event.target.key === 'Enter') {
+    if (event.which === 13 /* Enter */) {
       event.preventDefault();
     }
   }
@@ -111,13 +111,13 @@ const RenderedForm = (props) => {
 
   const renderedForm = form ? <form className={classes.Form}>
     <Stepper formSteps={form.sections.map(({ label }) => label)} formActiveStep={activeSection} />
-    <div>
+    <div className={classes.FormSection} >
       {activeSection === form.sections.length ? (
         <div className={classes.Finished}>
-          <div className={classes.Heading}>All done!</div>
-          <div className={classes.Message}>
+          <h3 className={classes.Heading}>All done!</h3>
+          <p className={classes.Message}>
             You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
-            </div>
+            </p>
           <Button clicked={handleReset} type="reset">
             Book Another Service
             </Button>
@@ -166,7 +166,7 @@ const RenderedForm = (props) => {
         clicked={event => handleBack(event)}
         type="back">
         Back
-                </Button>
+      </Button>
       <Button
         clicked={event => handleNext(event)}
         type="next">
