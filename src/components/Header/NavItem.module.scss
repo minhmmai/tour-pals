@@ -3,9 +3,10 @@
 
 .NavItem {
   @include paragraph;
+  @include nav_item;
+  display: flex;
   align-items: center;
   cursor: pointer;
-  display: flex;
   height: 100%;
   text-transform: capitalize;
   a {
@@ -17,6 +18,7 @@
       color: $secondary;
     }
   }
+
   @include respond(phone) {
     height: 100%;
     display: block;

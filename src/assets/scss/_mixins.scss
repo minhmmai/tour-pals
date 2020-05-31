@@ -91,6 +91,23 @@
     }
 }
 
+@mixin nav_item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    text-transform: capitalize;
+    @include respond(desktop) {
+        margin: 0 2rem;
+    }
+    @include respond(tab-land) {
+        margin: 0 2rem;
+    }
+    @include respond(tab-port) {
+        margin: 0;
+    }
+}
+
 @mixin button_label {
     @include all_transition;
     font: 400 1.7rem "Roboto";

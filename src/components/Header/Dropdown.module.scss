@@ -4,11 +4,8 @@
 
 .Dropdown {
     @include paragraph;
-    align-items: center;
+    @include nav_item;
     color: $primary;
-    cursor: pointer;
-    display: flex;
-    height: 100%;
     &:hover {
         color: $secondary;
     }
@@ -25,5 +22,13 @@
 }
 
 .Dropdown:hover .DropdownContent {
-    top: 10rem;
+    @include respond(desktop) {
+        top: 7rem;
+    }
+    @include respond(tab-land) {
+        top: 8rem;
+    }
+    @include respond(tab-port) {
+        top: 10rem;
+    }
 }
