@@ -42,12 +42,12 @@ const RenderedForm = (props) => {
       if (isShown) {
         if (isValid) {
           sectionIsValid = true && sectionIsValid;
-        }else {
+        } else {
           fields[i].touched = true;
           sectionIsValid = false && sectionIsValid;
         }
-      }else {
-          sectionIsValid = true && sectionIsValid;
+      } else {
+        sectionIsValid = true && sectionIsValid;
       }
     };
     console.log(sectionIsValid);
@@ -65,10 +65,8 @@ const RenderedForm = (props) => {
   };
 
   const handleReset = () => {
-    // Initialize form
-    setForm(initFormState(formObj));
-    // Set active section to the first one
-    setActiveSection(0);
+    // Deselect service
+    props.onDeselectService();
   };
 
   const changeHandler = (event, fieldIndex) => {
@@ -120,7 +118,7 @@ const RenderedForm = (props) => {
           <div className={classes.Message}>
             You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
             </div>
-          <Button onClick={handleReset} type="reset">
+          <Button clicked={handleReset} type="reset">
             Book Another Service
             </Button>
         </div>
@@ -163,7 +161,7 @@ const RenderedForm = (props) => {
           </div>
         )}
     </div>
-    <div hidden={activeSection === form.sections.length}>
+    <div className={classes.FormButtons} hidden={activeSection === form.sections.length}>
       <Button
         clicked={event => handleBack(event)}
         type="back">

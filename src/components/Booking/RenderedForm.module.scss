@@ -1,17 +1,18 @@
-@import '../../assets/scss/variables.scss';
-@import '../../assets/scss/mixins.scss';
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
 
 .Form {
   width: 100%;
-  margin: 1rem auto;  
+  margin: 1rem auto;
   @include all_transition;
   .Complete {
-    font: 300 2rem 'Roboto';
+    font: 300 2rem "Roboto";
   }
   .Instruction {
     font-weight: 300;
     margin-bottom: 2rem;
+  }
+  Button {
+    cursor: pointer;
+  }
 }
-}
-
-
