@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { withRouter } from "react-router-dom";
 
 import NavItem from './NavItem';
