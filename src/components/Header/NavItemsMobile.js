@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
+import { withRouter } from "react-router-dom";
 
 import NavItem from './NavItem';
 import Button from "../UI/Button/Button";
@@ -15,7 +16,7 @@ const NavItemsMobile = props => {
             style={{
                 transform: isOpen ? 'translateY(0)' : 'translateY(-100vh)'
             }}>
-            <Button type="cta" clicked={() => { /* open booking view */; itemClicked() }}>Book Now!</Button>
+            <Button type="cta" clicked={() => { props.history.push("/booking"); itemClicked() }}>Book Now!</Button>
             <NavItem link="/" exact="true" clicked={itemClicked}>Home</NavItem>
             <NavItem link="/destinations" clicked={itemClicked}>Destinations</NavItem>
             <NavItem link="/services" clicked={itemClicked}>Services</NavItem>
@@ -31,4 +32,4 @@ const NavItemsMobile = props => {
     )
 };
 
-export default NavItemsMobile;
+export default withRouter(NavItemsMobile);
