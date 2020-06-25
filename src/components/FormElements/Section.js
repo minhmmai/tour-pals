@@ -5,7 +5,7 @@ import classes from "./Section.module.scss";
 const Section = props => {
   const { children, isHidden, title, description } = props;
   return (
-    <fieldset
+    <div
       className={classes.Section}
       hidden={isHidden}
     >
@@ -14,7 +14,7 @@ const Section = props => {
         {description}
       </h4>
       {children}
-    </fieldset>
+    </div>
   );
 };
 export default Section;

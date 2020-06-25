@@ -8,6 +8,7 @@ import Section from "../FormElements/Section";
 import Spinner from "../UI/Spinner/Spinner";
 import Adjust from "../FormElements/Adjust";
 import Date from "../FormElements/Date";
+import Time from "../FormElements/Time";
 import Input from "../FormElements/Input";
 import Select from "../FormElements/Select";
 import { initFormState, getForm, showField, validateField } from "../../methods/formMethods";
@@ -22,8 +23,9 @@ const RenderedForm = (props) => {
   const Fields = {
     adjust: Adjust,
     date: Date,
+    select: Select,
     text: Input,
-    select: Select
+    time: Time,
   };
 
   useEffect(() => {
@@ -151,8 +153,8 @@ const RenderedForm = (props) => {
                         isTouched: isTouched,
                         isShown: isShown,
                         isValid: validity[1],
-                        increase: () => increase(field.value, index),
-                        decrease: () => decrease(field.value, index)
+                        increase: field.type === "adjust" ? () => increase(field.value, index) : undefined,
+                        decrease: field.type === "adjust" ? () => decrease(field.value, index) : undefined
                       });
                   })}
                 </Section>

@@ -5,6 +5,7 @@
     @include border;
     margin-bottom: 2rem;
     padding: 1rem;
+    border: 1px solid $border;
     .Legend {
         @include h3;
         margin: 0 3rem;
