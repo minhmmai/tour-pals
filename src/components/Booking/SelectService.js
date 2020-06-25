@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +11,7 @@ const SelectService = props => {
     return (
         <section className={classes.SelectServices}>
             <div className={classes.Service}>
-                <div className={classes.Airport} onClick={() => props.onSelectService("airport")}>
+                <div className={classes.Airport} onClick={() => {props.onSelectService("airport"); props.history.push("booking/airport")}}>
                     <img className={classes.Icon} src={require("../../assets/icon/airport.svg")} alt="Airport icon" />
                     <div className={classes.ServiceInfo}>
                         <p className={classes.ServiceDesc}>
@@ -22,7 +23,7 @@ const SelectService = props => {
                         </h4>
                     </div>
                 </div>
-                <div className={classes.Tour} onClick={() => props.onSelectService("tour")}>
+                <div className={classes.Tour} onClick={() => {props.onSelectService("tour"); props.history.push("booking/tour")}}>
                     <img className={classes.Icon} src={require("../../assets/icon/travel-map.svg")} alt="Airport icon" />
                     <div className={classes.ServiceInfo}>
                         <p className={classes.ServiceDesc}>
@@ -34,7 +35,7 @@ const SelectService = props => {
                         </h4>
                     </div>
                 </div>
-                <div className={classes.Hourly} onClick={() => props.onSelectService("hourly")}>
+                <div className={classes.Hourly} onClick={() => {props.onSelectService("hourly"); props.history.push("booking/hourly")}}>
                     <img className={classes.Icon} src={require("../../assets/icon/speed.svg")} alt="Airport icon" />
                     <div className={classes.ServiceInfo}>
                         <p className={classes.ServiceDesc}>
@@ -57,4 +58,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(SelectService);
+export default withRouter(connect(null, mapDispatchToProps)(SelectService));
