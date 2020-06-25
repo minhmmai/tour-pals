@@ -11,11 +11,11 @@
         .Hourly {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-evenly;
             align-items: center;
             background-color: $nav_sub_menu_bg;
             width: 32%;
-            padding: 5rem 3rem;
+            padding: 3rem;
             height: auto;
             &:hover {
                 transform: scale(1.02);
@@ -32,7 +32,7 @@
                 color: $primary;
             }
             .ServiceDesc {
-                @include small_text;
+                @include paragraph;
                 color: $paragraph;
             }
             .Icon,
@@ -54,12 +54,12 @@
             .Airport,
             .Tour,
             .Hourly {
-                padding: 2rem;
+                padding: 0 2rem;
                 flex-direction: row;
                 width: 100%;
                 margin: 1rem 0;
                 .Icon {
-                    width: 40%;
+                    width: 25%;
                 }
                 .ServiceInfo {
                     width: 60%;
