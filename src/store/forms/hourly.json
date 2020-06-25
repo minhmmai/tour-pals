@@ -32,7 +32,7 @@
                 {
                     "fieldId": "bookingPeriod",
                     "label": "How long would you like to book for this trip?",
-                    "tooltip": "Sure you can extend you trip or finish earlier, just let our driver know.",
+                    "tooltip": "Sure you can extend you trip or finish earlier on the day, just let our driver know.",
                     "description": "This helps us plan the trip better",
                     "type": "select",
                     "options": [
@@ -126,7 +126,7 @@
                         "valueRange": {
                             "min": 0,
                             "max": {
-                                "fieldRef": "flightDetails.noOfSeater"
+                                "fieldRef": "tripDetails.noOfSeater"
                             },
                             "errorMsg": "Must be less than number of vehicle's seats, enter 0 if there is no children travelling"
                         }
