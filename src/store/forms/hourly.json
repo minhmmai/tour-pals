@@ -1,0 +1,202 @@
+{
+    "formId": "hourly",
+    "sections": [
+        {
+            "sectionId": "tripDetails",
+            "label": "Trip Details",
+            "title": "Let's Get Started!",
+            "description": "Tell us know about your group and the trip",
+            "fields": [
+                {
+                    "fieldId": "dateTime",
+                    "label": "What date would you like to book for this trip?",
+                    "type": "date",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know when you would like to book for this trip"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "dateTime",
+                    "label": "What time would you like to be picked up?",
+                    "type": "time",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know the time you would like to be picked up"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "tripPeriod",
+                    "label": "How long would you like to book for this trip?",
+                    "description": "This help us plan your trip better",
+                    "type": "select",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Select one"
+                        },
+                        {
+                            "value": "unsure",
+                            "label": "Not sure yet"
+                        },
+                        {
+                            "value": "2",
+                            "label": "Up to 2 hours"
+                        },
+                        {
+                            "value": "5",
+                            "label": "Up to 5 hours"
+                        },
+                        {
+                            "value": "8",
+                            "label": "Up to 8 hours"
+                        },
+                        {
+                            "value": "10",
+                            "label": "Up to 10 hours"
+                        }
+                    ],
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know how long would you like to book for this trip."
+                        }
+                    },
+                    "value": 0
+                },
+                {
+                    "fieldId": "pickupAddress",
+                    "label": "Where can we pick you up?",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know the pickup address"
+                        },
+                        "length": {
+                            "min": 10,
+                            "max": 50,
+                            "errorMsg": "The address must be between 10 and 50 characters"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "noOfSeater",
+                    "label": "How many seat of a vehicle would you need?",
+                    "description": "Number of seats including driver",
+                    "type": "select",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Select one"
+                        },
+                        {
+                            "value": "5",
+                            "label": "5-Seater Small Car"
+                        },
+                        {
+                            "value": "7",
+                            "label": "7-Seater MPV"
+                        },
+                        {
+                            "value": "12",
+                            "label": "12-Seater Minibus"
+                        }
+                    ],
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know which vehicle you need"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "children",
+                    "label": "How many children aged under 7 in your group?",
+                    "tooltip": "We'll prepare car seats for the little ones, free of charge",
+                    "type": "adjust",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know how many children are travelling"
+                        },
+                        "valueRange": {
+                            "min": 0,
+                            "max": {
+                                "fieldRef": "flightDetails.noOfSeater"
+                            },
+                            "errorMsg": "Must be less than number of vehicle's seats, enter 0 if there is no children travelling"
+                        }
+                    },
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "sectionId": "contactDetails",
+            "label": "Contact Details",
+            "title": "Tell us more about yourself",
+            "description": "Let us know how we can contact you",
+            "fields": [
+                {
+                    "fieldId": "fullName",
+                    "label": "Full name",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know your name"
+                        },
+                        "length": {
+                            "min": 10,
+                            "max": 50,
+                            "errorMsg": "Your full name must be between 10 and 50 characters"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "email",
+                    "label": "Email address",
+                    "type": "text",
+                    "validations": {
+                        "isEmail": {
+                            "errorMsg": "Email is not in correct format"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "contactNumber",
+                    "label": "Contact number",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know your contact number"
+                        },
+                        "length": {
+                            "min": 7,
+                            "max": 50,
+                            "errorMsg": "Your contact number must be between 7 and 50 characters"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "altContactNumber",
+                    "label": "Alternative Contact number",
+                    "type": "text",
+                    "validations": {
+                        "length": {
+                            "min": 7,
+                            "max": 50,
+                            "errorMsg": "Your alternative contact number must be between 7 and 50 characters"
+                        }
+                    },
+                    "value": ""
+                }
+            ]
+        }
+    ]
+}

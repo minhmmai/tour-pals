@@ -5,7 +5,7 @@
             "sectionId": "flightDetails",
             "label": "Tour Details",
             "title": "Let's Get Started!",
-            "description": "Let us know about your group and the flight your are travelling",
+            "description": "Tell us about your group and the flight your are travelling",
             "fields": [
                 {
                     "fieldId": "type",
@@ -50,7 +50,7 @@
                 },
                 {
                     "fieldId": "pickupAddress",
-                    "label": "Where do we pick you up?",
+                    "label": "Where can we pick you up?",
                     "type": "text",
                     "validations": {
                         "isRequired": {
@@ -158,11 +158,11 @@
                         },
                         {
                             "value": "12",
-                            "label": "12-Seater Van"
+                            "label": "12-Seater Minibus"
                         },
                         {
                             "value": "16",
-                            "label": "16-Seater Van"
+                            "label": "16-Seater Minibus"
                         },
                         {
                             "value": "22",
@@ -191,7 +191,7 @@
                 {
                     "fieldId": "children",
                     "label": "How many children aged under 7 in your group?",
-                    "tooltip": "We'll prepare car seats for the little ones free of charge",
+                    "tooltip": "We'll prepare car seats for the little ones, free of charge",
                     "type": "adjust",
                     "validations": {
                         "isRequired": {
