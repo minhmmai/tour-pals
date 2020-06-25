@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import * as actions from "../../store/actions/index";
+import { withRouter } from "react-router-dom";
 
 import Stepper from "../FormElements/Stepper";
 import Button from "../UI/Button/Button";
@@ -62,13 +61,13 @@ const RenderedForm = (props) => {
     event.preventDefault();
     // Go back to previous section
     activeSection === 0
-      ? props.onDeselectService()
+      ? props.history.push("/booking")
       : setActiveSection((prevActiveSection) => prevActiveSection - 1)
   };
 
   const handleReset = () => {
     // Deselect service
-    props.onDeselectService();
+    props.history.push("/booking");
   };
 
   const changeHandler = (event, fieldIndex) => {
@@ -179,17 +178,4 @@ const RenderedForm = (props) => {
   return renderedForm;
 };
 
-const mapStateToProps = state => {
-  return {
-    service: state.service.selectedSerive
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onDeselectService: () => dispatch(actions.deselectService())
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(RenderedForm);
+export default withRouter(RenderedForm);
