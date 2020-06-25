@@ -4,7 +4,7 @@ import Tooltip from './Tooltip';
 import classes from './Field.module.scss';
 
 const Time = (props) => {
-  const { description, error, handleChange, name, optional, label, isShown, isValid, isTouched, tooltip, type, value } = props
+  const { description, error, handleChange, name, optional, label, isShown, isValid, isTouched, tooltip, value } = props
   return (
     <div className={[classes.Field, !isShown && classes.Hidden].join(" ")}>
       <div className={classes.Label}>

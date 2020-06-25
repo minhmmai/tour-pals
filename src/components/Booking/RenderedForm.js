@@ -153,8 +153,8 @@ const RenderedForm = (props) => {
                         isTouched: isTouched,
                         isShown: isShown,
                         isValid: validity[1],
-                        increase: () => increase(field.value, index),
-                        decrease: () => decrease(field.value, index)
+                        increase: field.type === "adjust" ? () => increase(field.value, index) : undefined,
+                        decrease: field.type === "adjust" ? () => decrease(field.value, index) : undefined
                       });
                   })}
                 </Section>
