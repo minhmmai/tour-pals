@@ -1,0 +1,38 @@
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
+
+.NavItem {
+  @include paragraph;
+  @include nav_item;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+  text-transform: capitalize;
+  a {
+    display: block;
+    @include all_transition;
+    color: $primary;
+    text-decoration: none;
+    &:hover {
+      color: $secondary;
+    }
+  }
+
+  @include respond(phone) {
+    height: 100%;
+    display: block;
+    transition: background-color 0.3s ease;
+    &:hover {
+      background-color: $secondary_light;
+    }
+    a {
+      &:hover {
+        color: $white;
+      }
+      font-size: 3rem;
+      width: 100%;
+      padding: 2rem 0;
+    }
+  }
+}

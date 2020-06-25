@@ -1,0 +1,64 @@
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
+@import "../../assets/scss/keyframes.scss";
+
+.Field {
+  margin: 2rem;
+  animation: fadeInText ease 0.3s;
+  .Error {
+    @include small_text;
+    color: $red;
+    animation: fadeInText ease 0.3s;
+  }
+
+  .Label,
+  input,
+  select,
+  option {
+    @include paragraph;
+    margin: 0.5rem 0;
+  }
+  .Description {
+    @include small_text;
+    text-align: center;
+    color: $stepper_label;
+  }
+
+  .Control {
+    @include paragraph;
+    @include all_transition;
+    cursor: pointer;
+    margin: auto 2rem;
+    color: $toggle_button;
+    &:active {
+      transform: translateY(0.2rem);
+    }
+  }
+
+  input,
+  select,
+  option {
+    height: 4rem;
+    padding: 0.5rem;
+    border: 1px solid $border !important; //fix top border is not showing in modal
+  }
+
+  .Adjust input {
+    width: 7rem;
+    text-align: center;
+  }
+
+  .Input input,
+  .Select select,
+  .Date input {
+    width: 30rem;
+  }
+
+  .Tooltip {
+    font-size: 0.5rem;
+  }
+}
+
+.Hidden {
+  display: none;
+}

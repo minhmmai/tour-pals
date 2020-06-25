@@ -1,0 +1,24 @@
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/variables";
+
+.NavItems {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  height: 100%;
+  width: 60%;
+  
+  @include respond(desktop) {
+    justify-content: center;
+  }
+  @include respond(tab-land) {
+    justify-content: center;
+  }
+  @include respond(tab-port) {
+    justify-content: space-between;
+  }
+  @include respond(phone) {
+    display: none;
+  }
+}

@@ -1,0 +1,21 @@
+@import "../../assets//scss/variables.scss";
+@import "../../assets/scss/mixins";
+
+.DropdownItem {
+    text-align: left;
+    text-transform: capitalize;
+    line-height: 2.5;
+    a {
+        display: block;
+        color: $primary;
+        padding: .25rem 3rem;
+        text-decoration: none;
+        @include all_transition;
+        &:hover {
+            color: $secondary;
+        }
+    }
+    
+    @include respond(phone) {
+    }
+}

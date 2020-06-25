@@ -1,0 +1,75 @@
+@import "../../assets/scss/mixins";
+@import "../../assets/scss/variables";
+
+.SelectServices {
+    .Service {
+        display: flex;
+        justify-content: space-around;
+        margin: 5rem 0;
+        .Airport,
+        .Tour,
+        .Hourly {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background-color: $nav_sub_menu_bg;
+            width: 32%;
+            padding: 5rem 3rem;
+            height: auto;
+            &:hover {
+                transform: scale(1.02);
+                box-shadow: $service_shadow;
+                background-color: $service_background_dark;
+            }
+            @include all_transition;
+            cursor: pointer;
+            .Icon {
+                width: 50%;
+            }
+            .ServiceName {
+                @include paragraph;
+                color: $primary;
+            }
+            .ServiceDesc {
+                @include small_text;
+                color: $paragraph;
+            }
+            .Icon,
+            .ServiceDescp,
+            .ServiceName {
+                margin: 3rem 0;
+            }
+        }
+
+        @include respond(tab-land) {
+        }
+
+        @include respond(tab-port) {
+        }
+
+        @include respond(phone) {
+            flex-direction: column;
+            justify-content: space-around;
+            .Airport,
+            .Tour,
+            .Hourly {
+                padding: 2rem;
+                flex-direction: row;
+                width: 100%;
+                margin: 1rem 0;
+                .Icon {
+                    width: 40%;
+                }
+                .ServiceInfo {
+                    width: 60%;
+                    .ServiceName,
+                    .ServiceDesc {
+                        margin: 3rem auto;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
+
+.Booking {
+    position: absolute;
+    top: 7rem;
+    padding: 5rem;
+    width: 100%;
+    .Heading {
+        @include h2;
+        color: $primary;
+    }
+    .SubHeading {
+        @include h4;
+        color: $paragraph;
+    }
+}

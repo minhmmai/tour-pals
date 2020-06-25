@@ -1,0 +1,50 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.Stepper {
+    display: flex;
+    justify-content: space-between;
+    .Step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin: 1rem;
+        .Index {
+            border-radius: 50%;
+            background-color: $stepper_index;
+            @include button_label;
+            width: 3rem;
+            height: 3rem;
+            padding: .6rem;
+            margin: .5rem;
+            text-align: center;
+        }
+
+        .Label {
+            @include small_text;
+            color: $paragraph;
+        }
+        .Line {
+            height: .5px;
+            background-color: $border;
+            position: absolute;
+            width: 80%;
+            top: 40%;
+            left: 61%;
+        }
+    }
+
+    .Complete {
+        .Index {
+            background-color: $stepper_index_complete;
+        }
+        .Label {
+            color: $stepper_label_complete;
+        }
+        .Line {
+            background-color: $stepper_index_complete;
+        }
+    }
+}

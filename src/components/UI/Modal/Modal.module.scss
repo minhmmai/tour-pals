@@ -1,0 +1,29 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/mixins";
+
+.Modal {
+    position: fixed;
+    z-index: 20;
+    background-color: white;
+    width: auto;
+    max-height: 90vh;
+    width: 100rem;
+    border: none;
+    box-shadow: $shadow;
+    padding: 2rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);  
+    @include all_transition;  
+    overflow: scroll;
+
+    @include respond(tab-land) {
+        width: 70vw
+    }
+    @include respond(tab-port) {
+        width: 80vw
+    }
+    @include respond(phone) {
+        width: 100%
+    }
+}

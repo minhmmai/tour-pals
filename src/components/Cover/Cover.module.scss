@@ -1,0 +1,26 @@
+@import "../../assets/scss/variables";
+@import "../../assets/scss/mixins";
+
+.Cover {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../../assets/img/aerial-beach.jpg);
+  background-size: cover;
+  background-position: center;
+  .Intro {
+    color: $white;
+    display: block;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .IntroTitle {
+      @include h1;
+    }
+    .IntroSubTitle {
+      @include h3;
+    }
+  }
+}

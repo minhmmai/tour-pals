@@ -1,0 +1,17 @@
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
+
+.Section {
+    @include border;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    .Legend {
+        @include h3;
+        margin: 0 3rem;
+        color: $secondary;
+    }
+    .Description {
+        @include h4;
+        color: $paragraph;
+    }
+}

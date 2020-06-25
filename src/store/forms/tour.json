@@ -1,0 +1,354 @@
+{
+    "formId": "tour",
+    "sections": [
+        {
+            "sectionId": "tourDetails",
+            "label": "Tour Details",
+            "title": "Let's Get Started!",
+            "description": "Let us know about your group and the tour you're interested in",
+            "fields": [
+                {
+                    "fieldId": "tour",
+                    "label": "Which tour are you looking for?",
+                    "type": "select",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Select one"
+                        },
+                        {
+                            "value": "phillip-island",
+                            "label": "Phillip Island"
+                        },
+                        {
+                            "value": "souvereign-hill",
+                            "label": "Souvereign Hill"
+                        },
+                        {
+                            "value": "bright",
+                            "label": "Bright"
+                        },
+                        {
+                            "value": "mt-buller",
+                            "label": "Mt Buller"
+                        },
+                        {
+                            "value": "mt-macedon",
+                            "label": "Mt Macedon"
+                        },
+                        {
+                            "value": "great-ocean-road",
+                            "label": "Great Ocean Road"
+                        },
+                        {
+                            "value": "lake-ountain",
+                            "label": "Lake Mountain"
+                        },
+                        {
+                            "value": "grampians",
+                            "label": "Grampians"
+                        }
+                    ],
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know which tour you're looking for"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "date",
+                    "label": "When would you like to depart?",
+                    "type": "date",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know the date you'd like to travel"
+                        },
+                        "withinNext12Months": {
+                            "errorMsg": "We can only accept booking for within next 12 months"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "totalPeople",
+                    "label": "How many people are travelling?",
+                    "tooltip": "Total number of people travelling including you",
+                    "type": "select",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Select one"
+                        },
+                        {
+                            "value": "4",
+                            "label": "4 Or Less"
+                        },
+                        {
+                            "value": "7",
+                            "label": "7 Or Less"
+                        },
+                        {
+                            "value": "10",
+                            "label": "10 Or Less"
+                        },
+                        {
+                            "value": "15",
+                            "label": "15 Or Less"
+                        },
+                        {
+                            "value": "20",
+                            "label": "20 Or Less"
+                        },
+                        {
+                            "value": "30",
+                            "label": "30 Or Less"
+                        },
+                        {
+                            "value": "40",
+                            "label": "40 Or Less"
+                        },
+                        {
+                            "value": "60",
+                            "label": "60 Or Less"
+                        }
+                    ],
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know how many people are travelling"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "pickupAddress",
+                    "label": "What is your pick-up address?",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know the pick-up address"
+                        },
+                        "length": {
+                            "min": 10,
+                            "max": 50,
+                            "errorMsg": "Your pick-up address must be between 10 and 50 characters"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "children",
+                    "label": "How many children aged between 2 and 7 in your group?",
+                    "tooltip": "We'll prepare car seats for the little ones free of charge",
+                    "description": "Children under 2 are not recommended to travel on our tours unfortunately",
+                    "type": "adjust",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know how many children are travelling"
+                        },
+                        "valueRange": {
+                            "min": 0,
+                            "max": {
+                                "fieldRef": "tourDetails.totalPeople"
+                            },
+                            "errorMsg": "Must be less than total people travelling, enter 0 if there is no children travelling"
+                        }
+                    },
+                    "value": "0"
+                }
+            ]
+        },
+        {
+            "sectionId": "contactDetails",
+            "label": "Contact Details",
+            "title": "Tell us more about yourself",
+            "description": "Let us know how we can contact you",
+            "fields": [
+                {
+                    "fieldId": "fullName",
+                    "label": "Full name",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know your name"
+                        },
+                        "length": {
+                            "min": 10,
+                            "max": 50,
+                            "errorMsg": "Your full name must be between 10 and 50 characters"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "email",
+                    "label": "Email address",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "Email is not in correct format"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "contactNumber",
+                    "label": "Contact number",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know your contact number"
+                        },
+                        "length": {
+                            "min": 7,
+                            "max": 50,
+                            "errorMsg": "Your contact number must be between 7 and 50 characters"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "altContactNumber",
+                    "label": "Alternative Contact number",
+                    "type": "text",
+                    "validations": {
+                        "length": {
+                            "min": 7,
+                            "max": 50,
+                            "errorMsg": "Your alternative contact number must be between 7 and 50 characters"
+                        }
+                    },
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "sectionId": "paymentDetails",
+            "label": "Payment",
+            "title": "Tell us how you'd like to pay",
+            "description": "Let us know how you would like to pay for the trip",
+            "fields": [
+                {
+                    "fieldId": "paymentType",
+                    "label": "Payment Type",
+                    "type": "select",
+                    "options": [
+                        {
+                            "value": "",
+                            "label": "Select one"
+                        },
+                        {
+                            "value": "cash",
+                            "label": "Cash On The Day"
+                        },
+                        {
+                            "value": "visa",
+                            "label": "Visa"
+                        },
+                        {
+                            "value": "master",
+                            "label": "Mastercard"
+                        },
+                        {
+                            "value": "amex",
+                            "label": "American Express"
+                        }
+                    ],
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know the payment type"
+                        }
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "cardNumber",
+                    "label": "Card Number",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know your card number"
+                        },
+                        "length": {
+                            "min": 15,
+                            "max": 16,
+                            "errorMsg": "Your card number must be 15 or 16 digits"
+                        }
+                    },
+                    "showIf": {
+                        "and": [
+                            {
+                                "type": "differ",
+                                "fieldRef": "paymentDetails.paymentType",
+                                "value": "cash"
+                            },
+                            {
+                                "type": "differ",
+                                "fieldRef": "paymentDetails.paymentType",
+                                "value": ""
+                            }
+                        ]
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "expiryDate",
+                    "label": "Expiry Date",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know your card expiry date"
+                        }
+                    },
+                    "showIf": {
+                        "and": [
+                            {
+                                "type": "differ",
+                                "fieldRef": "paymentDetails.paymentType",
+                                "value": "cash"
+                            },
+                            {
+                                "type": "differ",
+                                "fieldRef": "paymentDetails.paymentType",
+                                "value": ""
+                            }
+                        ]
+                    },
+                    "value": ""
+                },
+                {
+                    "fieldId": "cvv",
+                    "label": "CVV",
+                    "tooltip": "This is a 3 to 4 digits code at the back of your card",
+                    "description": "This is also refered to as CVC or CID",
+                    "type": "text",
+                    "validations": {
+                        "isRequired": {
+                            "errorMsg": "We need to know your card CVV"
+                        },
+                        "length": {
+                            "min": 3,
+                            "max": 4,
+                            "errorMsg": "Your card CVV must be 3 or 4 digits"
+                        }
+                    },
+                    "showIf": {
+                        "and": [
+                            {
+                                "type": "differ",
+                                "fieldRef": "paymentDetails.paymentType",
+                                "value": "cash"
+                            },
+                            {
+                                "type": "differ",
+                                "fieldRef": "paymentDetails.paymentType",
+                                "value": ""
+                            }
+                        ]
+                    },
+                    "value": ""
+                }
+            ]
+        }
+    ]
+}

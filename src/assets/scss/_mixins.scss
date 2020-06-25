@@ -1,0 +1,158 @@
+@import "./variables.scss";
+
+@mixin h1 {
+    font: 400 6.2rem "Roboto";
+    margin: 1rem;
+    @include respond(tab-land) {
+        font-size: 5.8rem;
+    }
+    @include respond(tab-port) {
+        font-size: 6.2rem;
+    }
+    @include respond(phone) {
+        font-size: 6.5rem;
+    }
+}
+
+@mixin h2 {
+    font: 400 5rem "Roboto";
+    margin: 0.7rem;
+    @include respond(tab-land) {
+        font-size: 4.8rem;
+    }
+    @include respond(tab-port) {
+        font-size: 5.2rem;
+    }
+    @include respond(phone) {
+        font-size: 5.5rem;
+    }
+}
+
+@mixin h3 {
+    font: 300 3rem "Roboto";
+    margin: 0.5rem;
+    @include respond(tab-land) {
+        font-size: 3.8rem;
+    }
+    @include respond(tab-port) {
+        font-size: 4.2rem;
+    }
+    @include respond(phone) {
+        font-size: 4.5rem;
+    }
+}
+
+@mixin h4 {
+    font: 200 2.5rem "Roboto";
+    margin: 0.2rem;
+    @include respond(tab-land) {
+        font-size: 2.8rem;
+    }
+    @include respond(tab-port) {
+        font-size: 3.2rem;
+    }
+    @include respond(phone) {
+        font-size: 3.5rem;
+    }
+}
+
+@mixin paragraph {
+    @include all_transition;
+    font: 300 1.8rem "Roboto";
+    color: $paragraph;
+    @include respond(tab-land) {
+        font-size: 1.8rem;
+    }
+    @include respond(tab-port) {
+        font-size: 2.2rem;
+    }
+    @include respond(phone) {
+        font-size: 2.5rem;
+    }
+}
+
+@mixin small_text {
+    @include all_transition;
+    font: 300 1.5rem "Roboto";
+    @include respond(tab-land) {
+        font-size: 1.6rem;
+    }
+    @include respond(tab-port) {
+        font-size: 1.8rem;
+    }
+    @include respond(phone) {
+        font-size: 2rem;
+    }
+}
+
+@mixin nav_item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    text-transform: capitalize;
+    @include respond(desktop) {
+        margin: 0 2rem;
+    }
+    @include respond(tab-land) {
+        margin: 0 2rem;
+    }
+    @include respond(tab-port) {
+        margin: 0;
+    }
+}
+
+@mixin button_label {
+    @include all_transition;
+    font: 400 1.7rem "Roboto";
+    color: $white;
+}
+
+@mixin all_transition {
+    transition: all 0.3s ease;
+}
+
+@mixin border {
+    border: 1px solid $border;
+}
+
+// Media query manager
+/*
+0 - 600px:          Phone
+600 - 900px:        Tablet Portrait
+900 - 1200:         Tablet Landscape
+1200 - 1800px:      Normal Style
+
+$breakpoint argument choices:
+- phone
+-tab-port
+-tab-land
+- desktop
+*/
+
+@mixin respond($breakpoint) {
+    @media (max-width: 40em) {
+        //16px * 40 = 640px
+        @if $breakpoint == phone {
+            @content;
+        }
+    }
+    @if $breakpoint == tab-port {
+        @media (max-width: 56.25em) {
+            //900px (em is the best unit for media query)
+            @content;
+        }
+    }
+    @if $breakpoint == tab-land {
+        @media (max-width: 75em) {
+            // < 1200px
+            @content;
+        }
+    }
+    @if $breakpoint == desktop {
+        @media (min-width: 75em) {
+            // > 1200px
+            @content;
+        }
+    }
+}
