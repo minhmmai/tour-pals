@@ -8,7 +8,7 @@
             "description": "Tell us know about your group and the trip",
             "fields": [
                 {
-                    "fieldId": "dateTime",
+                    "fieldId": "date",
                     "label": "What date would you like to book for this trip?",
                     "type": "date",
                     "validations": {
@@ -19,7 +19,7 @@
                     "value": ""
                 },
                 {
-                    "fieldId": "dateTime",
+                    "fieldId": "time",
                     "label": "What time would you like to be picked up?",
                     "type": "time",
                     "validations": {
@@ -30,9 +30,10 @@
                     "value": ""
                 },
                 {
-                    "fieldId": "tripPeriod",
+                    "fieldId": "bookingPeriod",
                     "label": "How long would you like to book for this trip?",
-                    "description": "This help us plan your trip better",
+                    "tooltip": "Sure you can extend you trip or finish earlier, just let our driver know.",
+                    "description": "This helps us plan the trip better",
                     "type": "select",
                     "options": [
                         {
@@ -62,10 +63,10 @@
                     ],
                     "validations": {
                         "isRequired": {
-                            "errorMsg": "We need to know how long would you like to book for this trip."
+                            "errorMsg": "We need to know how long you would like to book for this trip"
                         }
                     },
-                    "value": 0
+                    "value": ""
                 },
                 {
                     "fieldId": "pickupAddress",
