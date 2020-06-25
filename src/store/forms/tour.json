@@ -5,7 +5,7 @@
             "sectionId": "tourDetails",
             "label": "Tour Details",
             "title": "Let's Get Started!",
-            "description": "Let us know about your group and the tour you're interested in",
+            "description": "Tell us about your group and the tour you're interested in",
             "fields": [
                 {
                     "fieldId": "tour",
@@ -122,7 +122,7 @@
                 },
                 {
                     "fieldId": "pickupAddress",
-                    "label": "What is your pick-up address?",
+                    "label": "What can we pick you up?",
                     "type": "text",
                     "validations": {
                         "isRequired": {
@@ -139,7 +139,7 @@
                 {
                     "fieldId": "children",
                     "label": "How many children aged between 2 and 7 in your group?",
-                    "tooltip": "We'll prepare car seats for the little ones free of charge",
+                    "tooltip": "We'll prepare car seats for the little ones, free of charge",
                     "description": "Children under 2 are not recommended to travel on our tours unfortunately",
                     "type": "adjust",
                     "validations": {
@@ -185,7 +185,7 @@
                     "label": "Email address",
                     "type": "text",
                     "validations": {
-                        "isRequired": {
+                        "isEmail": {
                             "errorMsg": "Email is not in correct format"
                         }
                     },
