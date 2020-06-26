@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 export const getForm = formType => {
-    return require(`../store/forms/${formType}.json`);
+    return require(`../forms/${formType}.json`);
 };
 
 // Return he field object given the form and the field reference
