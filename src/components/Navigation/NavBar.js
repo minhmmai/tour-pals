@@ -5,7 +5,7 @@ import NavItems from './NavItems';
 import NavItemsMobile from './NavItemsMobile';
 import Button from '../UI/Button/Button';
 import Logo from '../Logo/Logo';
-import ToggleButton from "../Header/ToggleButton";
+import ToggleButton from "../Navigation/ToggleButton";
 import classes from './NavBar.module.scss';
 
 const NavBar = props => {

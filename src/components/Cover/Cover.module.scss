@@ -16,11 +16,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    .IntroTitle {
-      @include h1;
-    }
-    .IntroSubTitle {
-      @include h3;
+    h1{
+      text-transform: uppercase;
     }
   }
 }

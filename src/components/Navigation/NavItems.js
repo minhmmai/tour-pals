@@ -8,9 +8,8 @@ import DropdownItem from "./DropdownItem";
 const NavItems = () => {
     return (
         <ul className={classes.NavItems}>
-            <NavItem link="/" exact="true">Home</NavItem>
-            <NavItem link="/destinations">Destinations</NavItem>
             <NavItem link="/services">Services</NavItem>
+            <NavItem link="/destinations">Destinations</NavItem>
             <Dropdown label="My Trips">
                 <DropdownItem link="/manage-booking">Manage Booking</DropdownItem>
                 <DropdownItem link="/enquire">Enquire</DropdownItem>

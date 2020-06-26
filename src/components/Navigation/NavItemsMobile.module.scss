@@ -24,6 +24,7 @@
     .DropdownItem {
       @include all_transition;
       background-color: $nav_sub_menu_bg;
+      box-shadow: $shadow;
       position: absolute;
       top: -10rem;
       transform: translateZ(-1px);

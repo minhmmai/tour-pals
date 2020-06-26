@@ -16,8 +16,16 @@
   select,
   option {
     @include paragraph;
-    margin: 0.5rem 0;
+    margin: 0.5rem auto;
   }
+
+  input,
+  select {
+    height: 5rem;
+    padding: 0rem 1rem;
+    border: 1px solid $border !important; //fix top border is not showing in modal
+  }
+
   .Description {
     @include small_text;
     text-align: center;
@@ -35,14 +43,6 @@
     }
   }
 
-  input,
-  select,
-  option {
-    height: 4rem;
-    padding: 0.5rem;
-    border: 1px solid $border !important; //fix top border is not showing in modal
-  }
-
   .Adjust input {
     width: 7rem;
     text-align: center;
@@ -51,7 +51,7 @@
   .Input input,
   .Select select,
   .Date input {
-    width: 30rem;
+    width: 35rem;
   }
 
   .Tooltip {
