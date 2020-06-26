@@ -8,11 +8,9 @@
     width: 100%;
     height: 100vh;
     .Heading {
-        @include h2;
         color: $primary;
     }
     .SubHeading {
-        @include h4;
         color: $paragraph;
     }
     @include respond(tab-port) {

@@ -28,11 +28,9 @@
                 width: 50%;
             }
             .ServiceName {
-                @include paragraph;
                 color: $primary;
             }
             .ServiceDesc {
-                @include paragraph;
                 color: $paragraph;
             }
             .Icon,
@@ -40,12 +38,6 @@
             .ServiceName {
                 margin: 3rem 0;
             }
-        }
-
-        @include respond(tab-land) {
-        }
-
-        @include respond(tab-port) {
         }
 
         @include respond(phone) {
