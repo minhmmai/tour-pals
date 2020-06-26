@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 const NavItemsMobile = props => {
-    const { isOpen, itemClicked } = props;
+    const { isOpen } = props;
 
     return (
         <ul className={classes.NavItemsMobile}
@@ -16,15 +16,15 @@ const NavItemsMobile = props => {
             style={{
                 transform: isOpen ? 'translateY(0)' : 'translateY(-100vh)'
             }}>
-            <Button type="cta" clicked={() => { props.history.push("/booking"); itemClicked() }}>Book Now!</Button>
-            <NavItem link="/services" clicked={itemClicked}>Services</NavItem>
-            <NavItem link="/destinations" clicked={itemClicked}>Destinations</NavItem>
-            <NavItem link="/about" clicked={itemClicked}>About Us</NavItem>
+            <Button type="cta" clicked={() => { props.history.push("/booking") }}>Book Now!</Button>
+            <NavItem link="/services">Services</NavItem>
+            <NavItem link="/destinations">Destinations</NavItem>
+            <NavItem link="/about">About Us</NavItem>
             <div className={classes.Dropdown}>
                 <NavItem link="#">My Trips <FontAwesomeIcon icon={faCaretDown} /></NavItem>
                 <div className={classes.DropdownItem}>
-                    <NavItem link="/manage" clicked={itemClicked}>Manage Booking</NavItem>
-                    <NavItem link="/feedback" clicked={itemClicked}>Feedback</NavItem>
+                    <NavItem link="/manage">Manage Booking</NavItem>
+                    <NavItem link="/feedback">Feedback</NavItem>
                 </div>
             </div>
         </ul>

@@ -41,7 +41,7 @@ const NavBar = props => {
                 <ToggleButton clicked={toggleMenu} menuIsOpen={toggleMenuIsOpen} />
                 </div>
             </nav>
-            <NavItemsMobile isOpen={toggleMenuIsOpen} itemClicked={closeMenu} />
+            <NavItemsMobile isOpen={toggleMenuIsOpen}/>
         </header>
     )
 };
