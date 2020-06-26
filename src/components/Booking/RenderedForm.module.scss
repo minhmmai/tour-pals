@@ -4,6 +4,7 @@
 .RenderedForm {
   position: relative;
   top: 7rem;
+  width: 100vw;
 
   .FormHeading {
     margin: 5rem auto;
@@ -16,11 +17,17 @@
     margin-bottom: 5rem;
     .Finished {
       .Heading {
+        color: $primary_light;
         .Message {
           color: $paragraph;
         }
       }
     }
+
+    .Heading, .Message {
+      margin-bottom: 5rem;
+    }
+
     .Form {
       .FormSection {
         .SectionDescription {

@@ -151,7 +151,7 @@ const RenderedForm = (props) => {
                         key={section.sectionId}
                         title={section.title}
                         isHidden={sectionIndex !== activeSection}>
-                        <h3 className={classes.SectionDescription}>{section.description}</h3>
+                        <h4 className={classes.SectionDescription}>{section.description}</h4>
                         {form.sections[activeSection].fields.map((field, index) => {
                           const validity = validateField(form, field);
                           const isShown = showField(form, field.showIf);
