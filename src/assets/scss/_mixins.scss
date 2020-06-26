@@ -1,20 +1,11 @@
 @import "./variables.scss";
 
 @mixin h1 {
-    font: 400 6.2rem "Roboto";
-    @include respond(tab-land) {
-        font-size: 5.8rem;
-    }
-    @include respond(tab-port) {
-        font-size: 6.2rem;
-    }
-    @include respond(phone) {
-        font-size: 6.5rem;
-    }
+    font: 700 8rem "Roboto";
 }
 
 @mixin h2 {
-    font: 400 5rem "Roboto";
+    font: 500 5rem "Roboto";
     @include respond(tab-land) {
         font-size: 4.8rem;
     }
@@ -27,7 +18,7 @@
 }
 
 @mixin h3 {
-    font: 300 3rem "Roboto";
+    font: 400 3rem "Roboto";
     @include respond(tab-land) {
         font-size: 3.8rem;
     }
