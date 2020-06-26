@@ -5,7 +5,7 @@
             "sectionId": "flightDetails",
             "label": "Tour Details",
             "title": "Let's Get Started!",
-            "description": "Tell us about your group and the flight your are travelling",
+            "description": "Tell us about your group and the flight you are travelling",
             "fields": [
                 {
                     "fieldId": "type",
