@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 import classes from "./SelectService.module.scss";
 
@@ -16,7 +16,7 @@ const SelectService = props => {
                         </p>
                     <h4 className={classes.ServiceName}>
                         Airport Transfer &nbsp;
-                        <FontAwesomeIcon icon={faArrowRight} />
+                        <FontAwesomeIcon icon={faAngleRight} />
                     </h4>
                 </div>
             </div>
@@ -28,7 +28,7 @@ const SelectService = props => {
                         </p>
                     <h4 className={classes.ServiceName}>
                         Private Tours &nbsp;
-                        <FontAwesomeIcon icon={faArrowRight} />
+                        <FontAwesomeIcon icon={faAngleRight} />
                     </h4>
                 </div>
             </div>
@@ -40,7 +40,7 @@ const SelectService = props => {
                         </p>
                     <h4 className={classes.ServiceName}>
                         By The Hour &nbsp;
-                        <FontAwesomeIcon icon={faArrowRight} />
+                        <FontAwesomeIcon icon={faAngleRight} />
                     </h4>
                 </div>
             </div>
