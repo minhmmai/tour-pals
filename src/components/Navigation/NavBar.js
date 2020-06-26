@@ -18,9 +18,9 @@ const NavBar = props => {
         setToggleMenuIsOpen(false);
     };
 
-    const tglMenu = useRef();
+    const tglButtonRef = useRef();
     const handleClick = e => {
-        if (tglMenu.current.contains(e.target)) { return; } // inside click
+        if (tglButtonRef.current.contains(e.target)) { return; } // inside click
         closeMenu();// outside click
     };
 
@@ -32,12 +32,14 @@ const NavBar = props => {
     });
 
     return (
-        <header ref={tglMenu}>
+        <header>
             <nav className={classes.NavBar}>
                 <Logo link="/" />
                 <NavItems />
                 <Button type="cta" clicked={() => props.history.push("/booking")}>Book Now!</Button>
+                <div ref={tglButtonRef}>
                 <ToggleButton clicked={toggleMenu} menuIsOpen={toggleMenuIsOpen} />
+                </div>
             </nav>
             <NavItemsMobile isOpen={toggleMenuIsOpen} itemClicked={closeMenu} />
         </header>
