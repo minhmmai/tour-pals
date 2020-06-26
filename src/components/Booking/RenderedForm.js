@@ -15,19 +15,16 @@ import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
 
-  let formHeading, formSubHeading, formObj;
+  let formHeading, formObj;
 
   if (props.type) {
     formObj = getForm(props.type);
     if (props.type === "airport") {
       formHeading = "Airport Transfer";
-      formSubHeading = "Complementary water • Toll roads • Fully insured"
     } else if (props.type === "tour") {
       formHeading = "Private Tour";
-      formSubHeading = "Complementary water • Time flexible • Fully insured"
     } else if (props.type === "hourly") {
-      formHeading = "By The Hour";
-      formSubHeading = "Complementary water • Top locations • Fully insured"
+      formHeading = "By-The-Hour";
     }
 
   }
@@ -154,7 +151,7 @@ const RenderedForm = (props) => {
                         key={section.sectionId}
                         title={section.title}
                         isHidden={sectionIndex !== activeSection}>
-                        <h4 className={classes.SectionDescription}>{section.description}</h4>
+                        <h3 className={classes.SectionDescription}>{section.description}</h3>
                         {form.sections[activeSection].fields.map((field, index) => {
                           const validity = validateField(form, field);
                           const isShown = showField(form, field.showIf);

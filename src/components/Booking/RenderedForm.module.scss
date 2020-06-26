@@ -17,19 +17,24 @@
     .Finished {
       .Heading {
         .Message {
-
+          color: $paragraph;
         }
       }
     }
-    .SectionDescription {
-      margin-bottom: 5rem;
+    .Form {
+      .FormSection {
+        .SectionDescription {
+          margin-bottom: 5rem;
+          color: $paragraph;
+        }
+      }
     }
   }
-  
+
   .FormButtons {
     margin-bottom: 2rem;
   }
-  
+
   @include respond(tab-port) {
     top: 10rem;
   }
