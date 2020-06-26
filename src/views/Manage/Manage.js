@@ -3,7 +3,7 @@ import React from "react";
 import classes from "./Manage.module.scss";
 
 const Manage = () => {
-    let heading = "My Trips";
+    let heading = "My Bookings";
     let subHeading = "Let us know what we can do for your trips";
 
     return (
