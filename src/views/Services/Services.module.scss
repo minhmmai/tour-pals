@@ -1,0 +1,24 @@
+@import "../../assets/scss/variables.scss";
+@import "../../assets/scss/mixins.scss";
+
+.Services {
+    position: relative;
+    top: 7rem;
+    width: 100vw;
+    .Heading {
+        margin: 5rem auto;
+        h2 {
+            color: $primary;
+        }
+        h4 {
+            color: $paragraph;
+        }
+    }
+    
+    @include respond(tab-port) {
+        top: 10rem;
+    }
+    @include respond(phone) {
+        top: 12rem;
+    }
+}

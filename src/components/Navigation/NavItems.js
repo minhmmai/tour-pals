@@ -11,10 +11,10 @@ const NavItems = () => {
             <NavItem link="/services">Services</NavItem>
             <NavItem link="/destinations">Destinations</NavItem>
             <Dropdown label="My Trips">
-                <DropdownItem link="/manage-booking">Manage Booking</DropdownItem>
-                <DropdownItem link="/enquire">Enquire</DropdownItem>
+                <DropdownItem link="/manage">Manage Booking</DropdownItem>
+                <DropdownItem link="/feedback">Feedback</DropdownItem>
             </Dropdown>
-            <NavItem link="/about-us">About Us</NavItem>
+            <NavItem link="/about">About Us</NavItem>
         </ul>
     )
 };
