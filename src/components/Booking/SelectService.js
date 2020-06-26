@@ -7,8 +7,7 @@ import classes from "./SelectService.module.scss";
 
 const SelectService = props => {
     return (
-        <section className={classes.SelectServices}>
-            <div className={classes.Service}>
+            <section className={classes.Services}>
                 <div className={classes.Airport} onClick={() => props.history.push("booking/airport")}>
                     <img className={classes.Icon} src={require("../../assets/icon/airport.svg")} alt="Airport icon" />
                     <div className={classes.ServiceInfo}>
@@ -45,8 +44,7 @@ const SelectService = props => {
                         </h4>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
     )
 };
 

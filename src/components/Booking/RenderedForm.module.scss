@@ -41,39 +41,4 @@
   @include respond(phone) {
     top: 12rem;
   }
-  /* .Stepper,
-  .Form,
-  .SectionDescription {
-    margin-bottom: 3rem;
-  }
-  
-  .Heading {
-    color: $primary;
-  }
-
-  .SectionDescription {
-    color: $paragraph;
-  }
-
-  .Finished {
-    color: $secondary;
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    margin: auto;
-    transform: translate(-50%, 50%);
-    width: 100%;
-  }
-
-  .Form {
-    @include all_transition;
-    width: 100%;
-  }
-
-  .FormButtons {
-    Button {
-      margin: 0 0.2rem;
-    }
-  }
- */
 }
