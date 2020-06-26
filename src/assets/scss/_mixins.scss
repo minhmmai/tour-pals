@@ -45,7 +45,7 @@
 
 @mixin paragraph {
     @include all_transition;
-    font: 300 1.8rem "Roboto";
+    font: 300 2rem "Roboto";
     color: $paragraph;
     @include respond(tab-land) {
         font-size: 2.2rem;
