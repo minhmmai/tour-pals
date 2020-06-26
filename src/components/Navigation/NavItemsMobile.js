@@ -19,12 +19,12 @@ const NavItemsMobile = props => {
             <Button type="cta" clicked={() => { props.history.push("/booking"); itemClicked() }}>Book Now!</Button>
             <NavItem link="/services" clicked={itemClicked}>Services</NavItem>
             <NavItem link="/destinations" clicked={itemClicked}>Destinations</NavItem>
-            <NavItem link="/about-us" clicked={itemClicked}>About Us</NavItem>
+            <NavItem link="/about" clicked={itemClicked}>About Us</NavItem>
             <div className={classes.Dropdown}>
                 <NavItem link="#">My Trips <FontAwesomeIcon icon={faCaretDown} /></NavItem>
                 <div className={classes.DropdownItem}>
-                    <NavItem link="/manage-booking" clicked={itemClicked}>Manage Booking</NavItem>
-                    <NavItem link="/enquire" clicked={itemClicked}>Enquire</NavItem>
+                    <NavItem link="/manage" clicked={itemClicked}>Manage Booking</NavItem>
+                    <NavItem link="/feedback" clicked={itemClicked}>Feedback</NavItem>
                 </div>
             </div>
         </ul>
