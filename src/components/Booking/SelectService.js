@@ -12,7 +12,7 @@ const SelectService = props => {
                 <img className={classes.Icon} src={require("../../assets/icon/airport.svg")} alt="Airport icon" />
                 <div className={classes.ServiceInfo}>
                     <p className={classes.ServiceDesc}>
-                        We know your flights" departure, landing time. We know if they have been delayed or cancelled too.
+                        We know your flight's departure, landing time. We know if they have been delayed or cancelled too.
                         </p>
                     <h4 className={classes.ServiceName}>
                         Airport Transfer &nbsp;
