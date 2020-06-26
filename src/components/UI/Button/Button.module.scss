@@ -1,8 +1,11 @@
 @import "../../../assets/scss/variables";
 @import "../../../assets/scss/mixins";
 
-.Button {
+Button {
+  @include all_transition;
   @include paragraph;
+  border: none;
+  cursor: pointer;
   color: $white;
   padding: 1.5rem 3rem;
   @include respond(tab-land) {
@@ -18,9 +21,6 @@
 
 .cta {
   display: block;
-  float: right;
-  margin: 1rem 0;
-  border: none;
   background-color: $secondary;
   &:hover {
     background-color: $primary;
@@ -33,16 +33,13 @@
     margin: 2.5rem 0;
   }
   @include respond(phone) {
-    display: block;
     width: 100%;
-    font-size: 3rem;
     padding: 2rem 0;
     margin: 0;
   }
 }
 
 .intro {
-  border: none;
   background-color: $secondary_light;
   padding: 3rem 5rem;
   margin: 3rem 0;
@@ -59,7 +56,6 @@
 }
 
 .info {
-  border: none;
   background-color: $primary_light;
   &:hover {
     background-color: $secondary_light;
@@ -67,7 +63,6 @@
 }
 
 .back {
-  border: none;
   background-color: $back_button;
   &:hover {
     background-color: $paragraph;
@@ -75,7 +70,6 @@
 }
 
 .next {
-  border: none;
   background-color: $secondary_light;
   &:hover {
     background-color: $secondary;
@@ -83,17 +77,21 @@
 }
 
 .back, .next {  
+  width: 15%;
+  margin: 0 .2rem;
+  @include respond(tab-land) {
+    width: 20%;
+  }
   @include respond(tab-port) {
     padding: 2rem 4rem;
   }
   @include respond(phone) {
     padding: 2rem 3rem;
-    font-size: 2.5rem;
+    width: 25%;
   }
 }
 
 .reset {
-  border: none;
   background-color: $secondary_light;
   display: block;
   padding: 3rem 5rem;
@@ -108,8 +106,4 @@
     padding: 2rem 3rem;
     font-size: 2.5rem;
   }
-}
-
-.cta, .info, .intro {
-  @include all_transition;
 }

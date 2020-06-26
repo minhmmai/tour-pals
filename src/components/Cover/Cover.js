@@ -11,9 +11,9 @@ const Cover = () => {
                 <h1 className={classes.IntroTitle}>
                     It's Summer Time
                 </h1>
-                <h3 className={classes.IntroSubTitle}>
+                <h4 className={classes.IntroSubTitle}>
                     Book your tour now to enjoy the best sunshine with us!
-                </h3>
+                </h4>
 
                 <Link
                     to="/destinations">

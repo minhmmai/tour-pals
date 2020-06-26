@@ -14,7 +14,20 @@ import { initFormState, getForm, showField, validateField } from "../../methods/
 import classes from "./RenderedForm.module.scss";
 
 const RenderedForm = (props) => {
-  const formObj = props.type && getForm(props.type);
+
+  let formHeading, formObj;
+
+  if (props.type) {
+    formObj = getForm(props.type);
+    if (props.type === "airport") {
+      formHeading = "Airport Transfer";
+    } else if (props.type === "tour") {
+      formHeading = "Private Tour";
+    } else if (props.type === "hourly") {
+      formHeading = "By-The-Hour";
+    }
+
+  }
 
   const [activeSection, setActiveSection] = useState(0);
   const [form, setForm] = useState();
@@ -109,72 +122,81 @@ const RenderedForm = (props) => {
     });
   };
 
-
-  const renderedForm = form ? <form className={classes.Form}>
-    <Stepper formSteps={form.sections.map(({ label }) => label)} formActiveStep={activeSection} />
-    <div className={classes.FormSection} >
-      {activeSection === form.sections.length ? (
-        <div className={classes.Finished}>
-          <h3 className={classes.Heading}>All done!</h3>
-          <p className={classes.Message}>
-            You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
-            </p>
-          <Button clicked={handleReset} type="reset">
-            Book Another Service
-            </Button>
+  const renderedForm = form
+    ? <div className={classes.RenderedForm}>
+      <section className={classes.FormHeading}>
+        <h2>{formHeading}</h2>
+        <div className={classes.Stepper}>
+          <Stepper formSteps={form.sections.map(({ label }) => label)} formActiveStep={activeSection} />
         </div>
-      ) : (
-          <div>
-            {form.sections.map((section, sectionIndex) => {
-              return (
-                <Section
-                  key={section.sectionId}
-                  title={section.title}
-                  isHidden={sectionIndex !== activeSection}
-                  description={section.description}>
-                  {form.sections[activeSection].fields.map((field, index) => {
-                    const validity = validateField(form, field);
-                    const isShown = showField(form, field.showIf);
-                    const isTouched = field.touched;
-                    return (Fields[field.type])
-                      && React.createElement(Fields[field.type], {
-                        description: field.description || undefined,
-                        error: validity[0] ? "" : validity[1],
-                        handleChange: (event) => changeHandler(event, index),
-                        key: field.fieldId,
-                        label: field.label,
-                        name: field.id,
-                        onEnter: event => enterKeyPress(event),
-                        optional: field.validations.isRequired ? false : true,
-                        options: field.options || undefined,
-                        tooltip: field.tooltip || undefined,
-                        value: field.value,
-                        isTouched: isTouched,
-                        isShown: isShown,
-                        isValid: validity[1],
-                        increase: field.type === "adjust" ? () => increase(field.value, index) : undefined,
-                        decrease: field.type === "adjust" ? () => decrease(field.value, index) : undefined
-                      });
-                  })}
-                </Section>
-              );
-            })}
+      </section>
+      <section className={classes.FormArea}>
+        {activeSection === form.sections.length ? (
+          <div className={classes.Finished}>
+            <h3 className={classes.Heading}>All done!</h3>
+            <p className={classes.Message}>
+              You will receive a confirmation email very soon. If any questions, feel free to contact us at 1234 1234.<br />Thank you for choosing Tour Pals!.
+            </p>
+            <Button clicked={handleReset} type="reset">
+              Book Another Service
+            </Button>
           </div>
-        )}
-    </div>
-    <div className={classes.FormButtons} hidden={activeSection === form.sections.length}>
-      <Button
-        clicked={event => handleBack(event)}
-        type="back">
-        Back
-      </Button>
-      <Button
-        clicked={event => handleNext(event)}
-        type="next">
-        {activeSection === form.sections.length - 1 ? "Submit" : "Next"}
-      </Button>
-    </div>
-  </form> : <Spinner />;
+        ) : (
+            <form className={classes.Form}>
+              <div className={classes.FormSection} >
+                <div>
+                  {form.sections.map((section, sectionIndex) => {
+                    return (
+                      <Section
+                        key={section.sectionId}
+                        title={section.title}
+                        isHidden={sectionIndex !== activeSection}>
+                        <h4 className={classes.SectionDescription}>{section.description}</h4>
+                        {form.sections[activeSection].fields.map((field, index) => {
+                          const validity = validateField(form, field);
+                          const isShown = showField(form, field.showIf);
+                          const isTouched = field.touched;
+                          return (Fields[field.type])
+                            && React.createElement(Fields[field.type], {
+                              description: field.description || undefined,
+                              error: validity[0] ? "" : validity[1],
+                              handleChange: (event) => changeHandler(event, index),
+                              key: field.fieldId,
+                              label: field.label,
+                              name: field.id,
+                              onEnter: event => enterKeyPress(event),
+                              optional: field.validations.isRequired ? false : true,
+                              options: field.options || undefined,
+                              tooltip: field.tooltip || undefined,
+                              value: field.value,
+                              isTouched: isTouched,
+                              isShown: isShown,
+                              isValid: validity[1],
+                              increase: field.type === "adjust" ? () => increase(field.value, index) : undefined,
+                              decrease: field.type === "adjust" ? () => decrease(field.value, index) : undefined
+                            });
+                        })}
+                      </Section>
+                    );
+                  })}
+                </div>
+              </div>
+            </form>
+          )}
+      </section>
+      <section className={classes.FormButtons} hidden={activeSection === form.sections.length}>
+        <Button
+          clicked={event => handleBack(event)}
+          type="back">
+          Back
+        </Button>
+        <Button
+          clicked={event => handleNext(event)}
+          type="next">
+          {activeSection === form.sections.length - 1 ? "Submit" : "Next"}
+        </Button>
+      </section>
+    </div> : <Spinner />;
   return renderedForm;
 };
 

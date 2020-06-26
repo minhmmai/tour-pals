@@ -8,11 +8,15 @@ const Booking = () => {
     let subHeading = "Let us know which service you are looking to book";
 
     return (
-        <section className={classes.Booking}>
-            <h2 className={classes.Heading}>{heading}</h2>
-            <h4 className={classes.SubHeading}>{subHeading}</h4>
+        <div className={classes.Booking}>
+            <section className={classes.Heading}>
+                <h2>{heading}</h2>
+                <h4>{subHeading}</h4>
+            </section>
+            <section className={classes.Services}>
             <SelectService className={classes.Content} />
-        </section>
+            </section>
+        </div>
     )
 };
 

@@ -1,18 +1,18 @@
 @import "../../assets//scss/variables";
 @import "../../assets//scss/mixins";
 
- header{
-   .NavBar {
-     box-shadow: $shadow;
+header {
+  .NavBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: $white;
+    box-shadow: $shadow;
     height: 7rem;
+    width: 100vw;
     padding: 0 10rem;
     position: fixed;
     top: 0;
-    width: 100vw;
-    background-color: $white;
     z-index: 100;
     transform-style: preserve-3d;
     @include respond(tab-land) {

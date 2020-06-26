@@ -1,22 +1,11 @@
 @import "./variables.scss";
 
 @mixin h1 {
-    font: 400 6.2rem "Roboto";
-    margin: 1rem;
-    @include respond(tab-land) {
-        font-size: 5.8rem;
-    }
-    @include respond(tab-port) {
-        font-size: 6.2rem;
-    }
-    @include respond(phone) {
-        font-size: 6.5rem;
-    }
+    font: 700 8rem "Roboto";
 }
 
 @mixin h2 {
-    font: 400 5rem "Roboto";
-    margin: 0.7rem;
+    font: 500 5rem "Roboto";
     @include respond(tab-land) {
         font-size: 4.8rem;
     }
@@ -29,8 +18,7 @@
 }
 
 @mixin h3 {
-    font: 300 3rem "Roboto";
-    margin: 0.5rem;
+    font: 400 3rem "Roboto";
     @include respond(tab-land) {
         font-size: 3.8rem;
     }
@@ -43,8 +31,7 @@
 }
 
 @mixin h4 {
-    font: 200 2.5rem "Roboto";
-    margin: 0.2rem;
+    font: 300 2.5rem "Roboto";
     @include respond(tab-land) {
         font-size: 2.8rem;
     }
@@ -58,16 +45,16 @@
 
 @mixin paragraph {
     @include all_transition;
-    font: 300 1.8rem "Roboto";
+    font: 300 2rem "Roboto";
     color: $paragraph;
     @include respond(tab-land) {
-        font-size: 1.8rem;
-    }
-    @include respond(tab-port) {
         font-size: 2.2rem;
     }
-    @include respond(phone) {
+    @include respond(tab-port) {
         font-size: 2.5rem;
+    }
+    @include respond(phone) {
+        font-size: 3rem;
     }
 }
 
@@ -75,13 +62,13 @@
     @include all_transition;
     font: 300 1.5rem "Roboto";
     @include respond(tab-land) {
-        font-size: 1.6rem;
-    }
-    @include respond(tab-port) {
         font-size: 1.8rem;
     }
-    @include respond(phone) {
+    @include respond(tab-port) {
         font-size: 2rem;
+    }
+    @include respond(phone) {
+        font-size: 2.5rem;
     }
 }
 
@@ -104,7 +91,7 @@
 
 @mixin button_label {
     @include all_transition;
-    font: 400 1.7rem "Roboto";
+    font: 400 1.8rem "Roboto";
     color: $white;
 }
 

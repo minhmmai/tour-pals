@@ -1,34 +1,51 @@
 @import "../../assets/scss/variables.scss";
 @import "../../assets/scss/mixins.scss";
 
-.Form {
-  @include all_transition;
-  margin: 1rem auto;
+.RenderedForm {
   position: relative;
-  width: 100%;
-  .FormSection, .FormButtons {
-    margin-top: 5rem;
+  top: 7rem;
+  width: 100vw;
+
+  .FormHeading {
+    margin: 5rem auto;
+    h2 {
+      color: $primary;
+    }
   }
-  .FormSection {
+
+  .FormArea {
+    margin-bottom: 5rem;
     .Finished {
-      color: $secondary;
-      position: absolute;
-      top: 20%;
-      left: 50%;
-      margin: auto;
-      transform: translate(-50%, 50%);
-      width: 100%;
       .Heading {
-        @include h3;
+        color: $primary_light;
+        .Message {
+          color: $paragraph;
+        }
       }
-      .Message {
-        @include paragraph;
+    }
+
+    .Heading, .Message {
+      margin-bottom: 5rem;
+    }
+
+    .Form {
+      .FormSection {
+        .SectionDescription {
+          margin-bottom: 5rem;
+          color: $paragraph;
+        }
       }
     }
   }
+
   .FormButtons {
-    Button {
-      cursor: pointer;
-    }
+    margin-bottom: 2rem;
+  }
+
+  @include respond(tab-port) {
+    top: 10rem;
+  }
+  @include respond(phone) {
+    top: 12rem;
   }
 }
