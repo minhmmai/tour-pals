@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Demo link: https://master.d38lbd7qxgt50e.amplifyapp.com/booking
 
+![Tour Pals screenshot](https://github.com/minhmmai/tour-pals/blob/develop/public/screenshot.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
