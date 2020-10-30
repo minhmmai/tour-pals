@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Demo link: https://master.d38lbd7qxgt50e.amplifyapp.com/booking
+
 ## Available Scripts
 
 In the project directory, you can run:
